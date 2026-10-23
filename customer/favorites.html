@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    Favorites | Nicey Burger Junction
+  </title>
+
+  <meta
+    name="description"
+    content="View and order your saved Nicey Burger Junction favorites."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b42318"
+  >
+
+  <meta
+    property="og:title"
+    content="Favorites | Nicey Burger Junction"
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link rel="modulepreload" href="/assets/js/main.js">
+
+  <script defer
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+  ></script>
+</head>
+
+<body class="customer-shell" data-controller="favorites">
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+
+  <div id="site-header"></div>
+  <script src="/assets/js/components/customer-shell-bootstrap.js"></script>
+
+
+  <main id="main-content">
+
+    <!-- =========================================
+         FAVORITES HERO
+         ========================================= -->
+
+    <section class="favorites-hero">
+
+      <div
+        class="favorites-hero-shape favorites-shape-one"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        class="favorites-hero-shape favorites-shape-two"
+        aria-hidden="true"
+      ></div>
+
+
+      <div class="container-nbj favorites-hero-grid">
+
+        <div class="favorites-hero-copy">
+
+          <p class="eyebrow">
+
+            <i
+              class="bi bi-heart-fill"
+              aria-hidden="true"
+            ></i>
+
+            Saved cravings
+
+          </p>
+
+
+          <h1>
+            Your Nicey
+            <span>favorites.</span>
+          </h1>
+
+
+          <p class="favorites-hero-lead">
+            Everything you've saved in one delicious
+            place. Come back anytime and turn your
+            favorites into your next Nicey order.
+          </p>
+
+
+          <div class="favorites-hero-actions">
+
+            <a
+              href="/menu.html"
+              class="btn-nbj"
+            >
+
+              <i
+                class="bi bi-bag-plus"
+                aria-hidden="true"
+              ></i>
+
+              Browse menu
+
+            </a>
+
+
+            <a
+              href="/customer/dashboard.html"
+              class="btn-nbj ghost"
+            >
+
+              <i
+                class="bi bi-grid"
+                aria-hidden="true"
+              ></i>
+
+              My account
+
+            </a>
+
+          </div>
+
+
+          <div class="favorites-hero-points">
+
+            <span>
+
+              <i
+                class="bi bi-heart-fill"
+                aria-hidden="true"
+              ></i>
+
+              Save what you love
+
+            </span>
+
+
+            <span>
+
+              <i
+                class="bi bi-arrow-repeat"
+                aria-hidden="true"
+              ></i>
+
+              Find it again quickly
+
+            </span>
+
+
+            <span>
+
+              <i
+                class="bi bi-bag-check-fill"
+                aria-hidden="true"
+              ></i>
+
+              Order when you're ready
+
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- Mascot -->
+        <div
+          class="favorites-hero-art"
+          aria-hidden="true"
+        >
+
+          <div class="favorites-hero-halo"></div>
+
+
+          <span class="favorites-floating-chip favorites-chip-one">
+
+            <i class="bi bi-heart-fill"></i>
+
+            Saved with love
+
+          </span>
+
+
+          <span class="favorites-floating-chip favorites-chip-two">
+
+            <i class="bi bi-stars"></i>
+
+            Nice choice!
+
+          </span>
+
+
+          <img
+            src="/assets/images/nicey-mascot.png"
+            alt=""
+            class="favorites-hero-mascot"
+            loading="eager"
+            decoding="async"
+          >
+
+
+          <div class="favorites-hero-shadow"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         CUSTOMER ACCOUNT NAV
+         ========================================= -->
+
+    <section class="favorites-nav-section">
+
+      <div class="container-nbj">
+
+        <nav
+          class="favorites-account-nav"
+          aria-label="Customer account navigation"
+        >
+
+          <a href="/customer/orders.html">
+
+            <span>
+              <i class="bi bi-receipt"></i>
+            </span>
+
+            <strong>
+              Orders
+            </strong>
+
+          </a>
+
+
+          <a
+            href="/customer/favorites.html"
+            aria-current="page"
+          >
+
+            <span>
+              <i class="bi bi-heart-fill"></i>
+            </span>
+
+            <strong>
+              Favorites
+            </strong>
+
+          </a>
+
+
+          <a href="/customer/notifications.html">
+
+            <span>
+              <i class="bi bi-bell"></i>
+            </span>
+
+            <strong>
+              Notifications
+            </strong>
+
+          </a>
+
+
+          <a href="/customer/addresses.html">
+
+            <span>
+              <i class="bi bi-geo-alt"></i>
+            </span>
+
+            <strong>
+              Addresses
+            </strong>
+
+          </a>
+
+
+          <a href="/customer/profile.html">
+
+            <span>
+              <i class="bi bi-person"></i>
+            </span>
+
+            <strong>
+              Profile
+            </strong>
+
+          </a>
+
+        </nav>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         FAVORITES GRID
+         ========================================= -->
+
+    <section class="section favorites-section">
+
+      <div class="container-nbj">
+
+        <div class="favorites-section-heading">
+
+          <div>
+
+            <p class="eyebrow">
+
+              <i
+                class="bi bi-heart"
+                aria-hidden="true"
+              ></i>
+
+              Your saved menu
+
+            </p>
+
+
+            <h2>
+              Things you love
+            </h2>
+
+
+            <p>
+              Your saved Nicey Burger Junction
+              products will appear below.
+            </p>
+
+          </div>
+
+
+          <a
+            href="/menu.html"
+            class="section-link"
+          >
+
+            Discover more
+
+            <i
+              class="bi bi-arrow-right"
+              aria-hidden="true"
+            ></i>
+
+          </a>
+
+        </div>
+
+
+        <!--
+          Existing favorites controller renders
+          product cards into this exact element.
+        -->
+        <div
+          id="favorites-grid"
+          class="product-grid favorites-grid"
+          aria-live="polite"
+          aria-busy="false"
+        ></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         FAVORITES INFO
+         ========================================= -->
+
+    <section class="section favorites-info-section">
+
+      <div class="container-nbj">
+
+        <div class="favorites-info-grid">
+
+          <article class="favorites-info-card">
+
+            <span>
+
+              <i
+                class="bi bi-heart"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+
+            <div>
+
+              <strong>
+                Save your cravings
+              </strong>
+
+              <p>
+                Tap the favorite button on products
+                you want to find again quickly.
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <article class="favorites-info-card">
+
+            <span>
+
+              <i
+                class="bi bi-lightning-charge"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+
+            <div>
+
+              <strong>
+                Faster decisions
+              </strong>
+
+              <p>
+                Skip the search and go straight
+                back to the food you already love.
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <article class="favorites-info-card">
+
+            <span>
+
+              <i
+                class="bi bi-bag-check"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+
+            <div>
+
+              <strong>
+                Ready when you are
+              </strong>
+
+              <p>
+                Open a favorite and add it to your
+                next order whenever the craving hits.
+              </p>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         CTA
+         ========================================= -->
+
+    <section class="section favorites-cta-section">
+
+      <div class="container-nbj">
+
+        <div class="favorites-cta">
+
+          <div class="favorites-cta-copy">
+
+            <img
+              src="/assets/images/nicey-burger-logo-transparent.png"
+              alt="Nicey Burger Junction"
+              class="favorites-cta-logo"
+              loading="lazy"
+              decoding="async"
+            >
+
+
+            <p class="eyebrow">
+              Find another favorite
+            </p>
+
+
+            <h2>
+              There's always something
+              Nice waiting for you.
+            </h2>
+
+
+            <p>
+              Explore burgers, combos, sides and
+              drinks and save your next favorite.
+            </p>
+
+
+            <a
+              href="/menu.html"
+              class="btn-nbj"
+            >
+
+              <i
+                class="bi bi-bag-plus"
+                aria-hidden="true"
+              ></i>
+
+              Explore the menu
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <div
+      id="page-error"
+      class="container-nbj alert alert-danger mt-3"
+      role="alert"
+      hidden
+    ></div>
+
+  </main>
+
+
+  <div id="site-footer"></div>
+
+
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/main.js"
+  ></script>
+
+</body>
+</html>

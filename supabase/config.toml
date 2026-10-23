@@ -1,0 +1,7 @@
+project_id = "nicey-burger-junction"
+
+[functions.admin-users]
+verify_jwt = true
+
+[functions.ml-sync]
+verify_jwt = false

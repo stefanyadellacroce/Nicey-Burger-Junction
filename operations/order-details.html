@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    Order Details | Nicey Burger Junction
+  </title>
+
+  <meta
+    name="description"
+    content="View and manage a Nicey Burger Junction order."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b52420"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/portal.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/print.css"
+    media="print"
+  >
+
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body
+  data-portal="operations"
+  data-controller="ops-order-details"
+>
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+
+  <div class="portal-layout">
+
+    <aside
+      id="portal-sidebar"
+      class="portal-sidebar"
+    ></aside>
+
+
+    <div class="portal-main">
+
+      <header
+        id="portal-topbar"
+        class="portal-topbar"
+      ></header>
+      <script src="/assets/js/components/portal-shell-bootstrap.js"></script>
+
+
+      <main
+        id="main-content"
+        class="portal-content ops-page"
+      >
+
+        <!-- HEADER -->
+        <section class="ops-page-heading">
+
+          <div class="ops-page-heading-copy">
+
+            <div class="ops-heading-icon">
+              <i class="bi bi-receipt"></i>
+            </div>
+
+            <div>
+              <p class="ops-page-kicker">
+                Order Management
+              </p>
+
+              <h1>
+                Order Details
+              </h1>
+
+              <p class="ops-page-description">
+                Review customer information, payment, fulfillment and order progress.
+              </p>
+            </div>
+
+          </div>
+
+
+          <button
+            id="print-receipt"
+            class="btn-nbj ghost ops-print-button"
+            type="button"
+          >
+            <i class="bi bi-printer"></i>
+
+            Print receipt
+          </button>
+
+        </section>
+
+
+        <div
+          id="page-error"
+          class="alert alert-danger"
+          role="alert"
+          hidden
+        ></div>
+
+
+        <!-- ORDER SUMMARY -->
+        <section class="ops-order-summary">
+
+          <div>
+
+            <p class="ops-panel-kicker">
+              Current order
+            </p>
+
+            <h2 id="detail-order-number">
+              —
+            </h2>
+
+            <p
+              id="detail-order-meta"
+              class="muted"
+            ></p>
+
+          </div>
+
+
+          <div class="ops-order-summary-icon">
+            <i class="bi bi-bag-check"></i>
+          </div>
+
+        </section>
+
+
+        <!-- DETAILS -->
+        <section class="ops-order-detail-grid">
+
+          <!-- LEFT -->
+          <article class="panel ops-panel">
+
+            <div class="ops-detail-section">
+
+              <div class="ops-detail-heading">
+
+                <span class="ops-detail-icon">
+                  <i class="bi bi-person"></i>
+                </span>
+
+                <div>
+                  <p class="ops-panel-kicker">
+                    Buyer
+                  </p>
+
+                  <h3>
+                    Customer
+                  </h3>
+                </div>
+
+              </div>
+
+
+              <div
+                id="detail-customer"
+                class="ops-detail-content"
+              ></div>
+
+            </div>
+
+
+            <div class="ops-detail-section">
+
+              <div class="ops-detail-heading">
+
+                <span class="ops-detail-icon">
+                  <i class="bi bi-truck"></i>
+                </span>
+
+                <div>
+                  <p class="ops-panel-kicker">
+                    Handover
+                  </p>
+
+                  <h3>
+                    Fulfillment
+                  </h3>
+                </div>
+
+              </div>
+
+
+              <div
+                id="detail-address"
+                class="ops-detail-content"
+              ></div>
+
+            </div>
+
+
+            <div class="ops-detail-section">
+
+              <div class="ops-detail-heading">
+
+                <span class="ops-detail-icon">
+                  <i class="bi bi-basket"></i>
+                </span>
+
+                <div>
+                  <p class="ops-panel-kicker">
+                    Order contents
+                  </p>
+
+                  <h3>
+                    Items
+                  </h3>
+                </div>
+
+              </div>
+
+
+              <div
+                id="detail-items"
+                class="ops-detail-content ops-detail-items"
+              ></div>
+
+            </div>
+
+          </article>
+
+
+          <!-- RIGHT -->
+          <aside class="panel ops-panel ops-order-side">
+
+            <section class="ops-detail-section">
+
+              <div class="ops-detail-heading">
+
+                <span class="ops-detail-icon">
+                  <i class="bi bi-credit-card"></i>
+                </span>
+
+                <div>
+                  <p class="ops-panel-kicker">
+                    Transaction
+                  </p>
+
+                  <h3>
+                    Payment
+                  </h3>
+                </div>
+
+              </div>
+
+
+              <div
+                id="detail-payment"
+                class="ops-detail-content"
+              ></div>
+
+
+              <div class="ops-order-total-box">
+
+                <span>
+                  Order total
+                </span>
+
+                <strong
+                  class="display-price"
+                  id="detail-total"
+                >
+                  —
+                </strong>
+
+              </div>
+
+            </section>
+
+
+            <section class="ops-detail-section">
+
+              <div class="ops-detail-heading">
+
+                <span class="ops-detail-icon">
+                  <i class="bi bi-clock-history"></i>
+                </span>
+
+                <div>
+                  <p class="ops-panel-kicker">
+                    Progress
+                  </p>
+
+                  <h3>
+                    Status history
+                  </h3>
+                </div>
+
+              </div>
+
+
+              <div
+                id="detail-history"
+                class="timeline ops-detail-timeline"
+              ></div>
+
+            </section>
+
+
+            <div class="ops-order-actions">
+
+              <button
+                id="detail-next-status"
+                class="btn-nbj"
+                type="button"
+              >
+                <i class="bi bi-arrow-right-circle"></i>
+
+                Advance status
+              </button>
+
+
+              <button
+                id="detail-cancel"
+                class="btn-nbj danger"
+                type="button"
+              >
+                <i class="bi bi-x-circle"></i>
+
+                Cancel
+              </button>
+
+            </div>
+
+          </aside>
+
+        </section>
+
+      </main>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/portal.js"
+  ></script>
+
+</body>
+</html>

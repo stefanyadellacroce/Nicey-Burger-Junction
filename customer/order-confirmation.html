@@ -1,0 +1,764 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    Order Confirmation | Nicey Burger Junction
+  </title>
+
+  <meta
+    name="description"
+    content="Your Nicey Burger Junction order has been received. Review your order, receipt and payment instructions."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b42318"
+  >
+
+  <meta
+    property="og:title"
+    content="Order Confirmation | Nicey Burger Junction"
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link rel="modulepreload" href="/assets/js/main.js">
+
+  <script defer
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+  ></script>
+</head>
+
+<body class="customer-shell" data-controller="order-confirmation">
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+
+  <div id="site-header"></div>
+  <script src="/assets/js/components/customer-shell-bootstrap.js"></script>
+
+
+  <main id="main-content">
+
+    <!-- =========================================
+         CONFIRMATION HERO
+         ========================================= -->
+
+    <section class="confirmation-hero">
+
+      <div
+        class="confirmation-hero-shape confirmation-shape-one"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        class="confirmation-hero-shape confirmation-shape-two"
+        aria-hidden="true"
+      ></div>
+
+
+      <div class="container-nbj narrow">
+
+        <div class="panel confirmation-success-card">
+
+          <div
+            class="confirmation-success-art"
+            aria-hidden="true"
+          >
+
+            <div class="confirmation-success-halo"></div>
+
+
+            <div class="confirmation-check">
+
+              <i class="bi bi-check-lg"></i>
+
+            </div>
+
+
+            <img
+              src="/assets/images/nicey-mascot.png"
+              alt=""
+              class="confirmation-mascot"
+              loading="eager"
+              decoding="async"
+            >
+
+
+            <div class="confirmation-mascot-shadow"></div>
+
+          </div>
+
+
+          <div class="confirmation-success-content">
+
+            <img
+              src="/assets/images/nicey-burger-logo-transparent.png"
+              alt="Nicey Burger Junction"
+              class="confirmation-logo"
+              loading="eager"
+              decoding="async"
+            >
+
+
+            <p class="eyebrow">
+
+              <i
+                class="bi bi-check-circle-fill"
+                aria-hidden="true"
+              ></i>
+
+              Order received
+
+            </p>
+
+
+            <h1 id="confirmation-number">
+              Order
+            </h1>
+
+
+            <p class="confirmation-message">
+              Your order is in. We'll keep your
+              status updated while your Nicey order
+              moves through fulfillment.
+            </p>
+
+
+            <div class="confirmation-meta-grid">
+
+              <div class="confirmation-meta-card">
+
+                <span class="confirmation-meta-icon">
+
+                  <i
+                    class="bi bi-activity"
+                    aria-hidden="true"
+                  ></i>
+
+                </span>
+
+
+                <div>
+
+                  <small>
+                    Status
+                  </small>
+
+                  <strong id="confirmation-status">
+                    —
+                  </strong>
+
+                </div>
+
+              </div>
+
+
+              <div class="confirmation-meta-card">
+
+                <span class="confirmation-meta-icon">
+
+                  <i
+                    class="bi bi-clock"
+                    aria-hidden="true"
+                  ></i>
+
+                </span>
+
+
+                <div>
+
+                  <small>
+                    Estimated time
+                  </small>
+
+                  <strong id="confirmation-estimate">
+                    —
+                  </strong>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="confirmation-total-block">
+
+              <div>
+
+                <span>
+                  Order total
+                </span>
+
+                <small>
+                  Final confirmed amount
+                </small>
+
+              </div>
+
+
+              <p
+                class="display-price"
+                id="confirmation-total"
+              >
+                —
+              </p>
+
+            </div>
+
+
+            <div class="confirmation-actions">
+
+              <a
+                id="track-order-link"
+                class="btn-nbj"
+                href="/customer/orders.html"
+              >
+
+                <i
+                  class="bi bi-geo-alt"
+                  aria-hidden="true"
+                ></i>
+
+                Track order
+
+              </a>
+
+
+              <a
+                class="btn-nbj ghost"
+                href="/menu.html"
+              >
+
+                <i
+                  class="bi bi-bag-plus"
+                  aria-hidden="true"
+                ></i>
+
+                Order more
+
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         ORDER DETAILS
+         ========================================= -->
+
+    <section class="section confirmation-content-section">
+
+      <div class="container-nbj narrow">
+
+        <!-- =====================================
+             RECEIPT
+             ===================================== -->
+
+        <div class="panel confirmation-panel confirmation-receipt-panel">
+
+          <div class="confirmation-panel-heading">
+
+            <div class="confirmation-panel-title">
+
+              <span>
+
+                <i
+                  class="bi bi-receipt-cutoff"
+                  aria-hidden="true"
+                ></i>
+
+              </span>
+
+
+              <div>
+
+                <p class="eyebrow">
+                  Order summary
+                </p>
+
+                <h2>
+                  Receipt
+                </h2>
+
+              </div>
+
+            </div>
+
+
+            <a
+              href="/customer/orders.html"
+              class="section-link"
+            >
+
+              My orders
+
+              <i
+                class="bi bi-arrow-right"
+                aria-hidden="true"
+              ></i>
+
+            </a>
+
+          </div>
+
+
+          <div class="confirmation-receipt-note">
+
+            <i
+              class="bi bi-bag-check"
+              aria-hidden="true"
+            ></i>
+
+            <span>
+              Here's a summary of the items included
+              in your order.
+            </span>
+
+          </div>
+
+
+          <div
+            id="confirmation-items"
+            class="stack confirmation-items"
+            aria-live="polite"
+          ></div>
+
+        </div>
+
+
+        <!-- =====================================
+             PAYMENT PROOF
+             ===================================== -->
+
+        <div class="panel confirmation-panel payment-proof-panel mt-3">
+
+          <div class="confirmation-panel-heading">
+
+            <div class="confirmation-panel-title">
+
+              <span>
+
+                <i
+                  class="bi bi-wallet2"
+                  aria-hidden="true"
+                ></i>
+
+              </span>
+
+
+              <div>
+
+                <p class="eyebrow">
+                  Payment verification
+                </p>
+
+                <h2>
+                  Manual payment proof
+                </h2>
+
+              </div>
+
+            </div>
+
+
+            <span class="payment-proof-badge">
+
+              <i
+                class="bi bi-shield-check"
+                aria-hidden="true"
+              ></i>
+
+              Secure upload
+
+            </span>
+
+          </div>
+
+
+          <div
+            id="payment-instructions"
+            class="muted payment-instructions"
+          ></div>
+
+
+          <form
+            id="proof-form"
+            class="stack payment-proof-form"
+          >
+
+            <div class="payment-proof-grid">
+
+              <!-- Reference -->
+              <div class="field">
+
+                <label for="payment-reference">
+                  Reference number
+                </label>
+
+
+                <div class="confirmation-input-wrap">
+
+                  <i
+                    class="bi bi-hash"
+                    aria-hidden="true"
+                  ></i>
+
+
+                  <input
+                    id="payment-reference"
+                    name="reference"
+                    class="form-control"
+                    type="text"
+                    autocomplete="off"
+                    placeholder="Transaction reference"
+                  >
+
+                </div>
+
+              </div>
+
+
+              <!-- Proof -->
+              <div class="field">
+
+                <label for="payment-proof-file">
+                  Proof image
+                </label>
+
+
+                <div class="payment-file-wrap">
+
+                  <input
+                    id="payment-proof-file"
+                    name="proof"
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp"
+                    class="form-control"
+                  >
+
+                </div>
+
+
+                <small class="payment-field-help">
+
+                  <i
+                    class="bi bi-image"
+                    aria-hidden="true"
+                  ></i>
+
+                  JPEG, PNG or WebP image.
+
+                </small>
+
+              </div>
+
+
+              <!-- Note -->
+              <div class="field payment-proof-full">
+
+                <label for="payment-note">
+                  Note
+                </label>
+
+
+                <div class="confirmation-textarea-wrap">
+
+                  <i
+                    class="bi bi-chat-left-text"
+                    aria-hidden="true"
+                  ></i>
+
+
+                  <textarea
+                    id="payment-note"
+                    name="note"
+                    class="form-control"
+                    rows="4"
+                    maxlength="500"
+                    placeholder="Add an optional payment note"
+                  ></textarea>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="payment-proof-security">
+
+              <span>
+
+                <i
+                  class="bi bi-lock-fill"
+                  aria-hidden="true"
+                ></i>
+
+              </span>
+
+
+              <div>
+
+                <strong>
+                  Keep your proof clear and readable.
+                </strong>
+
+                <p>
+                  Only upload an image needed to verify
+                  this payment. Avoid including unrelated
+                  sensitive information.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="payment-proof-actions">
+
+              <button
+                class="btn-nbj payment-proof-submit"
+                type="submit"
+              >
+
+                <span>
+                  Submit payment proof
+                </span>
+
+                <i
+                  class="bi bi-cloud-arrow-up"
+                  aria-hidden="true"
+                ></i>
+
+              </button>
+
+            </div>
+
+          </form>
+
+        </div>
+
+
+        <!-- =====================================
+             NEXT STEPS
+             ===================================== -->
+
+        <div class="confirmation-next-grid">
+
+          <article class="confirmation-next-card">
+
+            <span>
+
+              <i
+                class="bi bi-receipt"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+
+            <div>
+
+              <strong>
+                Track the order
+              </strong>
+
+              <p>
+                Visit My Orders anytime to see
+                the latest status.
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <article class="confirmation-next-card">
+
+            <span>
+
+              <i
+                class="bi bi-bell"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+
+            <div>
+
+              <strong>
+                Watch for updates
+              </strong>
+
+              <p>
+                Account notifications can keep
+                you informed as things change.
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <article class="confirmation-next-card">
+
+            <span>
+
+              <i
+                class="bi bi-chat-heart"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+
+            <div>
+
+              <strong>
+                Need assistance?
+              </strong>
+
+              <p>
+                Contact us if you have a question
+                about this order or payment.
+              </p>
+
+            </div>
+
+          </article>
+
+        </div>
+
+
+        <!-- =====================================
+             HELP CTA
+             ===================================== -->
+
+        <div class="confirmation-help">
+
+          <div>
+
+            <img
+              src="/assets/images/nicey-burger-logo-transparent.png"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+            >
+
+
+            <div>
+
+              <strong>
+                Thanks for ordering with Nicey!
+              </strong>
+
+              <p>
+                Need help with this order?
+                We're only a message away.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <a
+            href="/contact.html"
+            class="btn-nbj ghost"
+          >
+
+            <i
+              class="bi bi-chat-dots"
+              aria-hidden="true"
+            ></i>
+
+            Contact us
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <div
+      id="page-error"
+      class="container-nbj alert alert-danger mt-3"
+      role="alert"
+      hidden
+    ></div>
+
+  </main>
+
+
+  <div id="site-footer"></div>
+
+
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/main.js"
+  ></script>
+
+</body>
+</html>

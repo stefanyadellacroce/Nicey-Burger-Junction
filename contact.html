@@ -1,0 +1,896 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    Contact | Nicey Burger Junction
+  </title>
+
+  <meta
+    name="description"
+    content="Contact Nicey Burger Junction for questions, feedback, store information and ordering assistance."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b42318"
+  >
+
+  <meta
+    property="og:title"
+    content="Contact | Nicey Burger Junction"
+  >
+
+  <meta
+    property="og:description"
+    content="Questions, feedback or ordering help? Get in touch with Nicey Burger Junction."
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link rel="modulepreload" href="/assets/js/main.js">
+  <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+</head>
+
+<body data-controller="contact">
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+
+  <div id="site-header"></div>
+  <script src="/assets/js/components/public-header-bootstrap.js"></script>
+
+
+  <main id="main-content">
+
+    <!-- =========================================
+         CONTACT HERO
+         ========================================= -->
+
+    <section class="contact-hero">
+
+      <div
+        class="contact-hero-shape contact-shape-one"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        class="contact-hero-shape contact-shape-two"
+        aria-hidden="true"
+      ></div>
+
+
+      <div class="container-nbj contact-hero-grid">
+
+        <div class="contact-hero-copy">
+
+          <p class="eyebrow">
+
+            <i
+              class="bi bi-chat-heart-fill"
+              aria-hidden="true"
+            ></i>
+
+            Questions or feedback?
+
+          </p>
+
+
+          <h1>
+            We'd love to
+            <span>hear from you.</span>
+          </h1>
+
+
+          <p class="contact-hero-description">
+            Need help with an order, have a question
+            about the menu, or simply want to send
+            us some Nice feedback? Drop us a message.
+          </p>
+
+
+          <div class="contact-hero-actions">
+
+            <a
+              href="#contact-form"
+              class="btn-nbj"
+            >
+
+              <i
+                class="bi bi-send"
+                aria-hidden="true"
+              ></i>
+
+              Send a message
+
+            </a>
+
+
+            <a
+              href="/menu.html"
+              class="btn-nbj ghost"
+            >
+
+              <i
+                class="bi bi-burger"
+                aria-hidden="true"
+              ></i>
+
+              Browse menu
+
+            </a>
+
+          </div>
+
+
+          <div class="contact-hero-points">
+
+            <span>
+
+              <i
+                class="bi bi-check-circle-fill"
+                aria-hidden="true"
+              ></i>
+
+              Ordering questions
+
+            </span>
+
+            <span>
+
+              <i
+                class="bi bi-check-circle-fill"
+                aria-hidden="true"
+              ></i>
+
+              Customer feedback
+
+            </span>
+
+            <span>
+
+              <i
+                class="bi bi-check-circle-fill"
+                aria-hidden="true"
+              ></i>
+
+              Store inquiries
+
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- Brand mascot -->
+        <div
+          class="contact-hero-visual"
+          aria-hidden="true"
+        >
+
+          <div class="contact-mascot-halo"></div>
+
+
+          <div class="contact-floating-card contact-floating-card-one">
+
+            <i class="bi bi-chat-dots-fill"></i>
+
+            Let's talk!
+
+          </div>
+
+
+          <div class="contact-floating-card contact-floating-card-two">
+
+            <i class="bi bi-heart-fill"></i>
+
+            Everything Nice!
+
+          </div>
+
+
+          <img
+            src="/assets/images/nicey-mascot.png"
+            alt=""
+            class="contact-hero-mascot"
+            loading="eager"
+            decoding="async"
+          >
+
+
+          <div class="contact-mascot-shadow"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         CONTACT SECTION
+         ========================================= -->
+
+    <section class="section contact-main-section">
+
+      <div class="container-nbj">
+
+        <div class="contact-layout">
+
+          <!-- =====================================
+               RESTAURANT INFORMATION
+               ===================================== -->
+
+          <div class="contact-info-column">
+
+            <div>
+
+              <p class="eyebrow">
+
+                <i
+                  class="bi bi-shop"
+                  aria-hidden="true"
+                ></i>
+
+                Visit Nicey
+
+              </p>
+
+
+              <h2>
+                Restaurant details
+              </h2>
+
+
+              <p class="contact-section-intro">
+                Store address, operating hours,
+                phone and other details are loaded
+                from the website settings.
+              </p>
+
+            </div>
+
+
+            <!-- Information cards -->
+            <div class="contact-detail-grid">
+
+              <article class="contact-detail-card">
+
+                <span class="contact-detail-icon">
+
+                  <i
+                    class="bi bi-geo-alt"
+                    aria-hidden="true"
+                  ></i>
+
+                </span>
+
+                <div>
+
+                  <small>
+                    Location
+                  </small>
+
+                  <strong id="contact-address">
+                    Not yet configured
+                  </strong>
+
+                  <p>
+                    See the location details below.
+                  </p>
+
+                </div>
+
+              </article>
+
+
+              <article class="contact-detail-card">
+
+                <span class="contact-detail-icon">
+
+                  <i
+                    class="bi bi-clock"
+                    aria-hidden="true"
+                  ></i>
+
+                </span>
+
+                <div>
+
+                  <small>
+                    Store hours
+                  </small>
+
+                  <strong id="contact-hours">
+                    Store hours
+                  </strong>
+
+                  <p>
+                    Current hours are shown
+                    from website settings.
+                  </p>
+
+                </div>
+
+              </article>
+
+
+              <article class="contact-detail-card">
+
+                <span class="contact-detail-icon">
+
+                  <i
+                    class="bi bi-telephone"
+                    aria-hidden="true"
+                  ></i>
+
+                </span>
+
+                <div>
+
+                  <small>
+                    Contact
+                  </small>
+
+                  <strong id="contact-phone">
+                    Phone
+                  </strong>
+
+                  <p>
+                    For ordering and store inquiries.
+                  </p>
+
+                </div>
+
+              </article>
+
+
+              <article class="contact-detail-card">
+
+                <span class="contact-detail-icon">
+
+                  <i
+                    class="bi bi-envelope"
+                    aria-hidden="true"
+                  ></i>
+
+                </span>
+
+                <div>
+
+                  <small>
+                    Email
+                  </small>
+
+                  <strong id="contact-email">
+                    Email
+                  </strong>
+
+                  <p>
+                    Send us your questions or feedback.
+                  </p>
+
+                </div>
+
+              </article>
+
+            </div>
+
+
+            <!-- Map -->
+            <div class="contact-map-panel">
+
+              <div class="contact-map-heading">
+
+                <div>
+
+                  <p class="eyebrow">
+                    Find us
+                  </p>
+
+                  <h3>
+                    Nicey Burger Junction
+                  </h3>
+
+                  <p id="contact-map-address" class="contact-map-address">
+                    Not yet configured
+                  </p>
+
+                </div>
+
+
+                <span class="contact-map-icon">
+
+                  <i
+                    class="bi bi-pin-map-fill"
+                    aria-hidden="true"
+                  ></i>
+
+                </span>
+
+              </div>
+
+
+              <div
+                id="map-area"
+                class="contact-map-area"
+              >
+
+                <iframe
+                  class="contact-map-frame"
+                  title="Restaurant map"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  hidden
+                ></iframe>
+
+              </div>
+
+              <div class="contact-map-actions">
+                <span id="contact-map-note">Map location has not been configured.</span>
+                <a
+                  id="contact-map-link"
+                  href="#map-area"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  hidden
+                >View larger map <span aria-hidden="true">↗</span></a>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- =====================================
+               CONTACT FORM
+               ===================================== -->
+
+          <div class="contact-form-column">
+
+            <form
+              id="contact-form"
+              class="contact-form-panel"
+            >
+
+              <div class="contact-form-heading">
+
+                <span class="contact-form-heading-icon">
+
+                  <i
+                    class="bi bi-chat-heart"
+                    aria-hidden="true"
+                  ></i>
+
+                </span>
+
+
+                <div>
+
+                  <p class="eyebrow">
+                    Get in touch
+                  </p>
+
+                  <h2>
+                    Send an inquiry
+                  </h2>
+
+                  <p>
+                    Fill out the form and our team
+                    can review your message.
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <!-- Name -->
+              <div class="field">
+
+                <label for="name">
+                  Name
+                  <span aria-hidden="true">*</span>
+                </label>
+
+                <div class="contact-input-wrap">
+
+                  <i
+                    class="bi bi-person"
+                    aria-hidden="true"
+                  ></i>
+
+                  <input
+                    id="name"
+                    name="name"
+                    class="form-control"
+                    type="text"
+                    required
+                    maxlength="120"
+                    autocomplete="name"
+                    placeholder="Your name"
+                  >
+
+                </div>
+
+              </div>
+
+
+              <!-- Email + phone -->
+              <div class="contact-form-row">
+
+                <div class="field">
+
+                  <label for="email">
+                    Email
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <div class="contact-input-wrap">
+
+                    <i
+                      class="bi bi-envelope"
+                      aria-hidden="true"
+                    ></i>
+
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      class="form-control"
+                      required
+                      autocomplete="email"
+                      placeholder="you@example.com"
+                    >
+
+                  </div>
+
+                </div>
+
+
+                <div class="field">
+
+                  <label for="phone">
+                    Phone
+                  </label>
+
+                  <div class="contact-input-wrap">
+
+                    <i
+                      class="bi bi-phone"
+                      aria-hidden="true"
+                    ></i>
+
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      class="form-control"
+                      autocomplete="tel"
+                      maxlength="40"
+                      placeholder="Optional"
+                    >
+
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <!-- Subject -->
+              <div class="field">
+
+                <label for="subject">
+                  Subject
+                  <span aria-hidden="true">*</span>
+                </label>
+
+                <div class="contact-input-wrap">
+
+                  <i
+                    class="bi bi-chat-square-text"
+                    aria-hidden="true"
+                  ></i>
+
+                  <input
+                    id="subject"
+                    name="subject"
+                    class="form-control"
+                    type="text"
+                    required
+                    maxlength="160"
+                    placeholder="What can we help with?"
+                  >
+
+                </div>
+
+              </div>
+
+
+              <!-- Message -->
+              <div class="field">
+
+                <label for="message">
+                  Message
+                  <span aria-hidden="true">*</span>
+                </label>
+
+                <div class="contact-textarea-wrap">
+
+                  <textarea
+                    id="message"
+                    name="message"
+                    class="form-control"
+                    rows="7"
+                    required
+                    maxlength="3000"
+                    placeholder="Tell us how we can help…"
+                  ></textarea>
+
+                </div>
+
+                <span class="help-text">
+                  Maximum 3,000 characters
+                </span>
+
+              </div>
+
+
+              <!-- Privacy note -->
+              <div class="contact-form-note">
+
+                <i
+                  class="bi bi-shield-check"
+                  aria-hidden="true"
+                ></i>
+
+                <p>
+                  Your contact details are used only
+                  to review and respond to your inquiry.
+                </p>
+
+              </div>
+
+
+              <button
+                class="btn-nbj contact-submit-button"
+                type="submit"
+              >
+
+                <i
+                  class="bi bi-send"
+                  aria-hidden="true"
+                ></i>
+
+                <span>
+                  Send message
+                </span>
+
+              </button>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         QUICK HELP
+         ========================================= -->
+
+    <section class="section surface">
+
+      <div class="container-nbj">
+
+        <div class="section-heading">
+
+          <div>
+
+            <p class="eyebrow">
+
+              <i
+                class="bi bi-question-circle"
+                aria-hidden="true"
+              ></i>
+
+              Need something else?
+
+            </p>
+
+            <h2>
+              Quick ways to get what you need
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <div class="contact-help-grid">
+
+          <a
+            href="/menu.html"
+            class="contact-help-card"
+          >
+
+            <span>
+
+              <i
+                class="bi bi-burger"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+            <div>
+
+              <strong>
+                Browse the menu
+              </strong>
+
+              <p>
+                View burgers, sides,
+                drinks and combos.
+              </p>
+
+            </div>
+
+            <i
+              class="bi bi-arrow-right contact-help-arrow"
+              aria-hidden="true"
+            ></i>
+
+          </a>
+
+
+          <a
+            href="/customer/orders.html"
+            class="contact-help-card"
+          >
+
+            <span>
+
+              <i
+                class="bi bi-receipt"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+            <div>
+
+              <strong>
+                Track an order
+              </strong>
+
+              <p>
+                Check your latest
+                order status.
+              </p>
+
+            </div>
+
+            <i
+              class="bi bi-arrow-right contact-help-arrow"
+              aria-hidden="true"
+            ></i>
+
+          </a>
+
+
+          <a
+            href="/faq.html"
+            class="contact-help-card"
+          >
+
+            <span>
+
+              <i
+                class="bi bi-patch-question"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+            <div>
+
+              <strong>
+                Read the FAQ
+              </strong>
+
+              <p>
+                Find answers to common
+                ordering questions.
+              </p>
+
+            </div>
+
+            <i
+              class="bi bi-arrow-right contact-help-arrow"
+              aria-hidden="true"
+            ></i>
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <div
+      id="page-error"
+      class="container-nbj alert alert-danger mt-3"
+      role="alert"
+      hidden
+    ></div>
+
+  </main>
+
+
+  <div id="site-footer"></div>
+
+
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/main.js"
+  ></script>
+
+</body>
+</html>

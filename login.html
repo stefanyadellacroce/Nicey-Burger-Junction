@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    Sign in | Nicey Burger Junction
+  </title>
+
+  <meta
+    name="description"
+    content="Sign in to your Nicey Burger Junction account to manage orders, favorites and account details."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b42318"
+  >
+
+  <meta
+    property="og:title"
+    content="Sign in | Nicey Burger Junction"
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link rel="modulepreload" href="/assets/js/main.js">
+  <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+</head>
+
+<body
+  data-controller="auth"
+  data-auth-mode="login"
+>
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+
+  <div id="site-header"></div>
+  <script src="/assets/js/components/public-header-bootstrap.js"></script>
+
+
+  <main id="main-content">
+
+    <section class="auth-page-section">
+
+      <div
+        class="auth-page-shape auth-shape-one"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        class="auth-page-shape auth-shape-two"
+        aria-hidden="true"
+      ></div>
+
+
+      <div class="container-nbj auth-page-grid">
+
+        <!-- =====================================
+             BRAND / VISUAL
+             ===================================== -->
+
+        <div class="auth-brand-panel">
+
+          <div class="auth-brand-content">
+
+
+            <p class="eyebrow">
+
+              <i
+                class="bi bi-heart-fill"
+                aria-hidden="true"
+              ></i>
+
+              Welcome back
+
+            </p>
+
+
+            <h1>
+              Your Nicey cravings
+              <span>are waiting.</span>
+            </h1>
+
+
+            <p class="auth-brand-description">
+              Sign in to view your orders,
+              manage your account and get
+              back to your favorite Nicey meals.
+            </p>
+
+
+            <div class="auth-brand-benefits">
+
+              <div>
+
+                <span>
+                  <i
+                    class="bi bi-receipt"
+                    aria-hidden="true"
+                  ></i>
+                </span>
+
+                <div>
+                  <strong>
+                    Track orders
+                  </strong>
+
+                  <p>
+                    Follow your latest orders
+                    from checkout to completion.
+                  </p>
+                </div>
+
+              </div>
+
+
+              <div>
+
+                <span>
+                  <i
+                    class="bi bi-heart"
+                    aria-hidden="true"
+                  ></i>
+                </span>
+
+                <div>
+                  <strong>
+                    Save favorites
+                  </strong>
+
+                  <p>
+                    Keep your favorite Nicey
+                    picks close at hand.
+                  </p>
+                </div>
+
+              </div>
+
+
+              <div>
+
+                <span>
+                  <i
+                    class="bi bi-lightning-charge"
+                    aria-hidden="true"
+                  ></i>
+                </span>
+
+                <div>
+                  <strong>
+                    Faster ordering
+                  </strong>
+
+                  <p>
+                    Make repeat orders easier
+                    with your account.
+                  </p>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+        <!-- =====================================
+             LOGIN FORM
+             ===================================== -->
+
+        <div class="auth-form-column">
+
+          <form
+            class="auth-form-card"
+            data-auth-form
+          >
+
+            <div class="auth-form-heading">
+
+              <span class="auth-form-icon">
+
+                <i
+                  class="bi bi-person-circle"
+                  aria-hidden="true"
+                ></i>
+
+              </span>
+
+
+              <div>
+
+                <p class="eyebrow">
+                  Nice to see you again
+                </p>
+
+                <h2>
+                  Sign in
+                </h2>
+
+                <p>
+                  Enter your account details
+                  to continue.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <!-- Email -->
+            <div class="field">
+
+              <label for="login-email">
+                Email address
+              </label>
+
+              <div class="auth-input-wrap">
+
+                <i
+                  class="bi bi-envelope"
+                  aria-hidden="true"
+                ></i>
+
+                <input
+                  id="login-email"
+                  class="form-control"
+                  name="email"
+                  type="email"
+                  required
+                  autocomplete="email"
+                  inputmode="email"
+                  placeholder="you@example.com"
+                >
+
+              </div>
+
+            </div>
+
+
+            <!-- Password -->
+            <div class="field">
+
+              <div class="auth-label-row">
+
+                <label for="login-password">
+                  Password
+                </label>
+
+                <a
+                  href="/forgot-password.html"
+                  class="auth-forgot-link"
+                >
+                  Forgot password?
+                </a>
+
+              </div>
+
+
+              <div class="auth-input-wrap auth-password-wrap">
+
+                <i
+                  class="bi bi-lock"
+                  aria-hidden="true"
+                ></i>
+
+                <input
+                  id="login-password"
+                  class="form-control"
+                  name="password"
+                  type="password"
+                  required
+                  autocomplete="current-password"
+                  placeholder="Enter your password"
+                >
+
+
+                <button
+                  class="auth-password-toggle"
+                  type="button"
+                  aria-label="Show password"
+                  aria-controls="login-password"
+                  data-password-toggle
+                >
+
+                  <i
+                    class="bi bi-eye"
+                    aria-hidden="true"
+                  ></i>
+
+                </button>
+
+              </div>
+
+            </div>
+
+
+            <!-- Sign in -->
+            <button
+              class="btn-nbj auth-submit-button"
+              type="submit"
+            >
+
+              <i
+                class="bi bi-box-arrow-in-right"
+                aria-hidden="true"
+              ></i>
+
+              <span>
+                Sign in
+              </span>
+
+            </button>
+            <button
+  id="resend-verification"
+  class="btn-nbj ghost"
+  type="button"
+>
+  <i
+    class="bi bi-envelope"
+    aria-hidden="true"
+  ></i>
+
+  <span>
+    Resend verification email
+  </span>
+</button>
+
+
+            <div class="auth-security-note">
+
+              <i
+                class="bi bi-shield-check"
+                aria-hidden="true"
+              ></i>
+
+              <span>
+                Your account is protected by
+                secure authentication.
+              </span>
+
+            </div>
+
+
+            <div class="auth-divider">
+
+              <span>
+                New to Nicey?
+              </span>
+
+            </div>
+
+
+            <a
+              href="/register.html"
+              class="btn-nbj ghost auth-create-account"
+            >
+
+              <i
+                class="bi bi-person-plus"
+                aria-hidden="true"
+              ></i>
+
+              Create an account
+
+            </a>
+
+
+            <p class="auth-legal-note">
+              By continuing, you agree to our
+              <a href="/terms.html">
+                Terms
+              </a>
+              and
+              <a href="/privacy.html">
+                Privacy Policy
+              </a>.
+            </p>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <div
+      id="page-error"
+      class="container-nbj alert alert-danger mt-3"
+      role="alert"
+      hidden
+    ></div>
+
+  </main>
+
+
+  <div id="site-footer"></div>
+
+
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/main.js"
+  ></script>
+
+
+  <!-- Password visibility only.
+       Existing auth controller still handles login. -->
+  <script>
+    document
+      .querySelectorAll('[data-password-toggle]')
+      .forEach(button => {
+
+        button.addEventListener('click', () => {
+
+          const input =
+            document.getElementById(
+              button.getAttribute('aria-controls')
+            );
+
+          if (!input) return;
+
+          const show =
+            input.type === 'password';
+
+          input.type =
+            show
+              ? 'text'
+              : 'password';
+
+          button.setAttribute(
+            'aria-label',
+            show
+              ? 'Hide password'
+              : 'Show password'
+          );
+
+          const icon =
+            button.querySelector('i');
+
+          if (icon) {
+            icon.className =
+              show
+                ? 'bi bi-eye-slash'
+                : 'bi bi-eye';
+          }
+
+        });
+
+      });
+  </script>
+
+</body>
+</html>

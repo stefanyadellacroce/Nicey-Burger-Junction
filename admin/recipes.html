@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    Recipes | Nicey Burger Junction
+  </title>
+
+  <meta
+    name="description"
+    content="Manage Nicey Burger Junction product recipes."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b52420"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/portal.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/print.css"
+    media="print"
+  >
+
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body
+  data-portal="admin"
+  data-controller="admin-recipes"
+>
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+
+  <div class="portal-layout">
+
+    <aside
+      id="portal-sidebar"
+      class="portal-sidebar"
+    ></aside>
+
+
+    <div class="portal-main">
+
+      <header
+        id="portal-topbar"
+        class="portal-topbar"
+      ></header>
+      <script src="/assets/js/components/portal-shell-bootstrap.js"></script>
+
+
+      <main
+        id="main-content"
+        class="portal-content admin-page"
+      >
+
+        <section class="admin-page-heading">
+
+          <div class="admin-page-heading-copy">
+
+            <div class="admin-heading-icon">
+              <i class="bi bi-journal-text"></i>
+            </div>
+
+            <div>
+              <p class="admin-page-kicker">
+                Menu Engineering
+              </p>
+
+              <h1>
+                Recipes
+              </h1>
+
+              <p class="admin-page-description">
+                Configure ingredient usage for base products, variants and add-ons.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="admin-page-heading-badge">
+            <i class="bi bi-diagram-3"></i>
+            Recipe builder
+          </div>
+
+        </section>
+
+
+        <div
+          id="page-error"
+          class="alert alert-danger"
+          role="alert"
+          hidden
+        ></div>
+
+
+        <section class="admin-recipe-filters">
+
+          <div class="admin-filter-field">
+
+            <label for="recipe-product">
+              Product
+            </label>
+
+            <select
+              id="recipe-product"
+              class="form-select"
+            ></select>
+
+          </div>
+
+
+          <div class="admin-filter-field">
+
+            <label for="recipe-variant">
+              Variant
+            </label>
+
+            <select
+              id="recipe-variant"
+              class="form-select"
+            >
+              <option value="">
+                Base / all variants
+              </option>
+            </select>
+
+          </div>
+
+
+          <div class="admin-filter-field">
+
+            <label for="recipe-addon">
+              Add-on
+            </label>
+
+            <select
+              id="recipe-addon"
+              class="form-select"
+            >
+              <option value="">
+                Base recipe
+              </option>
+            </select>
+
+          </div>
+
+        </section>
+
+
+        <section class="panel admin-panel">
+
+          <div class="admin-panel-heading">
+
+            <div>
+              <p class="admin-panel-kicker">
+                Recipe composition
+              </p>
+
+              <h2>
+                Ingredient usage
+              </h2>
+
+              <p>
+                Quantities listed here determine inventory deductions for the selected recipe.
+              </p>
+            </div>
+
+
+            <span class="admin-panel-heading-icon">
+              <i class="bi bi-basket2"></i>
+            </span>
+
+          </div>
+
+
+          <div class="table-wrap admin-table-wrap">
+
+            <table class="admin-table admin-recipes-table">
+
+              <caption class="visually-hidden">
+                Product recipe ingredients
+              </caption>
+
+              <thead>
+                <tr>
+                  <th>Ingredient</th>
+                  <th>Quantity</th>
+                  <th>Unit</th>
+                  <th>Removable</th>
+
+                  <th>
+                    <span class="visually-hidden">
+                      Actions
+                    </span>
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody
+                id="recipe-tbody"
+                aria-live="polite"
+              ></tbody>
+
+            </table>
+
+          </div>
+
+        </section>
+
+
+        <form
+          id="recipe-form"
+          class="panel admin-panel admin-recipe-form"
+        >
+
+          <div class="admin-panel-heading">
+
+            <div>
+              <p class="admin-panel-kicker">
+                Add ingredient
+              </p>
+
+              <h2>
+                New recipe item
+              </h2>
+
+              <p>
+                Add an ingredient and specify how much stock should be consumed.
+              </p>
+            </div>
+
+
+            <span class="admin-panel-heading-icon">
+              <i class="bi bi-plus-circle"></i>
+            </span>
+
+          </div>
+
+
+          <div class="admin-recipe-form-grid">
+
+            <label>
+              Ingredient
+
+              <select
+                id="recipe-ingredient"
+                name="ingredient_id"
+                class="form-select"
+                required
+              ></select>
+            </label>
+
+
+            <label>
+              Quantity
+
+              <input
+                name="quantity"
+                class="form-control"
+                type="number"
+                min="0.001"
+                step="0.001"
+                required
+              >
+            </label>
+
+
+            <label class="form-check admin-recipe-check">
+
+              <input
+                name="removable"
+                class="form-check-input"
+                type="checkbox"
+              >
+
+              <span class="form-check-label">
+                Removable
+              </span>
+
+            </label>
+
+
+            <button
+              class="btn-nbj admin-recipe-submit"
+              type="submit"
+            >
+              <i class="bi bi-plus-lg"></i>
+              Add recipe item
+            </button>
+
+          </div>
+
+        </form>
+
+      </main>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/portal.js"
+  ></script>
+
+</body>
+</html>

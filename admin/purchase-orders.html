@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    Purchase Orders | Nicey Burger Junction
+  </title>
+
+  <meta
+    name="description"
+    content="Manage Nicey Burger Junction supplier purchase orders."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b52420"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/portal.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/print.css"
+    media="print"
+  >
+
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body
+  data-portal="admin"
+  data-controller="purchase-orders"
+>
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+
+  <div class="portal-layout">
+
+    <aside
+      id="portal-sidebar"
+      class="portal-sidebar"
+    ></aside>
+
+
+    <div class="portal-main">
+
+      <header
+        id="portal-topbar"
+        class="portal-topbar"
+      ></header>
+      <script src="/assets/js/components/portal-shell-bootstrap.js"></script>
+
+
+      <main
+        id="main-content"
+        class="portal-content admin-page"
+      >
+
+        <section class="admin-page-heading">
+
+          <div class="admin-page-heading-copy">
+
+            <div class="admin-heading-icon">
+              <i class="bi bi-truck"></i>
+            </div>
+
+            <div>
+              <p class="admin-page-kicker">
+                Procurement
+              </p>
+
+              <h1>
+                Purchase Orders
+              </h1>
+
+              <p class="admin-page-description">
+                Create supplier orders, track expected deliveries and receive purchased stock.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="admin-page-heading-badge">
+            <i class="bi bi-box-seam"></i>
+            Procurement control
+          </div>
+
+        </section>
+
+
+        <div
+          id="page-error"
+          class="alert alert-danger"
+          role="alert"
+          hidden
+        ></div>
+
+
+        <section class="admin-toolbar admin-po-toolbar">
+
+          <div class="admin-toolbar-note">
+
+            <i class="bi bi-info-circle"></i>
+
+            <span>
+              Create, review and receive supplier purchase orders.
+            </span>
+
+          </div>
+
+
+          <button
+            id="po-add"
+            class="btn-nbj admin-add-button"
+            type="button"
+          >
+            <i class="bi bi-plus-lg"></i>
+            New purchase order
+          </button>
+
+        </section>
+
+
+        <section class="panel admin-panel admin-table-panel">
+
+          <div class="admin-panel-heading">
+
+            <div>
+              <p class="admin-panel-kicker">
+                Procurement
+              </p>
+
+              <h2>
+                Supplier orders
+              </h2>
+
+              <p>
+                Monitor purchase order status, expected delivery and total value.
+              </p>
+            </div>
+
+
+            <span class="admin-panel-heading-icon">
+              <i class="bi bi-file-earmark-text"></i>
+            </span>
+
+          </div>
+
+
+          <div class="table-wrap admin-table-wrap">
+
+            <table class="admin-table admin-po-table">
+
+              <caption class="visually-hidden">
+                Nicey Burger Junction purchase orders
+              </caption>
+
+              <thead>
+                <tr>
+                  <th>PO #</th>
+                  <th>Supplier</th>
+                  <th>Status</th>
+                  <th>Ordered</th>
+                  <th>Expected</th>
+                  <th>Total</th>
+
+                  <th>
+                    <span class="visually-hidden">
+                      Actions
+                    </span>
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody
+                id="po-tbody"
+                aria-live="polite"
+              ></tbody>
+
+            </table>
+
+          </div>
+
+        </section>
+
+
+        <!-- CREATE PURCHASE ORDER -->
+        <dialog
+          id="po-dialog"
+          class="nbj-dialog wide admin-dialog"
+        >
+
+          <div class="admin-dialog-shell">
+
+            <form
+              method="dialog"
+              class="admin-dialog-close-form"
+            >
+              <button
+                class="dialog-close admin-dialog-close"
+                value="cancel"
+                aria-label="Close dialog"
+              >
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </form>
+
+
+            <div class="admin-dialog-heading">
+
+              <span class="admin-dialog-icon">
+                <i class="bi bi-cart-plus"></i>
+              </span>
+
+              <div>
+                <p class="admin-panel-kicker">
+                  Procurement
+                </p>
+
+                <h2>
+                  New purchase order
+                </h2>
+
+                <p>
+                  Select a supplier, expected delivery date and inventory items.
+                </p>
+              </div>
+
+            </div>
+
+
+            <form
+              id="po-form"
+              class="stack admin-po-form"
+            >
+
+              <div class="admin-product-form-grid">
+
+                <label>
+                  Supplier
+
+                  <select
+                    name="supplier_id"
+                    class="form-select"
+                    required
+                  ></select>
+                </label>
+
+
+                <label>
+                  Expected date
+
+                  <input
+                    name="expected_date"
+                    type="date"
+                    class="form-control"
+                  >
+                </label>
+
+              </div>
+
+
+              <label>
+                Notes
+
+                <textarea
+                  name="notes"
+                  class="form-control"
+                  rows="3"
+                ></textarea>
+              </label>
+
+
+              <div class="admin-po-items-heading">
+
+                <div>
+                  <p class="admin-panel-kicker">
+                    Purchase lines
+                  </p>
+
+                  <h3>
+                    Items
+                  </h3>
+                </div>
+
+
+                <button
+                  id="po-add-line"
+                  class="btn-nbj ghost sm"
+                  type="button"
+                >
+                  <i class="bi bi-plus-lg"></i>
+                  Add line
+                </button>
+
+              </div>
+
+
+              <div
+                id="po-lines"
+                class="stack admin-po-lines"
+              ></div>
+
+
+              <button
+                class="btn-nbj admin-po-save"
+                type="submit"
+              >
+                <i class="bi bi-check2-circle"></i>
+                Save PO
+              </button>
+
+            </form>
+
+          </div>
+
+        </dialog>
+
+
+        <!-- RECEIVE STOCK -->
+        <dialog
+          id="receive-dialog"
+          class="nbj-dialog wide admin-dialog"
+        >
+
+          <div class="admin-dialog-shell">
+
+            <form
+              method="dialog"
+              class="admin-dialog-close-form"
+            >
+              <button
+                class="dialog-close admin-dialog-close"
+                value="cancel"
+                aria-label="Close dialog"
+              >
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </form>
+
+
+            <div class="admin-dialog-heading">
+
+              <span class="admin-dialog-icon">
+                <i class="bi bi-box-arrow-in-down"></i>
+              </span>
+
+              <div>
+                <p class="admin-panel-kicker">
+                  Inventory receiving
+                </p>
+
+                <h2 id="receive-title">
+                  Receive stock
+                </h2>
+
+                <p>
+                  Record the quantities received from this supplier order.
+                </p>
+              </div>
+
+            </div>
+
+
+            <div
+              id="receive-lines"
+              class="admin-receive-lines"
+            ></div>
+
+
+            <div class="admin-dialog-actions">
+
+              <button
+                id="receive-save"
+                class="btn-nbj"
+                type="button"
+              >
+                <i class="bi bi-box-arrow-in-down"></i>
+                Receive selected quantities
+              </button>
+
+            </div>
+
+          </div>
+
+        </dialog>
+
+
+        <!-- PO DETAILS -->
+        <dialog
+          id="po-details-dialog"
+          class="nbj-dialog wide admin-dialog"
+        >
+
+          <div class="admin-dialog-shell">
+
+            <form
+              method="dialog"
+              class="admin-dialog-close-form"
+            >
+              <button
+                class="dialog-close admin-dialog-close"
+                value="cancel"
+                aria-label="Close dialog"
+              >
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </form>
+
+
+            <div class="admin-dialog-heading">
+
+              <span class="admin-dialog-icon">
+                <i class="bi bi-file-earmark-text"></i>
+              </span>
+
+              <div>
+                <p class="admin-panel-kicker">
+                  Purchase order
+                </p>
+
+                <h2 id="po-details-title"></h2>
+
+                <p>
+                  Supplier order information and purchase lines.
+                </p>
+              </div>
+
+            </div>
+
+
+            <div
+              id="po-details-body"
+              class="admin-po-details-body"
+            ></div>
+
+          </div>
+
+        </dialog>
+
+      </main>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/portal.js"
+  ></script>
+
+</body>
+</html>

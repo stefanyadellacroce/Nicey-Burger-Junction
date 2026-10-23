@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>Product | Nicey Burger Junction</title>
+
+  <meta
+    name="description"
+    content="Customize and order your Nicey Burger Junction favorites."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b42318"
+  >
+
+  <meta
+    property="og:title"
+    content="Product | Nicey Burger Junction"
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link rel="modulepreload" href="/assets/js/main.js">
+  <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+</head>
+
+<body data-controller="product">
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+  <div id="site-header"></div>
+  <script src="/assets/js/components/public-header-bootstrap.js"></script>
+
+
+  <main id="main-content">
+
+    <!-- =========================================
+         PRODUCT DETAIL
+         ========================================= -->
+
+    <section class="section product-page-section">
+
+      <div class="container-nbj">
+
+        <!-- Breadcrumb -->
+        <nav
+          class="product-breadcrumb"
+          aria-label="Breadcrumb"
+        >
+          <a href="/">
+            Home
+          </a>
+
+          <i
+            class="bi bi-chevron-right"
+            aria-hidden="true"
+          ></i>
+
+          <a href="/menu.html">
+            Menu
+          </a>
+
+          <i
+            class="bi bi-chevron-right"
+            aria-hidden="true"
+          ></i>
+
+          <span id="product-breadcrumb-name">
+            Product
+          </span>
+        </nav>
+
+
+        <div class="product-detail-grid product-page-grid">
+
+          <!-- =================================
+               PRODUCT IMAGE
+               ================================= -->
+
+          <div class="product-gallery-wrap">
+
+            <div class="product-gallery">
+
+              <div
+                class="product-image-stage"
+              >
+
+                <div
+                  class="product-image-halo"
+                  aria-hidden="true"
+                ></div>
+
+                <img
+                  id="product-image"
+                  src="/assets/images/food-default.svg"
+                  alt="Product"
+                  loading="eager"
+                  decoding="async"
+                >
+
+                <div
+                  class="product-image-shadow"
+                  aria-hidden="true"
+                ></div>
+
+              </div>
+
+
+              <div
+                class="product-image-badges"
+                aria-hidden="true"
+              >
+
+                <span>
+                  <i class="bi bi-fire"></i>
+                  Made fresh
+                </span>
+
+                <span>
+                  <i class="bi bi-stars"></i>
+                  Nicey favorite
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <!-- Brand mascot accent -->
+
+          </div>
+
+
+          <!-- =================================
+               PRODUCT INFO / ORDER FORM
+               ================================= -->
+
+          <div class="product-info-panel">
+
+            <div class="product-info-top">
+
+              <p
+                id="product-category"
+                class="eyebrow"
+              ></p>
+
+
+              <div class="product-heading-row">
+
+                <div>
+
+                  <h1
+                    id="product-name"
+                    class="product-detail-title"
+                  >
+                    Product
+                  </h1>
+
+                </div>
+
+
+                <button
+                  id="favorite-button"
+                  class="product-favorite-button"
+                  type="button"
+                  hidden
+                  aria-label="Save product to favorites"
+                >
+                  <i
+                    class="bi bi-heart"
+                    aria-hidden="true"
+                  ></i>
+
+                  <span>
+                    Save
+                  </span>
+                </button>
+
+              </div>
+
+
+              <p
+                id="product-description"
+                class="product-detail-description"
+              ></p>
+
+
+              <div class="product-price-row">
+
+                <div>
+
+                  <span class="product-price-label">
+                    Starting at
+                  </span>
+
+                  <p
+                    id="product-price"
+                    class="display-price"
+                  >
+                    ₱0.00
+                  </p>
+
+                </div>
+
+
+                <div class="product-fresh-badge">
+
+                  <i
+                    class="bi bi-check-circle-fill"
+                    aria-hidden="true"
+                  ></i>
+
+                  Freshly prepared
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- Order form -->
+            <form
+              id="product-form"
+              class="product-customization-form"
+            >
+
+              <!-- Variant -->
+              <fieldset class="product-option-section">
+
+                <legend>
+
+                  <span class="option-number">
+                    1
+                  </span>
+
+                  Choose a variant
+
+                </legend>
+
+                <p class="product-option-help">
+                  Pick the size or version that
+                  fits your craving.
+                </p>
+
+                <div
+                  id="variant-options"
+                  class="choice-grid"
+                ></div>
+
+              </fieldset>
+
+
+              <!-- Add-ons -->
+              <fieldset class="product-option-section">
+
+                <legend>
+
+                  <span class="option-number">
+                    2
+                  </span>
+
+                  Add something extra
+
+                </legend>
+
+                <p class="product-option-help">
+                  Make it even better with
+                  your favorite add-ons.
+                </p>
+
+                <div
+                  id="addon-options"
+                  class="stack tight"
+                ></div>
+
+              </fieldset>
+
+
+              <!-- Remove ingredients -->
+              <fieldset class="product-option-section">
+
+                <legend>
+
+                  <span class="option-number">
+                    3
+                  </span>
+
+                  Remove ingredients
+
+                </legend>
+
+                <p class="product-option-help">
+                  Leave out anything you
+                  don't want.
+                </p>
+
+                <div
+                  id="remove-options"
+                  class="stack tight"
+                ></div>
+
+              </fieldset>
+
+
+              <!-- Quantity / instructions -->
+              <div class="product-order-details">
+
+                <div class="field">
+
+                  <label for="quantity">
+                    Quantity
+                  </label>
+
+                  <div class="product-quantity-wrap">
+
+                    <button
+                      class="product-qty-button"
+                      type="button"
+                      data-qty-action="decrease"
+                      aria-label="Decrease quantity"
+                    >
+                      <i
+                        class="bi bi-dash-lg"
+                        aria-hidden="true"
+                      ></i>
+                    </button>
+
+                    <input
+                      class="form-control qty-input"
+                      id="quantity"
+                      name="quantity"
+                      type="number"
+                      min="1"
+                      max="99"
+                      value="1"
+                      required
+                    >
+
+                    <button
+                      class="product-qty-button"
+                      type="button"
+                      data-qty-action="increase"
+                      aria-label="Increase quantity"
+                    >
+                      <i
+                        class="bi bi-plus-lg"
+                        aria-hidden="true"
+                      ></i>
+                    </button>
+
+                  </div>
+
+                </div>
+
+
+                <div class="field product-instructions-field">
+
+                  <label for="instructions">
+                    Special instructions
+                  </label>
+
+                  <textarea
+                    class="form-control"
+                    id="instructions"
+                    name="instructions"
+                    maxlength="500"
+                    rows="3"
+                    placeholder="e.g. sauce on the side"
+                  ></textarea>
+
+                  <span class="help-text">
+                    Optional · Maximum 500 characters
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <!-- Add cart -->
+              <div class="product-submit-row">
+
+                <div class="product-submit-price">
+
+                  <small>
+                    Your item
+                  </small>
+
+                  <strong
+                    id="product-submit-price"
+                  >
+                    See total above
+                  </strong>
+
+                </div>
+
+
+                <button
+                  class="btn-nbj product-add-cart-button"
+                  type="submit"
+                >
+
+                  <i
+                    class="bi bi-bag-plus"
+                    aria-hidden="true"
+                  ></i>
+
+                  <span>
+                    Add to cart
+                  </span>
+
+                </button>
+
+              </div>
+
+            </form>
+
+
+            <!-- Allergen info -->
+            <div class="allergen-box product-allergen-box">
+
+              <span class="allergen-icon">
+
+                <i
+                  class="bi bi-info-circle"
+                  aria-hidden="true"
+                ></i>
+
+              </span>
+
+
+              <div>
+
+                <strong>
+                  Ingredient / allergen note
+                </strong>
+
+                <p
+                  id="allergen-notes"
+                  class="mb-0"
+                ></p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         RELATED PRODUCTS
+         ========================================= -->
+
+    <section class="section surface">
+
+      <div class="container-nbj">
+
+        <div class="section-heading">
+
+          <div>
+
+            <p class="eyebrow">
+
+              <i
+                class="bi bi-bag-heart"
+                aria-hidden="true"
+              ></i>
+
+              Complete your order
+
+            </p>
+
+            <h2>
+              Frequently ordered together
+            </h2>
+
+            <p>
+              Add a side, drink or another
+              Nicey favorite.
+            </p>
+
+          </div>
+
+
+          <a
+            href="/menu.html"
+            class="section-link"
+          >
+            View menu
+
+            <i
+              class="bi bi-arrow-right"
+              aria-hidden="true"
+            ></i>
+          </a>
+
+        </div>
+
+
+        <div
+          id="related-products"
+          class="product-grid"
+          aria-live="polite"
+        ></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         REVIEWS
+         ========================================= -->
+
+    <section class="section">
+
+      <div class="container-nbj">
+
+        <div class="product-review-layout">
+
+          <!-- Reviews -->
+          <div>
+
+            <div class="section-heading">
+
+              <div>
+
+                <p class="eyebrow">
+
+                  <i
+                    class="bi bi-star"
+                    aria-hidden="true"
+                  ></i>
+
+                  Customer feedback
+
+                </p>
+
+                <h2>
+                  Verified reviews
+                </h2>
+
+              </div>
+
+            </div>
+
+
+            <div
+              id="product-reviews"
+              class="stack product-review-list"
+              aria-live="polite"
+            ></div>
+
+          </div>
+
+
+          <!-- Review form -->
+          <form
+            id="review-form"
+            class="panel product-review-form"
+            hidden
+          >
+
+            <div class="review-form-heading">
+
+              <span class="review-form-icon">
+
+                <i
+                  class="bi bi-chat-heart"
+                  aria-hidden="true"
+                ></i>
+
+              </span>
+
+
+              <div>
+
+                <h3>
+                  Rate your order
+                </h3>
+
+                <p>
+                  Tell us how your Nicey
+                  experience went.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="rating">
+                Rating
+              </label>
+
+              <select
+                id="rating"
+                name="rating"
+                class="form-select"
+                required
+              >
+
+                <option value="5">
+                  ★★★★★ — Excellent
+                </option>
+
+                <option value="4">
+                  ★★★★☆ — Good
+                </option>
+
+                <option value="3">
+                  ★★★☆☆ — Okay
+                </option>
+
+                <option value="2">
+                  ★★☆☆☆ — Poor
+                </option>
+
+                <option value="1">
+                  ★☆☆☆☆ — Bad
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="review_text">
+                Review
+              </label>
+
+              <textarea
+                id="review_text"
+                name="review_text"
+                class="form-control"
+                maxlength="500"
+                rows="5"
+                placeholder="What did you like about your order?"
+              ></textarea>
+
+            </div>
+
+
+            <button
+              class="btn-nbj"
+              type="submit"
+            >
+
+              <i
+                class="bi bi-send"
+                aria-hidden="true"
+              ></i>
+
+              Submit review
+
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <div
+      id="page-error"
+      class="container-nbj alert alert-danger mt-3"
+      role="alert"
+      hidden
+    ></div>
+
+  </main>
+
+
+  <div id="site-footer"></div>
+
+
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/main.js"
+  ></script>
+
+
+  <!-- Quantity UX only.
+       Existing product controller still owns checkout/cart logic. -->
+  <script type="module">
+
+    const quantity =
+      document.getElementById('quantity');
+
+    document
+      .querySelectorAll('[data-qty-action]')
+      .forEach(button => {
+
+        button.addEventListener(
+          'click',
+          () => {
+
+            if (!quantity) return;
+
+            let value =
+              Number(quantity.value) || 1;
+
+            if (
+              button.dataset.qtyAction ===
+              'increase'
+            ) {
+              value = Math.min(
+                99,
+                value + 1
+              );
+            } else {
+              value = Math.max(
+                1,
+                value - 1
+              );
+            }
+
+            quantity.value = value;
+
+            quantity.dispatchEvent(
+              new Event(
+                'change',
+                {
+                  bubbles: true
+                }
+              )
+            );
+
+          }
+        );
+
+      });
+
+  </script>
+
+</body>
+</html>

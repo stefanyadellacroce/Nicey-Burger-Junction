@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    Machine Learning | Nicey Burger Junction
+  </title>
+
+  <meta
+    name="description"
+    content="Review Nicey Burger Junction machine learning model runs and forecasts."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b52420"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/portal.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/print.css"
+    media="print"
+  >
+
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body
+  data-portal="admin"
+  data-controller="machine-learning"
+>
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+
+  <div class="portal-layout">
+
+    <aside
+      id="portal-sidebar"
+      class="portal-sidebar"
+    ></aside>
+
+
+    <div class="portal-main">
+
+      <header
+        id="portal-topbar"
+        class="portal-topbar"
+      ></header>
+      <script src="/assets/js/components/portal-shell-bootstrap.js"></script>
+
+
+      <main
+        id="main-content"
+        class="portal-content admin-page"
+      >
+
+        <section class="admin-page-heading">
+
+          <div class="admin-page-heading-copy">
+
+            <div class="admin-heading-icon">
+              <i class="bi bi-cpu"></i>
+            </div>
+
+            <div>
+              <p class="admin-page-kicker">
+                Analytics
+              </p>
+
+              <h1>
+                Machine Learning
+              </h1>
+
+              <p class="admin-page-description">
+                Review persisted model runs, inventory risk predictions and demand forecasts.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="admin-page-heading-badge">
+            <i class="bi bi-graph-up-arrow"></i>
+            Predictive analytics
+          </div>
+
+        </section>
+
+
+        <div
+          id="page-error"
+          class="alert alert-danger"
+          role="alert"
+          hidden
+        ></div>
+
+
+        <section class="admin-ml-notice">
+
+          <span class="admin-ml-notice-icon">
+            <i class="bi bi-shield-check"></i>
+          </span>
+
+          <div>
+            <strong>
+              Persisted model results only
+            </strong>
+
+            <p>
+              This page only shows persisted model runs and forecasts.
+              It does not generate random “AI” values. Train models from
+              real Nicey transaction exports or the documented UCI dataset,
+              then sync results through the protected ML function.
+            </p>
+          </div>
+
+        </section>
+
+
+        <section class="admin-ml-grid">
+
+          <article class="panel admin-panel">
+
+            <div class="admin-panel-heading">
+
+              <div>
+                <p class="admin-panel-kicker">
+                  Model registry
+                </p>
+
+                <h2>
+                  Active models
+                </h2>
+
+                <p>
+                  Latest persisted models currently available to the system.
+                </p>
+              </div>
+
+
+              <span class="admin-panel-heading-icon">
+                <i class="bi bi-cpu-fill"></i>
+              </span>
+
+            </div>
+
+
+            <div
+              id="ml-models"
+              class="stack admin-ml-list"
+              aria-live="polite"
+            ></div>
+
+          </article>
+
+
+          <article class="panel admin-panel">
+
+            <div class="admin-panel-heading">
+
+              <div>
+                <p class="admin-panel-kicker">
+                  Stock intelligence
+                </p>
+
+                <h2>
+                  Inventory risk
+                </h2>
+
+                <p>
+                  Forecasted inventory concerns generated from synced model output.
+                </p>
+              </div>
+
+
+              <span class="admin-panel-heading-icon warning">
+                <i class="bi bi-exclamation-triangle"></i>
+              </span>
+
+            </div>
+
+
+            <div
+              id="ml-inventory"
+              class="stack admin-ml-list"
+              aria-live="polite"
+            ></div>
+
+          </article>
+
+        </section>
+
+
+        <section class="panel admin-panel">
+
+          <div class="admin-panel-heading">
+
+            <div>
+              <p class="admin-panel-kicker">
+                Forecast
+              </p>
+
+              <h2>
+                Demand forecast
+              </h2>
+
+              <p>
+                Persisted demand projections from the most recent synchronized model run.
+              </p>
+            </div>
+
+
+            <span class="admin-panel-heading-icon">
+              <i class="bi bi-graph-up"></i>
+            </span>
+
+          </div>
+
+
+          <div class="admin-ml-chart">
+
+            <canvas id="ml-demand-chart"></canvas>
+
+          </div>
+
+
+          <div
+            id="ml-demand-table"
+            class="table-wrap admin-table-wrap admin-ml-demand-table"
+          ></div>
+
+        </section>
+
+      </main>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/portal.js"
+  ></script>
+
+</body>
+</html>

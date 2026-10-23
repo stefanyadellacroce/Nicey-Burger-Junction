@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    Walk-in / POS | Nicey Burger Junction
+  </title>
+
+  <meta
+    name="description"
+    content="Nicey Burger Junction walk-in point of sale."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b52420"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/portal.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/print.css"
+    media="print"
+  >
+
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body
+  data-portal="admin"
+  data-controller="pos"
+>
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+
+  <div class="portal-layout">
+
+    <aside
+      id="portal-sidebar"
+      class="portal-sidebar"
+    ></aside>
+
+
+    <div class="portal-main">
+
+      <header
+        id="portal-topbar"
+        class="portal-topbar"
+      ></header>
+      <script src="/assets/js/components/portal-shell-bootstrap.js"></script>
+
+
+      <main
+        id="main-content"
+        class="portal-content ops-page"
+      >
+
+        <section class="ops-page-heading">
+
+          <div class="ops-page-heading-copy">
+
+            <div class="ops-heading-icon">
+              <i class="bi bi-shop"></i>
+            </div>
+
+            <div>
+              <p class="ops-page-kicker">
+                Point of Sale
+              </p>
+
+              <h1>
+                Walk-in / POS
+              </h1>
+
+              <p class="ops-page-description">
+                Build walk-in orders, collect payment and complete counter sales.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="ops-page-heading-badge">
+            <span></span>
+            Counter sale
+          </div>
+
+        </section>
+
+
+        <div
+          id="page-error"
+          class="alert alert-danger"
+          role="alert"
+          hidden
+        ></div>
+
+
+        <section class="ops-pos-layout">
+
+          <!-- PRODUCTS -->
+          <article class="panel ops-panel ops-pos-products">
+
+            <div class="ops-panel-heading">
+
+              <div>
+                <p class="ops-panel-kicker">
+                  Menu
+                </p>
+
+                <h2>
+                  Products
+                </h2>
+
+                <p>
+                  Select an item to configure and add it to the current sale.
+                </p>
+              </div>
+
+
+              <span class="ops-panel-heading-icon">
+                <i class="bi bi-grid"></i>
+              </span>
+
+            </div>
+
+
+            <div
+              id="pos-products"
+              class="product-grid compact ops-pos-product-grid"
+              aria-live="polite"
+            ></div>
+
+          </article>
+
+
+          <!-- CURRENT SALE -->
+          <aside class="panel ops-panel ops-pos-cart-panel">
+
+            <div class="ops-panel-heading">
+
+              <div>
+                <p class="ops-panel-kicker">
+                  Checkout
+                </p>
+
+                <h2>
+                  Current sale
+                </h2>
+              </div>
+
+
+              <span class="ops-panel-heading-icon">
+                <i class="bi bi-cart3"></i>
+              </span>
+
+            </div>
+
+
+            <div class="ops-pos-customer-fields">
+
+              <div class="field">
+
+                <label for="pos-customer">
+                  Customer
+                </label>
+
+                <select
+                  id="pos-customer"
+                  class="form-select"
+                >
+                  <option value="walkin">
+                    Walk-in customer
+                  </option>
+                </select>
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="pos-name">
+                  Name
+                </label>
+
+                <input
+                  id="pos-name"
+                  class="form-control"
+                  value="Walk-in Customer"
+                >
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="pos-phone">
+                  Phone
+                </label>
+
+                <input
+                  id="pos-phone"
+                  class="form-control"
+                  type="tel"
+                  autocomplete="tel"
+                  placeholder="Optional"
+                >
+
+              </div>
+
+            </div>
+
+
+            <div class="ops-pos-cart-heading">
+
+              <span>
+                Sale items
+              </span>
+
+              <i class="bi bi-bag"></i>
+
+            </div>
+
+
+            <div
+              id="pos-cart"
+              class="stack ops-pos-cart"
+              aria-live="polite"
+            ></div>
+
+
+            <div class="summary-row total ops-pos-total">
+
+              <span>
+                Total
+              </span>
+
+              <strong id="pos-total">
+                ₱0.00
+              </strong>
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="pos-payment">
+                Payment
+              </label>
+
+              <select
+                id="pos-payment"
+                class="form-select"
+              ></select>
+
+            </div>
+
+
+            <label class="form-check ops-pos-paid-check">
+
+              <input
+                id="pos-paid"
+                type="checkbox"
+                class="form-check-input"
+                checked
+              >
+
+              <span class="form-check-label">
+                Record as paid
+              </span>
+
+            </label>
+
+
+            <button
+              id="pos-place-order"
+              class="btn-nbj w-100 ops-pos-submit"
+              type="button"
+            >
+              <i class="bi bi-check2-circle"></i>
+
+              Complete walk-in sale
+            </button>
+
+          </aside>
+
+        </section>
+
+
+        <!-- PRODUCT CONFIGURATION -->
+        <dialog
+          id="pos-dialog"
+          class="nbj-dialog ops-dialog ops-pos-dialog"
+        >
+
+          <div class="ops-dialog-shell">
+
+            <form
+              method="dialog"
+              class="ops-dialog-close-form"
+            >
+              <button
+                class="dialog-close ops-dialog-close"
+                value="cancel"
+                aria-label="Close"
+              >
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </form>
+
+
+            <div class="ops-dialog-heading">
+
+              <span class="ops-dialog-icon">
+                <i class="bi bi-bag-plus"></i>
+              </span>
+
+              <div>
+                <p class="ops-panel-kicker">
+                  Configure item
+                </p>
+
+                <h2>
+                  Add to sale
+                </h2>
+
+                <p>
+                  Choose available options before adding this product.
+                </p>
+              </div>
+
+            </div>
+
+
+            <form
+              id="pos-item-form"
+              class="stack"
+            >
+
+              <div id="pos-item-fields"></div>
+
+
+              <button
+                id="pos-item-add"
+                class="btn-nbj"
+                type="submit"
+              >
+                <i class="bi bi-cart-plus"></i>
+
+                Add item
+              </button>
+
+            </form>
+
+          </div>
+
+        </dialog>
+
+      </main>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/portal.js"
+  ></script>
+
+</body>
+</html>

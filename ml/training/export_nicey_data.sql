@@ -1,0 +1,1 @@
+select o.created_at::date as order_date, oi.product_id, oi.product_name_snapshot as product_name, sum(oi.quantity)::int as quantity, max(coalesce(o.promotion_id is not null,false)::int) as promotion_active from public.order_items oi join public.orders o on o.id=oi.order_id where o.status='COMPLETED' group by 1,2,3 order by 1,2;

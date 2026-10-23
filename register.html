@@ -1,0 +1,879 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>Create account | Nicey Burger Junction</title>
+
+  <meta
+    name="description"
+    content="Create your Nicey Burger Junction customer account for faster ordering, order tracking and saved favorites."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b42318"
+  >
+
+  <meta
+    property="og:title"
+    content="Create account | Nicey Burger Junction"
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link rel="modulepreload" href="/assets/js/main.js">
+  <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+</head>
+
+<body
+  data-controller="auth"
+  data-auth-mode="register"
+>
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+  <div id="site-header"></div>
+  <script src="/assets/js/components/public-header-bootstrap.js"></script>
+
+  <main id="main-content">
+
+    <section class="auth-page-section register-page-section">
+
+      <div
+        class="auth-page-shape auth-shape-one"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        class="auth-page-shape auth-shape-two"
+        aria-hidden="true"
+      ></div>
+
+
+      <div class="container-nbj auth-wrap auth-page-grid">
+
+        <!-- =====================================
+             LEFT BRAND PANEL
+             ===================================== -->
+
+        <section class="auth-brand-panel register-brand-panel">
+
+          <div class="auth-brand-content">
+
+
+            <p class="eyebrow">
+
+              <i
+                class="bi bi-stars"
+                aria-hidden="true"
+              ></i>
+
+              Join the Nicey family
+
+            </p>
+
+
+            <h1>
+              Create your account.
+              <span>Make ordering easier.</span>
+            </h1>
+
+
+            <p class="auth-brand-description">
+              Create a customer account to manage
+              orders, save favorites and make your
+              next Nicey checkout quicker.
+            </p>
+
+
+            <div class="auth-brand-benefits">
+
+              <article>
+
+                <span>
+                  <i
+                    class="bi bi-receipt"
+                    aria-hidden="true"
+                  ></i>
+                </span>
+
+                <div>
+
+                  <strong>
+                    Track your orders
+                  </strong>
+
+                  <p>
+                    View active and previous
+                    Nicey orders anytime.
+                  </p>
+
+                </div>
+
+              </article>
+
+
+              <article>
+
+                <span>
+                  <i
+                    class="bi bi-heart"
+                    aria-hidden="true"
+                  ></i>
+                </span>
+
+                <div>
+
+                  <strong>
+                    Save favorites
+                  </strong>
+
+                  <p>
+                    Keep your favorite food
+                    easy to find.
+                  </p>
+
+                </div>
+
+              </article>
+
+
+              <article>
+
+                <span>
+                  <i
+                    class="bi bi-lightning-charge"
+                    aria-hidden="true"
+                  ></i>
+                </span>
+
+                <div>
+
+                  <strong>
+                    Faster checkout
+                  </strong>
+
+                  <p>
+                    Save account details for
+                    a smoother experience.
+                  </p>
+
+                </div>
+
+              </article>
+
+            </div>
+
+          </div>
+
+
+        </section>
+
+
+        <!-- =====================================
+             REGISTER FORM
+             ===================================== -->
+
+        <div class="auth-form-column register-form-column">
+
+          <form
+            class="panel stack auth-form-card register-form-card"
+            data-auth-form
+          >
+
+            <div class="auth-form-heading">
+
+              <span class="auth-form-icon">
+
+                <i
+                  class="bi bi-person-plus"
+                  aria-hidden="true"
+                ></i>
+
+              </span>
+
+
+              <div>
+
+                <p class="eyebrow">
+                  New customer
+                </p>
+
+                <h2>
+                  Create account
+                </h2>
+
+                <p>
+                  Fill in your details to get started.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <!-- FULL NAME -->
+
+            <div class="field">
+
+              <label for="register-name">
+                Full name
+              </label>
+
+
+              <div class="auth-input-wrap">
+
+                <i
+                  class="bi bi-person"
+                  aria-hidden="true"
+                ></i>
+
+
+                <input
+                  id="register-name"
+                  class="form-control"
+                  name="full_name"
+                  type="text"
+                  required
+                  maxlength="120"
+                  autocomplete="name"
+                  placeholder="Your full name"
+                >
+
+              </div>
+
+            </div>
+
+
+            <!-- PHONE -->
+
+            <div class="field">
+
+              <label for="register-phone">
+
+                Phone
+
+                <span class="register-optional">
+                  Optional
+                </span>
+
+              </label>
+
+
+              <div class="auth-input-wrap">
+
+                <i
+                  class="bi bi-phone"
+                  aria-hidden="true"
+                ></i>
+
+
+                <input
+                  id="register-phone"
+                  class="form-control"
+                  name="phone"
+                  type="tel"
+                  maxlength="40"
+                  autocomplete="tel"
+                  inputmode="tel"
+                  placeholder="09XX XXX XXXX"
+                >
+
+              </div>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="field">
+
+              <label for="register-email">
+                Email address
+              </label>
+
+
+              <div class="auth-input-wrap">
+
+                <i
+                  class="bi bi-envelope"
+                  aria-hidden="true"
+                ></i>
+
+
+                <input
+                  id="register-email"
+                  class="form-control"
+                  name="email"
+                  type="email"
+                  required
+                  autocomplete="email"
+                  inputmode="email"
+                  placeholder="you@example.com"
+                >
+
+              </div>
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="field">
+
+              <label for="register-password">
+                Password
+              </label>
+
+
+              <div class="auth-input-wrap auth-password-wrap">
+
+                <i
+                  class="bi bi-lock"
+                  aria-hidden="true"
+                ></i>
+
+
+                <input
+                  id="register-password"
+                  class="form-control"
+                  name="password"
+                  type="password"
+                  minlength="8"
+                  required
+                  autocomplete="new-password"
+                  placeholder="At least 8 characters"
+                >
+
+
+                <button
+                  class="auth-password-toggle"
+                  type="button"
+                  aria-label="Show password"
+                  aria-controls="register-password"
+                  data-password-toggle
+                >
+
+                  <i
+                    class="bi bi-eye"
+                    aria-hidden="true"
+                  ></i>
+
+                </button>
+
+              </div>
+
+
+              <div
+                class="register-password-strength"
+                data-password-strength
+                data-score="0"
+                aria-hidden="true"
+              >
+
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
+              </div>
+
+
+              <p
+                class="register-password-hint"
+                data-password-hint
+                aria-live="polite"
+              >
+                Use at least 8 characters.
+              </p>
+
+            </div>
+
+
+            <!-- CONFIRM PASSWORD -->
+
+            <div class="field">
+
+              <label for="register-confirm-password">
+                Confirm password
+              </label>
+
+
+              <div class="auth-input-wrap auth-password-wrap">
+
+                <i
+                  class="bi bi-shield-lock"
+                  aria-hidden="true"
+                ></i>
+
+
+                <input
+                  id="register-confirm-password"
+                  class="form-control"
+                  name="confirm_password"
+                  type="password"
+                  minlength="8"
+                  required
+                  autocomplete="new-password"
+                  placeholder="Enter your password again"
+                >
+
+
+                <button
+                  class="auth-password-toggle"
+                  type="button"
+                  aria-label="Show password"
+                  aria-controls="register-confirm-password"
+                  data-password-toggle
+                >
+
+                  <i
+                    class="bi bi-eye"
+                    aria-hidden="true"
+                  ></i>
+
+                </button>
+
+              </div>
+
+
+              <p
+                class="register-password-match"
+                data-password-match
+                aria-live="polite"
+              ></p>
+
+            </div>
+
+
+            <!-- CUSTOMER ACCOUNT NOTICE -->
+
+            <div class="register-role-notice">
+
+              <span>
+
+                <i
+                  class="bi bi-person-check"
+                  aria-hidden="true"
+                ></i>
+
+              </span>
+
+
+              <div>
+
+                <strong>
+                  Customer account
+                </strong>
+
+                <p>
+                  Public registration creates
+                  a CUSTOMER account only.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <!-- SUBMIT -->
+
+            <button
+              class="btn-nbj auth-submit-button"
+              type="submit"
+            >
+
+              <i
+                class="bi bi-person-check"
+                aria-hidden="true"
+              ></i>
+
+              <span>
+                Create customer account
+              </span>
+
+            </button>
+
+
+            <div class="auth-security-note">
+
+              <i
+                class="bi bi-shield-check"
+                aria-hidden="true"
+              ></i>
+
+              <span>
+                Your password is handled through
+                secure authentication.
+              </span>
+
+            </div>
+
+
+            <div class="auth-divider">
+
+              <span>
+                Already have an account?
+              </span>
+
+            </div>
+
+
+            <a
+              href="/login.html"
+              class="btn-nbj ghost auth-create-account"
+            >
+
+              <i
+                class="bi bi-box-arrow-in-right"
+                aria-hidden="true"
+              ></i>
+
+              Sign in instead
+
+            </a>
+
+
+            <p class="auth-legal-note">
+
+              By creating an account, you agree to our
+
+              <a href="/terms.html">
+                Terms
+              </a>
+
+              and
+
+              <a href="/privacy.html">
+                Privacy Policy
+              </a>.
+
+            </p>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <div
+      id="page-error"
+      class="container-nbj alert alert-danger mt-3"
+      role="alert"
+      hidden
+    ></div>
+
+  </main>
+
+
+  <div id="site-footer"></div>
+
+
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/main.js"
+  ></script>
+
+
+  <script>
+    (() => {
+
+      const password =
+        document.getElementById(
+          'register-password'
+        );
+
+      const confirmPassword =
+        document.getElementById(
+          'register-confirm-password'
+        );
+
+      const strength =
+        document.querySelector(
+          '[data-password-strength]'
+        );
+
+      const passwordHint =
+        document.querySelector(
+          '[data-password-hint]'
+        );
+
+      const passwordMatch =
+        document.querySelector(
+          '[data-password-match]'
+        );
+
+
+      /* PASSWORD VISIBILITY */
+
+      document
+        .querySelectorAll(
+          '[data-password-toggle]'
+        )
+        .forEach(button => {
+
+          button.addEventListener(
+            'click',
+            () => {
+
+              const input =
+                document.getElementById(
+                  button.getAttribute(
+                    'aria-controls'
+                  )
+                );
+
+              if (!input) {
+                return;
+              }
+
+              const show =
+                input.type === 'password';
+
+              input.type =
+                show
+                  ? 'text'
+                  : 'password';
+
+
+              button.setAttribute(
+                'aria-label',
+                show
+                  ? 'Hide password'
+                  : 'Show password'
+              );
+
+
+              const icon =
+                button.querySelector('i');
+
+              if (icon) {
+
+                icon.className =
+                  show
+                    ? 'bi bi-eye-slash'
+                    : 'bi bi-eye';
+
+              }
+
+            }
+          );
+
+        });
+
+
+      /* PASSWORD STRENGTH */
+
+      function getStrength(value) {
+
+        let score = 0;
+
+        if (value.length >= 8) {
+          score++;
+        }
+
+        if (
+          /[a-z]/.test(value) &&
+          /[A-Z]/.test(value)
+        ) {
+          score++;
+        }
+
+        if (/\d/.test(value)) {
+          score++;
+        }
+
+        if (
+          /[^A-Za-z0-9]/.test(value)
+        ) {
+          score++;
+        }
+
+        return score;
+
+      }
+
+
+      function updateStrength() {
+
+        if (
+          !password ||
+          !strength ||
+          !passwordHint
+        ) {
+          return;
+        }
+
+
+        const value =
+          password.value;
+
+        const score =
+          getStrength(value);
+
+
+        strength.dataset.score =
+          String(score);
+
+
+        if (!value) {
+
+          passwordHint.textContent =
+            'Use at least 8 characters.';
+
+          return;
+
+        }
+
+
+        const labels = [
+          'Weak',
+          'Weak',
+          'Fair',
+          'Good',
+          'Strong'
+        ];
+
+
+        passwordHint.textContent =
+          `Password strength: ${labels[score]}`;
+
+      }
+
+
+      /* PASSWORD MATCH */
+
+      function updateMatch() {
+
+        if (
+          !password ||
+          !confirmPassword ||
+          !passwordMatch
+        ) {
+          return;
+        }
+
+
+        if (!confirmPassword.value) {
+
+          passwordMatch.textContent =
+            '';
+
+          passwordMatch.classList.remove(
+            'is-valid',
+            'is-invalid'
+          );
+
+          confirmPassword.setCustomValidity(
+            ''
+          );
+
+          return;
+
+        }
+
+
+        const matches =
+          password.value ===
+          confirmPassword.value;
+
+
+        passwordMatch.textContent =
+          matches
+            ? 'Passwords match.'
+            : 'Passwords do not match.';
+
+
+        passwordMatch.classList.toggle(
+          'is-valid',
+          matches
+        );
+
+        passwordMatch.classList.toggle(
+          'is-invalid',
+          !matches
+        );
+
+
+        confirmPassword.setCustomValidity(
+          matches
+            ? ''
+            : 'Passwords do not match.'
+        );
+
+      }
+
+
+      password?.addEventListener(
+        'input',
+        () => {
+
+          updateStrength();
+          updateMatch();
+
+        }
+      );
+
+
+      confirmPassword?.addEventListener(
+        'input',
+        updateMatch
+      );
+
+    })();
+  </script>
+
+</body>
+</html>
+

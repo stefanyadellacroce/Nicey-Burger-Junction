@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    Users | Nicey Burger Junction
+  </title>
+
+  <meta
+    name="description"
+    content="Manage Nicey Burger Junction staff and administrator accounts."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b52420"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/portal.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/print.css"
+    media="print"
+  >
+
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body
+  data-portal="admin"
+  data-controller="users"
+>
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+
+  <div class="portal-layout">
+
+    <aside
+      id="portal-sidebar"
+      class="portal-sidebar"
+    ></aside>
+
+
+    <div class="portal-main">
+
+      <header
+        id="portal-topbar"
+        class="portal-topbar"
+      ></header>
+      <script src="/assets/js/components/portal-shell-bootstrap.js"></script>
+
+
+      <main
+        id="main-content"
+        class="portal-content admin-page"
+      >
+
+        <section class="admin-page-heading">
+
+          <div class="admin-page-heading-copy">
+
+            <div class="admin-heading-icon">
+              <i class="bi bi-people"></i>
+            </div>
+
+            <div>
+              <p class="admin-page-kicker">
+                Access Management
+              </p>
+
+              <h1>
+                Users
+              </h1>
+
+              <p class="admin-page-description">
+                Manage staff and administrator accounts, roles and account status.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="admin-page-heading-badge">
+            <i class="bi bi-shield-lock"></i>
+            Staff access
+          </div>
+
+        </section>
+
+
+        <div
+          id="page-error"
+          class="alert alert-danger"
+          role="alert"
+          hidden
+        ></div>
+
+
+        <section class="admin-toolbar">
+
+          <div class="admin-search-wrap">
+
+            <i
+              class="bi bi-search"
+              aria-hidden="true"
+            ></i>
+
+            <label
+              for="users-search"
+              class="visually-hidden"
+            >
+              Search users
+            </label>
+
+            <input
+              id="users-search"
+              class="form-control"
+              type="search"
+              placeholder="Search users"
+              autocomplete="off"
+            >
+
+          </div>
+
+
+          <button
+            id="invite-user"
+            class="btn-nbj admin-add-button"
+            type="button"
+          >
+            <i class="bi bi-person-plus"></i>
+            Invite staff/admin
+          </button>
+
+        </section>
+
+
+        <section class="panel admin-panel admin-table-panel">
+
+          <div class="admin-panel-heading">
+
+            <div>
+              <p class="admin-panel-kicker">
+                Team accounts
+              </p>
+
+              <h2>
+                Staff & administrators
+              </h2>
+
+              <p>
+                Review account roles, access status and creation date.
+              </p>
+            </div>
+
+
+            <span class="admin-panel-heading-icon">
+              <i class="bi bi-person-badge"></i>
+            </span>
+
+          </div>
+
+
+          <div class="table-wrap admin-table-wrap">
+
+            <table class="admin-table admin-users-table">
+
+              <caption class="visually-hidden">
+                Nicey Burger Junction staff and administrator accounts
+              </caption>
+
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Created</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody
+                id="users-tbody"
+                aria-live="polite"
+              ></tbody>
+
+            </table>
+
+          </div>
+
+        </section>
+
+
+        <dialog
+          id="user-dialog"
+          class="nbj-dialog admin-dialog"
+        >
+
+          <div class="admin-dialog-shell">
+
+            <form
+              method="dialog"
+              class="admin-dialog-close-form"
+            >
+              <button
+                class="dialog-close admin-dialog-close"
+                value="cancel"
+                aria-label="Close dialog"
+              >
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </form>
+
+
+            <div class="admin-dialog-heading">
+
+              <span class="admin-dialog-icon">
+                <i class="bi bi-person-plus"></i>
+              </span>
+
+              <div>
+                <p class="admin-panel-kicker">
+                  Access invitation
+                </p>
+
+                <h2>
+                  Invite staff/admin
+                </h2>
+
+                <p>
+                  Create a staff or administrator invitation using their email address.
+                </p>
+              </div>
+
+            </div>
+
+
+            <form
+              id="user-form"
+              class="stack admin-user-form"
+            >
+
+              <label>
+                Email
+
+                <input
+                  name="email"
+                  type="email"
+                  class="form-control"
+                  autocomplete="email"
+                  required
+                >
+              </label>
+
+
+              <label>
+                Full name
+
+                <input
+                  name="full_name"
+                  class="form-control"
+                  autocomplete="name"
+                  required
+                >
+              </label>
+
+
+              <label>
+                Role
+
+                <select
+                  name="role"
+                  class="form-select"
+                >
+                  <option>STAFF</option>
+                  <option>ADMIN</option>
+                </select>
+              </label>
+
+
+              <button
+                class="btn-nbj admin-user-submit"
+                type="submit"
+              >
+                <i class="bi bi-send"></i>
+                Send invitation
+              </button>
+
+            </form>
+
+          </div>
+
+        </dialog>
+
+      </main>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/portal.js"
+  ></script>
+
+</body>
+</html>

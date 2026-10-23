@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Nicey Burger Junction">
+  <rect width="64" height="64" rx="14" fill="#b42318"/>
+  <path d="M11 31c1-11 10-18 21-18s20 7 21 18H11Z" fill="#ffba32"/>
+  <path d="M12 35h40c-2 5-5 7-10 8H22c-5-1-8-3-10-8Z" fill="#fff1cf"/>
+  <path d="M16 47h32c-3 6-8 8-16 8s-13-2-16-8Z" fill="#ffba32"/>
+  <path d="M15 34h34" stroke="#6b351f" stroke-width="6" stroke-linecap="round"/>
+  <path d="M19 40h26" stroke="#58a348" stroke-width="4" stroke-linecap="round"/>
+</svg>

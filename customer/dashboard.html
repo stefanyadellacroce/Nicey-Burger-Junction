@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    My Account | Nicey Burger Junction
+  </title>
+
+  <meta
+    name="description"
+    content="Manage your Nicey Burger Junction orders, favorites, notifications, addresses and profile."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b42318"
+  >
+
+  <meta
+    property="og:title"
+    content="My Account | Nicey Burger Junction"
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link rel="modulepreload" href="/assets/js/main.js">
+
+  <script defer
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+  ></script>
+</head>
+
+<body class="customer-shell" data-controller="customer-dashboard">
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+
+  <div id="site-header"></div>
+  <script src="/assets/js/components/customer-shell-bootstrap.js"></script>
+
+
+  <main id="main-content">
+
+    <!-- =========================================
+         CUSTOMER WELCOME HERO
+         ========================================= -->
+
+    <section class="customer-dashboard-hero">
+
+      <div
+        class="customer-dashboard-shape customer-dashboard-shape-one"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        class="customer-dashboard-shape customer-dashboard-shape-two"
+        aria-hidden="true"
+      ></div>
+
+
+      <div class="container-nbj customer-dashboard-hero-grid">
+
+        <div class="customer-dashboard-welcome">
+          <p class="eyebrow">
+
+            <i
+              class="bi bi-person-heart"
+              aria-hidden="true"
+            ></i>
+
+            Your Nicey account
+
+          </p>
+
+
+          <h1 id="customer-greeting">
+            My account
+          </h1>
+
+
+          <p class="customer-dashboard-lead">
+            Keep track of your orders, favorites,
+            account updates and everything you need
+            for your next Nicey craving.
+          </p>
+
+
+          <div class="customer-dashboard-hero-actions">
+
+            <a
+              href="/menu.html"
+              class="btn-nbj"
+            >
+
+              <i
+                class="bi bi-bag-plus"
+                aria-hidden="true"
+              ></i>
+
+              Order something Nice
+
+            </a>
+
+
+            <a
+              href="/customer/orders.html"
+              class="btn-nbj ghost"
+            >
+
+              <i
+                class="bi bi-receipt"
+                aria-hidden="true"
+              ></i>
+
+              View orders
+
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- Mascot -->
+        <div
+          class="customer-dashboard-hero-art"
+          aria-hidden="true"
+        >
+
+          <div class="customer-dashboard-halo"></div>
+
+
+          <span class="customer-dashboard-chip customer-dashboard-chip-one">
+
+            <i class="bi bi-heart-fill"></i>
+
+            Your favorites
+
+          </span>
+
+
+          <span class="customer-dashboard-chip customer-dashboard-chip-two">
+
+            <i class="bi bi-stars"></i>
+
+            Everything Nice!
+
+          </span>
+
+
+          <img
+            src="/assets/images/nicey-mascot.png"
+            alt=""
+            class="customer-dashboard-mascot"
+            loading="eager"
+            decoding="async"
+          >
+
+
+          <div class="customer-dashboard-shadow"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         DASHBOARD CONTENT
+         ========================================= -->
+
+    <section class="section customer-dashboard-section">
+
+      <div class="container-nbj">
+
+        <!-- =====================================
+             KPI CARDS
+             ===================================== -->
+
+        <div class="customer-dashboard-kpis">
+
+          <article class="customer-kpi-card customer-kpi-orders">
+
+            <span class="customer-kpi-icon">
+
+              <i
+                class="bi bi-receipt-cutoff"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+
+            <div class="customer-kpi-copy">
+
+              <span>
+                Orders
+              </span>
+
+              <strong id="dashboard-order-count">
+                —
+              </strong>
+
+              <small>
+                Your order history
+              </small>
+
+            </div>
+
+
+            <a
+              href="/customer/orders.html"
+              class="customer-kpi-link"
+              aria-label="View orders"
+            >
+              <i class="bi bi-arrow-up-right"></i>
+            </a>
+
+          </article>
+
+
+          <article class="customer-kpi-card customer-kpi-favorites">
+
+            <span class="customer-kpi-icon">
+
+              <i
+                class="bi bi-heart"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+
+            <div class="customer-kpi-copy">
+
+              <span>
+                Favorites
+              </span>
+
+              <strong id="dashboard-favorite-count">
+                —
+              </strong>
+
+              <small>
+                Saved cravings
+              </small>
+
+            </div>
+
+
+            <a
+              href="/customer/favorites.html"
+              class="customer-kpi-link"
+              aria-label="View favorites"
+            >
+              <i class="bi bi-arrow-up-right"></i>
+            </a>
+
+          </article>
+
+
+          <article class="customer-kpi-card customer-kpi-notifications">
+
+            <span class="customer-kpi-icon">
+
+              <i
+                class="bi bi-bell"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+
+            <div class="customer-kpi-copy">
+
+              <span>
+                Unread
+              </span>
+
+              <strong id="dashboard-unread-count">
+                —
+              </strong>
+
+              <small>
+                New notifications
+              </small>
+
+            </div>
+
+
+            <a
+              href="/customer/notifications.html"
+              class="customer-kpi-link"
+              aria-label="View notifications"
+            >
+              <i class="bi bi-arrow-up-right"></i>
+            </a>
+
+          </article>
+
+        </div>
+
+
+        <!-- =====================================
+             CUSTOMER NAVIGATION
+             ===================================== -->
+
+        <nav
+          class="customer-nav customer-dashboard-nav"
+          aria-label="Customer account navigation"
+        >
+
+          <a href="/customer/orders.html">
+
+            <span>
+              <i class="bi bi-receipt"></i>
+            </span>
+
+            <strong>
+              Orders
+            </strong>
+
+          </a>
+
+
+          <a href="/customer/favorites.html">
+
+            <span>
+              <i class="bi bi-heart"></i>
+            </span>
+
+            <strong>
+              Favorites
+            </strong>
+
+          </a>
+
+
+          <a href="/customer/notifications.html">
+
+            <span>
+              <i class="bi bi-bell"></i>
+            </span>
+
+            <strong>
+              Notifications
+            </strong>
+
+          </a>
+
+
+          <a href="/customer/addresses.html">
+
+            <span>
+              <i class="bi bi-geo-alt"></i>
+            </span>
+
+            <strong>
+              Addresses
+            </strong>
+
+          </a>
+
+
+          <a href="/customer/profile.html">
+
+            <span>
+              <i class="bi bi-person"></i>
+            </span>
+
+            <strong>
+              Profile
+            </strong>
+
+          </a>
+
+        </nav>
+
+
+        <!-- =====================================
+             ACTIVE ORDERS + PROMOTIONS
+             ===================================== -->
+
+        <div class="customer-dashboard-main-grid">
+
+          <!-- Active orders -->
+          <section class="customer-dashboard-panel">
+
+            <div class="customer-dashboard-panel-heading">
+
+              <div>
+
+                <p class="eyebrow">
+
+                  <i
+                    class="bi bi-fire"
+                    aria-hidden="true"
+                  ></i>
+
+                  In progress
+
+                </p>
+
+                <h2>
+                  Active orders
+                </h2>
+
+                <p>
+                  Follow orders that are currently
+                  being prepared or completed.
+                </p>
+
+              </div>
+
+
+              <a
+                href="/customer/orders.html"
+                class="section-link"
+              >
+
+                All orders
+
+                <i
+                  class="bi bi-arrow-right"
+                  aria-hidden="true"
+                ></i>
+
+              </a>
+
+            </div>
+
+
+            <div
+              id="active-orders"
+              class="stack customer-active-orders"
+              aria-live="polite"
+            ></div>
+
+          </section>
+
+
+          <!-- Current promotions -->
+          <section class="customer-dashboard-panel">
+
+            <div class="customer-dashboard-panel-heading">
+
+              <div>
+
+                <p class="eyebrow">
+
+                  <i
+                    class="bi bi-tag"
+                    aria-hidden="true"
+                  ></i>
+
+                  Save more
+
+                </p>
+
+                <h2>
+                  Current promotions
+                </h2>
+
+                <p>
+                  Deals you can use on your
+                  next Nicey order.
+                </p>
+
+              </div>
+
+
+              <a
+                href="/promotions.html"
+                class="section-link"
+              >
+
+                View deals
+
+                <i
+                  class="bi bi-arrow-right"
+                  aria-hidden="true"
+                ></i>
+
+              </a>
+
+            </div>
+
+
+            <div
+              id="dashboard-promotions"
+              class="stack customer-dashboard-promotions"
+              aria-live="polite"
+            ></div>
+
+          </section>
+
+        </div>
+
+
+        <!-- =====================================
+             RECOMMENDATIONS
+             ===================================== -->
+
+        <section class="customer-recommendations-section">
+
+          <div class="section-heading">
+
+            <div>
+
+              <p class="eyebrow">
+
+                <i
+                  class="bi bi-stars"
+                  aria-hidden="true"
+                ></i>
+
+                Picked for you
+
+              </p>
+
+
+              <h2>
+                Recommended for you
+              </h2>
+
+
+              <p>
+                A few Nicey favorites you might
+                want to add to your next order.
+              </p>
+
+            </div>
+
+
+            <a
+              href="/menu.html"
+              class="section-link"
+            >
+
+              Browse menu
+
+              <i
+                class="bi bi-arrow-right"
+                aria-hidden="true"
+              ></i>
+
+            </a>
+
+          </div>
+
+
+          <div
+            id="dashboard-recommendations"
+            class="product-grid customer-recommendations-grid"
+            aria-live="polite"
+          ></div>
+
+        </section>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         FINAL CTA
+         ========================================= -->
+
+    <section class="section customer-dashboard-cta-section">
+
+      <div class="container-nbj">
+
+        <div class="customer-dashboard-cta">
+
+          <div>
+
+            <p class="eyebrow">
+              Hungry already?
+            </p>
+
+
+            <h2>
+              Your next Nicey order is
+              only a few clicks away.
+            </h2>
+
+
+            <p>
+              Browse the menu, customize your favorites
+              and place your next order.
+            </p>
+
+
+            <a
+              href="/menu.html"
+              class="btn-nbj"
+            >
+
+              <i
+                class="bi bi-bag-plus"
+                aria-hidden="true"
+              ></i>
+
+              Start an order
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <div
+      id="page-error"
+      class="container-nbj alert alert-danger mt-3"
+      role="alert"
+      hidden
+    ></div>
+
+  </main>
+
+
+  <div id="site-footer"></div>
+
+
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/main.js"
+  ></script>
+
+</body>
+</html>

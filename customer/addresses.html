@@ -1,0 +1,1077 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    Addresses | Nicey Burger Junction
+  </title>
+
+  <meta
+    name="description"
+    content="Manage your saved delivery addresses for Nicey Burger Junction orders."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b42318"
+  >
+
+  <meta
+    property="og:title"
+    content="Addresses | Nicey Burger Junction"
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link rel="modulepreload" href="/assets/js/main.js">
+
+  <script defer
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+  ></script>
+</head>
+
+<body class="customer-shell" data-controller="addresses">
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+
+  <div id="site-header"></div>
+  <script src="/assets/js/components/customer-shell-bootstrap.js"></script>
+
+
+  <main id="main-content">
+
+    <!-- =========================================
+         ADDRESSES HERO
+         ========================================= -->
+
+    <section class="addresses-hero">
+
+      <div
+        class="addresses-hero-shape addresses-shape-one"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        class="addresses-hero-shape addresses-shape-two"
+        aria-hidden="true"
+      ></div>
+
+
+      <div class="container-nbj addresses-hero-grid">
+
+        <div class="addresses-hero-copy">
+
+          <p class="eyebrow">
+
+            <i
+              class="bi bi-geo-alt-fill"
+              aria-hidden="true"
+            ></i>
+
+            Delivery made easier
+
+          </p>
+
+
+          <h1>
+            Your saved
+            <span>addresses.</span>
+          </h1>
+
+
+          <p class="addresses-hero-lead">
+            Save the places you order to most often
+            so checkout is faster and your delivery
+            details are ready when you need them.
+          </p>
+
+
+          <div class="addresses-hero-actions">
+
+            <button
+              id="add-address"
+              class="btn-nbj"
+              type="button"
+            >
+
+              <i
+                class="bi bi-plus-lg"
+                aria-hidden="true"
+              ></i>
+
+              Add address
+
+            </button>
+
+
+            <a
+              href="/customer/dashboard.html"
+              class="btn-nbj ghost"
+            >
+
+              <i
+                class="bi bi-grid"
+                aria-hidden="true"
+              ></i>
+
+              My account
+
+            </a>
+
+          </div>
+
+
+          <div class="addresses-hero-points">
+
+            <span>
+
+              <i
+                class="bi bi-check-circle-fill"
+                aria-hidden="true"
+              ></i>
+
+              Faster checkout
+
+            </span>
+
+
+            <span>
+
+              <i
+                class="bi bi-check-circle-fill"
+                aria-hidden="true"
+              ></i>
+
+              Delivery zone ready
+
+            </span>
+
+
+            <span>
+
+              <i
+                class="bi bi-check-circle-fill"
+                aria-hidden="true"
+              ></i>
+
+              Choose a default
+
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="addresses-hero-art"
+          aria-hidden="true"
+        >
+
+          <div class="addresses-hero-halo"></div>
+
+
+          <span class="addresses-floating-chip addresses-chip-one">
+
+            <i class="bi bi-house-heart"></i>
+
+            Home sweet home
+
+          </span>
+
+
+          <span class="addresses-floating-chip addresses-chip-two">
+
+            <i class="bi bi-geo-alt-fill"></i>
+
+            Ready to deliver
+
+          </span>
+
+
+          <img
+            src="/assets/images/nicey-mascot.png"
+            alt=""
+            class="addresses-hero-mascot"
+            loading="eager"
+            decoding="async"
+          >
+
+
+          <div class="addresses-hero-shadow"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         CUSTOMER ACCOUNT NAV
+         ========================================= -->
+
+    <section class="addresses-nav-section">
+
+      <div class="container-nbj">
+
+        <nav
+          class="addresses-account-nav"
+          aria-label="Customer account navigation"
+        >
+
+          <a href="/customer/orders.html">
+
+            <span>
+              <i class="bi bi-receipt"></i>
+            </span>
+
+            <strong>
+              Orders
+            </strong>
+
+          </a>
+
+
+          <a href="/customer/favorites.html">
+
+            <span>
+              <i class="bi bi-heart"></i>
+            </span>
+
+            <strong>
+              Favorites
+            </strong>
+
+          </a>
+
+
+          <a href="/customer/notifications.html">
+
+            <span>
+              <i class="bi bi-bell"></i>
+            </span>
+
+            <strong>
+              Notifications
+            </strong>
+
+          </a>
+
+
+          <a
+            href="/customer/addresses.html"
+            aria-current="page"
+          >
+
+            <span>
+              <i class="bi bi-geo-alt-fill"></i>
+            </span>
+
+            <strong>
+              Addresses
+            </strong>
+
+          </a>
+
+
+          <a href="/customer/profile.html">
+
+            <span>
+              <i class="bi bi-person"></i>
+            </span>
+
+            <strong>
+              Profile
+            </strong>
+
+          </a>
+
+        </nav>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         SAVED ADDRESSES
+         ========================================= -->
+
+    <section class="section addresses-section">
+
+      <div class="container-nbj">
+
+        <div class="section-heading addresses-heading">
+
+          <div>
+
+            <p class="eyebrow">
+
+              <i
+                class="bi bi-house-door"
+                aria-hidden="true"
+              ></i>
+
+              Delivery locations
+
+            </p>
+
+
+            <h2>
+              Saved addresses
+            </h2>
+
+
+            <p>
+              Add, update or choose the default
+              location you'll use for delivery.
+            </p>
+
+          </div>
+
+
+          <button
+            class="btn-nbj addresses-secondary-add"
+            type="button"
+            data-address-add-trigger
+          >
+
+            <i
+              class="bi bi-plus-lg"
+              aria-hidden="true"
+            ></i>
+
+            Add another
+
+          </button>
+
+        </div>
+
+
+        <div class="addresses-list-shell">
+
+          <div class="addresses-list-header">
+
+            <div>
+
+              <span class="addresses-list-icon">
+
+                <i
+                  class="bi bi-geo-alt"
+                  aria-hidden="true"
+                ></i>
+
+              </span>
+
+
+              <div>
+
+                <strong>
+                  Your delivery locations
+                </strong>
+
+                <p>
+                  Saved addresses will appear below.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <span class="addresses-list-badge">
+
+              <i
+                class="bi bi-shield-check"
+                aria-hidden="true"
+              ></i>
+
+              Account only
+
+            </span>
+
+          </div>
+
+
+          <!--
+            Existing addresses controller
+            continues rendering saved addresses here.
+          -->
+          <div
+            id="address-list"
+            class="stack addresses-list"
+            aria-live="polite"
+            aria-busy="false"
+          ></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         INFO CARDS
+         ========================================= -->
+
+    <section class="section addresses-info-section">
+
+      <div class="container-nbj">
+
+        <div class="addresses-info-grid">
+
+          <article class="addresses-info-card">
+
+            <span>
+
+              <i
+                class="bi bi-lightning-charge"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+
+            <div>
+
+              <strong>
+                Faster checkout
+              </strong>
+
+              <p>
+                Pick a saved location instead of
+                entering your address every time.
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <article class="addresses-info-card">
+
+            <span>
+
+              <i
+                class="bi bi-pin-map"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+
+            <div>
+
+              <strong>
+                Delivery zones
+              </strong>
+
+              <p>
+                Your selected delivery zone helps
+                determine applicable delivery details.
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <article class="addresses-info-card">
+
+            <span>
+
+              <i
+                class="bi bi-star"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+
+            <div>
+
+              <strong>
+                Default address
+              </strong>
+
+              <p>
+                Choose one saved address to use as
+                your preferred delivery location.
+              </p>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         CTA
+         ========================================= -->
+
+    <section class="section addresses-cta-section">
+
+      <div class="container-nbj">
+
+        <div class="addresses-cta">
+
+          <div class="addresses-cta-copy">
+
+            <img
+              src="/assets/images/nicey-burger-logo-transparent.png"
+              alt="Nicey Burger Junction"
+              class="addresses-cta-logo"
+              loading="lazy"
+              decoding="async"
+            >
+
+
+            <p class="eyebrow">
+              Address ready?
+            </p>
+
+
+            <h2>
+              Now all that's missing
+              is the food.
+            </h2>
+
+
+            <p>
+              Browse the Nicey menu and build your
+              next pickup or delivery order.
+            </p>
+
+
+            <a
+              href="/menu.html"
+              class="btn-nbj"
+            >
+
+              <i
+                class="bi bi-bag-plus"
+                aria-hidden="true"
+              ></i>
+
+              Browse menu
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         ADDRESS DIALOG
+         ========================================= -->
+
+    <dialog
+      id="address-dialog"
+      class="nbj-dialog address-dialog"
+      aria-labelledby="address-dialog-title"
+    >
+
+      <div class="address-dialog-shell">
+
+        <!-- Dialog heading -->
+        <div class="address-dialog-heading">
+
+          <div class="address-dialog-title">
+
+            <span>
+
+              <i
+                class="bi bi-geo-alt-fill"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+
+            <div>
+
+              <p class="eyebrow">
+                Delivery location
+              </p>
+
+              <h2 id="address-dialog-title">
+                Address details
+              </h2>
+
+            </div>
+
+          </div>
+
+
+          <!-- Keep separate method=dialog form -->
+          <form method="dialog">
+
+            <button
+              class="dialog-close address-dialog-close"
+              value="cancel"
+              aria-label="Close address dialog"
+            >
+
+              <i
+                class="bi bi-x-lg"
+                aria-hidden="true"
+              ></i>
+
+            </button>
+
+          </form>
+
+        </div>
+
+
+        <!-- =====================================
+             ADDRESS FORM
+             ===================================== -->
+
+        <form
+          id="address-form"
+          class="stack address-form"
+        >
+
+          <div class="address-form-intro">
+
+            <i
+              class="bi bi-info-circle"
+              aria-hidden="true"
+            ></i>
+
+            <p>
+              Enter the delivery details carefully
+              so your order can reach the right place.
+            </p>
+
+          </div>
+
+
+          <div class="address-form-grid">
+
+            <!-- Label -->
+            <div class="field">
+
+              <label for="address-label">
+                Label
+              </label>
+
+
+              <div class="address-input-wrap">
+
+                <i
+                  class="bi bi-tag"
+                  aria-hidden="true"
+                ></i>
+
+
+                <input
+                  id="address-label"
+                  name="label"
+                  class="form-control"
+                  type="text"
+                  required
+                  maxlength="50"
+                  placeholder="Home, Work, Office..."
+                >
+
+              </div>
+
+            </div>
+
+
+            <!-- Recipient -->
+            <div class="field">
+
+              <label for="address-recipient">
+                Recipient
+              </label>
+
+
+              <div class="address-input-wrap">
+
+                <i
+                  class="bi bi-person"
+                  aria-hidden="true"
+                ></i>
+
+
+                <input
+                  id="address-recipient"
+                  name="recipient_name"
+                  class="form-control"
+                  type="text"
+                  required
+                  autocomplete="name"
+                  placeholder="Recipient name"
+                >
+
+              </div>
+
+            </div>
+
+
+            <!-- Phone -->
+            <div class="field address-field-full">
+
+              <label for="address-phone">
+                Phone
+              </label>
+
+
+              <div class="address-input-wrap">
+
+                <i
+                  class="bi bi-phone"
+                  aria-hidden="true"
+                ></i>
+
+
+                <input
+                  id="address-phone"
+                  name="phone"
+                  class="form-control"
+                  type="tel"
+                  required
+                  autocomplete="tel"
+                  inputmode="tel"
+                  placeholder="09XX XXX XXXX"
+                >
+
+              </div>
+
+            </div>
+
+
+            <!-- Address line 1 -->
+            <div class="field address-field-full">
+
+              <label for="address-line1">
+                Address line 1
+              </label>
+
+
+              <div class="address-input-wrap">
+
+                <i
+                  class="bi bi-house-door"
+                  aria-hidden="true"
+                ></i>
+
+
+                <input
+                  id="address-line1"
+                  name="address_line1"
+                  class="form-control"
+                  type="text"
+                  required
+                  autocomplete="address-line1"
+                  placeholder="House no., street, building"
+                >
+
+              </div>
+
+            </div>
+
+
+            <!-- Address line 2 -->
+            <div class="field address-field-full">
+
+              <label for="address-line2">
+                Address line 2
+              </label>
+
+
+              <div class="address-input-wrap">
+
+                <i
+                  class="bi bi-signpost-2"
+                  aria-hidden="true"
+                ></i>
+
+
+                <input
+                  id="address-line2"
+                  name="address_line2"
+                  class="form-control"
+                  type="text"
+                  autocomplete="address-line2"
+                  placeholder="Unit, floor or landmark (optional)"
+                >
+
+              </div>
+
+            </div>
+
+
+            <!-- Barangay -->
+            <div class="field">
+
+              <label for="address-barangay">
+                Barangay
+              </label>
+
+
+              <input
+                id="address-barangay"
+                name="barangay"
+                class="form-control"
+                type="text"
+                placeholder="Barangay"
+              >
+
+            </div>
+
+
+            <!-- City -->
+            <div class="field">
+
+              <label for="address-city">
+                City
+              </label>
+
+
+              <input
+                id="address-city"
+                name="city"
+                class="form-control"
+                type="text"
+                required
+                autocomplete="address-level2"
+                placeholder="City"
+              >
+
+            </div>
+
+
+            <!-- Province -->
+            <div class="field">
+
+              <label for="address-province">
+                Province
+              </label>
+
+
+              <input
+                id="address-province"
+                name="province"
+                class="form-control"
+                type="text"
+                autocomplete="address-level1"
+                placeholder="Province"
+              >
+
+            </div>
+
+
+            <!-- Postal -->
+            <div class="field">
+
+              <label for="address-postal-code">
+                Postal code
+              </label>
+
+
+              <input
+                id="address-postal-code"
+                name="postal_code"
+                class="form-control"
+                type="text"
+                autocomplete="postal-code"
+                inputmode="numeric"
+                placeholder="Postal code"
+              >
+
+            </div>
+
+
+            <!-- Zone -->
+            <div class="field address-field-full">
+
+              <label for="address-zone">
+                Delivery zone
+              </label>
+
+
+              <div class="address-select-wrap">
+
+                <i
+                  class="bi bi-pin-map"
+                  aria-hidden="true"
+                ></i>
+
+
+                <select
+                  id="address-zone"
+                  name="delivery_zone_id"
+                  class="form-select"
+                ></select>
+
+              </div>
+
+
+              <p class="address-field-help">
+                Delivery availability and fees can
+                depend on the selected zone.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- Default -->
+          <label class="form-check address-default-check">
+
+            <input
+              type="checkbox"
+              name="is_default"
+              class="form-check-input"
+            >
+
+
+            <span>
+
+              <strong>
+                Make this my default address
+              </strong>
+
+              <small>
+                Use this address first during delivery checkout.
+              </small>
+
+            </span>
+
+          </label>
+
+
+          <!-- Save -->
+          <div class="address-form-actions">
+
+            <button
+              class="btn-nbj address-save-button"
+              type="submit"
+            >
+
+              <i
+                class="bi bi-check2-circle"
+                aria-hidden="true"
+              ></i>
+
+              Save address
+
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </dialog>
+
+
+    <div
+      id="page-error"
+      class="container-nbj alert alert-danger mt-3"
+      role="alert"
+      hidden
+    ></div>
+
+  </main>
+
+
+  <div id="site-footer"></div>
+
+
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/main.js"
+  ></script>
+
+
+  <!--
+    Mirrors the existing #add-address button
+    without replacing your controller logic.
+  -->
+  <script>
+    (() => {
+      const primaryButton =
+        document.getElementById('add-address');
+
+      const secondaryButton =
+        document.querySelector(
+          '[data-address-add-trigger]'
+        );
+
+      secondaryButton?.addEventListener(
+        'click',
+        () => primaryButton?.click()
+      );
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,216 @@
+@media print{
+  /* Nicey Burger Junction — print / receipt / report styles */
+
+  @page{
+    margin:12mm;
+    size:auto;
+  }
+
+  *,
+  *::before,
+  *::after{
+    box-shadow:none!important;
+    text-shadow:none!important;
+    animation:none!important;
+    transition:none!important;
+    filter:none!important;
+  }
+
+  html,
+  body{
+    background:#fff!important;
+    color:#000!important;
+    font-family:Arial, Helvetica, sans-serif!important;
+    font-size:10.5pt;
+    line-height:1.4;
+  }
+
+  /* Hide website chrome and interactive controls */
+  .site-header,
+  .site-footer,
+  .portal-sidebar,
+  .portal-topbar,
+  .portal-sidebar-backdrop,
+  .no-print,
+  .btn-nbj,
+  .icon-btn,
+  .mobile-nav-toggle,
+  .toast-region,
+  dialog:not([open]){
+    display:none!important;
+  }
+
+  /* Flatten app / portal layout */
+  .portal-layout,
+  .portal-main{
+    display:block!important;
+    min-height:auto!important;
+    width:100%!important;
+  }
+
+  .portal-content,
+  .container-nbj{
+    width:100%!important;
+    max-width:none!important;
+    margin:0!important;
+    padding:0!important;
+  }
+
+  .section,
+  .section-sm{
+    padding:0!important;
+  }
+
+  /* Make print content clean and legible */
+  .panel,
+  .receipt,
+  .table-wrap,
+  .stat-card,
+  .chart-card,
+  .kitchen-card{
+    background:#fff!important;
+    color:#000!important;
+    border:1px solid #aaa!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+    break-inside:avoid;
+  }
+
+  .receipt{
+    max-width:none!important;
+    border:0!important;
+    padding:0!important;
+    margin:0!important;
+  }
+
+  /* Headings */
+  h1,h2,h3,h4,h5,h6{
+    color:#000!important;
+    break-after:avoid;
+    page-break-after:avoid;
+  }
+
+  .page-header{
+    margin-bottom:10mm!important;
+  }
+
+  .page-header p,
+  .muted,
+  .help-text{
+    color:#444!important;
+  }
+
+  /* Tables */
+  .table-wrap{
+    overflow:visible!important;
+    border:0!important;
+  }
+
+  .table-nbj{
+    width:100%!important;
+    min-width:0!important;
+    border-collapse:collapse!important;
+    font-size:9.5pt!important;
+  }
+
+  .table-nbj th,
+  .table-nbj td{
+    border:1px solid #bbb!important;
+    padding:5pt 6pt!important;
+    color:#000!important;
+    background:#fff!important;
+  }
+
+  .table-nbj th{
+    font-weight:700!important;
+    background:#f3f3f3!important;
+  }
+
+  .table-nbj tr{
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+
+  thead{
+    display:table-header-group;
+  }
+
+  tfoot{
+    display:table-footer-group;
+  }
+
+  /* Receipt / order lines */
+  .line-item{
+    grid-template-columns:1fr auto!important;
+    gap:8pt!important;
+    border-bottom:1px solid #ccc!important;
+    padding:6pt 0!important;
+    break-inside:avoid;
+  }
+
+  .line-thumb{
+    display:none!important;
+  }
+
+  .summary-row{
+    color:#000!important;
+  }
+
+  .summary-row.total{
+    border-top:2px solid #000!important;
+    font-size:12pt!important;
+  }
+
+  /* Statuses: print-safe without relying on color */
+  .status-pill,
+  .nbj-badge{
+    color:#000!important;
+    background:#fff!important;
+    border:1px solid #777!important;
+    box-shadow:none!important;
+  }
+
+  /* Links */
+  a,
+  a:visited{
+    color:#000!important;
+    text-decoration:none!important;
+  }
+
+  /* Avoid printing raw URLs for nav/action links */
+  a[href]::after{
+    content:"";
+  }
+
+  /* Forms */
+  input,
+  select,
+  textarea{
+    color:#000!important;
+    background:#fff!important;
+    border:1px solid #999!important;
+  }
+
+  /* Images */
+  img{
+    max-width:100%!important;
+    page-break-inside:avoid;
+  }
+
+  /* Charts / canvas: retain rendered content when supported */
+  canvas{
+    max-width:100%!important;
+    height:auto!important;
+  }
+
+  /* Common utility to force new page */
+  .print-page-break{
+    break-before:page;
+    page-break-before:always;
+  }
+
+  .avoid-print-break{
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+}

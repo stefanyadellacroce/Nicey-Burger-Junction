@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    Menu | Nicey Burger Junction
+  </title>
+
+  <meta
+    name="description"
+    content="Explore freshly prepared burgers, sides, drinks, combos and more from Nicey Burger Junction."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b42318"
+  >
+
+  <meta
+    property="og:title"
+    content="Menu | Nicey Burger Junction"
+  >
+
+  <meta
+    property="og:description"
+    content="Find your next Nicey craving. Browse burgers, combos, sides, drinks and desserts."
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link rel="modulepreload" href="/assets/js/main.js">
+  <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+</head>
+
+<body data-controller="menu">
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+  <div id="site-header"></div>
+  <script src="/assets/js/components/public-header-bootstrap.js"></script>
+
+
+  <main id="main-content">
+
+    <!-- =========================================
+         MENU HERO
+         ========================================= -->
+
+    <section class="menu-hero">
+
+      <div
+        class="menu-hero-decoration menu-hero-decoration-one"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        class="menu-hero-decoration menu-hero-decoration-two"
+        aria-hidden="true"
+      ></div>
+
+
+      <div class="container-nbj menu-hero-grid">
+
+        <div class="menu-hero-copy">
+
+          <div class="page-utility-links">
+            <a class="page-back-link" href="/">
+              <i class="bi bi-arrow-left" aria-hidden="true"></i>
+              Back to home
+            </a>
+          </div>
+
+          <p class="eyebrow">
+
+            <i
+              class="bi bi-fire"
+              aria-hidden="true"
+            ></i>
+
+            Freshly prepared
+
+          </p>
+
+
+          <h1>
+            Find your
+            <span>Nicey craving.</span>
+          </h1>
+
+
+          <p class="menu-hero-description">
+            Burgers, combos, crispy sides,
+            cold drinks and sweet treats—
+            prepared fresh when you order.
+          </p>
+
+
+          <div class="menu-hero-points">
+
+            <span>
+
+              <i
+                class="bi bi-check-circle-fill"
+                aria-hidden="true"
+              ></i>
+
+              Fresh ingredients
+
+            </span>
+
+
+            <span>
+
+              <i
+                class="bi bi-check-circle-fill"
+                aria-hidden="true"
+              ></i>
+
+              Customizable orders
+
+            </span>
+
+
+            <span>
+
+              <i
+                class="bi bi-check-circle-fill"
+                aria-hidden="true"
+              ></i>
+
+              Pickup & delivery
+
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- Mascot -->
+        <div
+          class="menu-hero-mascot"
+          aria-hidden="true"
+        >
+
+          <div class="menu-mascot-halo"></div>
+
+          <img
+            src="/assets/images/nicey-mascot.png"
+            alt=""
+            loading="eager"
+            decoding="async"
+          >
+
+          <div class="menu-mascot-shadow"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         MENU CONTENT
+         ========================================= -->
+
+    <section class="section menu-section">
+
+      <div class="container-nbj">
+
+        <!-- Heading -->
+        <div class="section-heading menu-heading">
+
+          <div>
+
+            <p class="eyebrow">
+
+              <i
+                class="bi bi-grid"
+                aria-hidden="true"
+              ></i>
+
+              Explore the menu
+
+            </p>
+
+            <h2>
+              What are you craving?
+            </h2>
+
+            <p>
+              Search or filter the menu to
+              find exactly what you want.
+            </p>
+
+          </div>
+
+
+          <div class="menu-result-summary">
+
+            <span class="menu-result-icon">
+
+              <i
+                class="bi bi-burger"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+            <div>
+
+              <strong
+                id="menu-count"
+              >
+                0
+              </strong>
+
+              <span>
+                menu items
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- =====================================
+             FILTER PANEL
+             ===================================== -->
+
+        <div class="menu-filter-panel">
+
+          <!-- Search -->
+          <div class="menu-search-field">
+
+            <i
+              class="bi bi-search"
+              aria-hidden="true"
+            ></i>
+
+            <input
+              id="menu-search"
+              class="form-control"
+              type="search"
+              placeholder="Search burgers, fries, drinks…"
+              aria-label="Search menu"
+              autocomplete="off"
+            >
+
+          </div>
+
+
+          <!-- Category -->
+          <div class="menu-select-wrap">
+
+            <i
+              class="bi bi-grid"
+              aria-hidden="true"
+            ></i>
+
+            <select
+              id="category-filter"
+              class="form-select"
+              aria-label="Filter by category"
+            >
+
+              <option value="">
+                All categories
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <!-- Sort -->
+          <div class="menu-select-wrap">
+
+            <i
+              class="bi bi-arrow-down-up"
+              aria-hidden="true"
+            ></i>
+
+            <select
+              id="sort-filter"
+              class="form-select"
+              aria-label="Sort menu"
+            >
+
+              <option value="featured">
+                Featured
+              </option>
+
+              <option value="price_asc">
+                Price: low to high
+              </option>
+
+              <option value="price_desc">
+                Price: high to low
+              </option>
+
+              <option value="name">
+                Name
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <!-- Availability -->
+          <label class="menu-availability-filter">
+
+            <input
+              id="availability-filter"
+              class="form-check-input"
+              type="checkbox"
+            >
+
+            <span class="availability-switch-icon">
+
+              <i
+                class="bi bi-check2"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+            <span>
+              Available only
+            </span>
+
+          </label>
+
+        </div>
+
+
+        <!-- =====================================
+             MOBILE RESULT COUNT
+             ===================================== -->
+
+        <div class="menu-mobile-result-count">
+
+          <i
+            class="bi bi-burger"
+            aria-hidden="true"
+          ></i>
+
+          <span>
+            Showing
+            <strong data-menu-count-copy>
+              menu items
+            </strong>
+          </span>
+
+        </div>
+
+
+        <!-- =====================================
+             PRODUCTS
+             ===================================== -->
+
+        <div
+          id="menu-grid"
+          class="product-grid menu-product-grid"
+          aria-live="polite"
+          aria-busy="false"
+        ></div>
+
+
+        <!-- =====================================
+             EMPTY STATE
+             Optional controller can toggle this.
+             ===================================== -->
+
+        <div
+          id="menu-empty-state"
+          class="menu-empty-state"
+          hidden
+        >
+
+          <h2>
+            No cravings found
+          </h2>
+
+          <p>
+            Try another search or remove
+            some filters to see more menu items.
+          </p>
+
+          <button
+            id="menu-clear-filters"
+            class="btn-nbj ghost"
+            type="button"
+          >
+
+            <i
+              class="bi bi-arrow-counterclockwise"
+              aria-hidden="true"
+            ></i>
+
+            Clear filters
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- Error state -->
+    <div
+      id="page-error"
+      class="container-nbj alert alert-danger mt-3"
+      role="alert"
+      hidden
+    ></div>
+
+  </main>
+
+
+  <!-- Shared site footer -->
+  <div id="site-footer"></div>
+
+
+  <!-- Notifications -->
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/main.js"
+  ></script>
+
+</body>
+</html>

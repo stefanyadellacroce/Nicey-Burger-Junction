@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    Website Settings | Nicey Burger Junction
+  </title>
+
+  <meta
+    name="description"
+    content="Manage Nicey Burger Junction website and ordering settings."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b52420"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/portal.css"
+  >
+
+  <link rel="stylesheet" href="/assets/css/settings.css">
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/print.css"
+    media="print"
+  >
+
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body
+  data-portal="admin"
+  data-controller="settings-admin"
+>
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+
+  <div class="portal-layout">
+
+    <aside
+      id="portal-sidebar"
+      class="portal-sidebar"
+    ></aside>
+
+
+    <div class="portal-main">
+
+      <header
+        id="portal-topbar"
+        class="portal-topbar"
+      ></header>
+      <script src="/assets/js/components/portal-shell-bootstrap.js"></script>
+
+
+      <main
+        id="main-content"
+        class="portal-content admin-page"
+      >
+
+        <section class="admin-page-heading">
+
+          <div class="admin-page-heading-copy">
+
+            <div class="admin-heading-icon">
+              <i class="bi bi-gear"></i>
+            </div>
+
+            <div>
+              <p class="admin-page-kicker">
+                Configuration
+              </p>
+
+              <h1>
+                Website Settings
+              </h1>
+
+              <p class="admin-page-description">
+                Manage business information, ordering availability and operational defaults.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="admin-page-heading-badge">
+            <i class="bi bi-sliders"></i>
+            Store configuration
+          </div>
+
+        </section>
+
+
+        <div
+          id="page-error"
+          class="alert alert-danger"
+          role="alert"
+          hidden
+        ></div>
+
+
+        <form
+          id="settings-form"
+          class="admin-settings-form"
+        >
+
+          <!-- BUSINESS INFO -->
+          <section class="panel admin-panel admin-settings-section">
+
+            <div class="admin-panel-heading">
+
+              <div>
+                <p class="admin-panel-kicker">
+                  Store profile
+                </p>
+
+                <h2>
+                  Business information
+                </h2>
+
+                <p>
+                  Details displayed across customer-facing pages and order communication.
+                </p>
+              </div>
+
+
+              <span class="admin-panel-heading-icon">
+                <i class="bi bi-shop"></i>
+              </span>
+
+            </div>
+
+
+            <div class="admin-settings-grid">
+
+              <label>
+                Business name
+
+                <input
+                  name="business_name"
+                  class="form-control"
+                >
+              </label>
+
+              <label>
+                Store tagline
+                <input name="store_tagline" class="form-control">
+              </label>
+
+
+              <label>
+                Phone
+
+                <input
+                  name="business_phone"
+                  class="form-control"
+                  type="tel"
+                >
+              </label>
+
+
+              <label>
+                Email
+
+                <input
+                  name="business_email"
+                  type="email"
+                  class="form-control"
+                >
+              </label>
+
+
+              <label class="admin-settings-full">
+                Address
+
+                <input
+                  name="business_address"
+                  class="form-control"
+                >
+              </label>
+
+
+              <label class="admin-settings-full">
+                Hours summary
+
+                <input
+                  name="business_hours_summary"
+                  class="form-control"
+                >
+              </label>
+
+
+              <label class="admin-settings-full">
+                Store announcement
+
+                <input
+                  name="store_announcement"
+                  class="form-control"
+                >
+              </label>
+
+              <label>
+                Facebook URL
+                <input name="facebook_url" type="url" class="form-control" placeholder="https://">
+              </label>
+
+              <label>
+                Instagram URL
+                <input name="instagram_url" type="url" class="form-control" placeholder="https://">
+              </label>
+
+              <label class="admin-settings-full">
+                Map embed URL
+                <input name="map_embed_url" type="url" class="form-control" placeholder="https://">
+              </label>
+
+              <label class="admin-settings-full">
+                Larger map URL
+                <input name="map_link_url" type="url" class="form-control" placeholder="https://">
+              </label>
+
+            </div>
+
+          </section>
+
+
+          <!-- ORDERING -->
+          <section class="panel admin-panel admin-settings-section">
+
+            <div class="admin-panel-heading">
+
+              <div>
+                <p class="admin-panel-kicker">
+                  Store operations
+                </p>
+
+                <h2>
+                  Ordering
+                </h2>
+
+                <p>
+                  Configure fulfillment availability, fees, limits and inventory behavior.
+                </p>
+              </div>
+
+
+              <span class="admin-panel-heading-icon">
+                <i class="bi bi-bag-check"></i>
+              </span>
+
+            </div>
+
+
+            <div class="admin-settings-toggle-grid">
+
+              <label class="form-check admin-settings-toggle">
+
+                <input
+                  name="ordering_enabled"
+                  type="checkbox"
+                  class="form-check-input"
+                >
+
+                <span>
+                  <strong>
+                    Ordering enabled
+                  </strong>
+
+                  <small>
+                    Allow customers to place orders.
+                  </small>
+                </span>
+
+              </label>
+
+
+              <label class="form-check admin-settings-toggle">
+
+                <input
+                  name="pickup_enabled"
+                  type="checkbox"
+                  class="form-check-input"
+                >
+
+                <span>
+                  <strong>
+                    Pickup enabled
+                  </strong>
+
+                  <small>
+                    Allow store pickup orders.
+                  </small>
+                </span>
+
+              </label>
+
+
+              <label class="form-check admin-settings-toggle">
+
+                <input
+                  name="delivery_enabled"
+                  type="checkbox"
+                  class="form-check-input"
+                >
+
+                <span>
+                  <strong>
+                    Delivery enabled
+                  </strong>
+
+                  <small>
+                    Allow delivery orders.
+                  </small>
+                </span>
+
+              </label>
+
+              <label class="form-check admin-settings-toggle">
+                <input name="temporary_store_closure" type="checkbox" class="form-check-input">
+                <span><strong>Temporarily closed</strong><small>Pause online ordering immediately.</small></span>
+              </label>
+
+              <label class="form-check admin-settings-toggle">
+                <input name="customer_cancellation_enabled" type="checkbox" class="form-check-input">
+                <span><strong>Customer cancellation</strong><small>Allow eligible orders to be cancelled online.</small></span>
+              </label>
+
+              <label class="form-check admin-settings-toggle">
+                <input name="ordering_setup_confirmed" type="checkbox" class="form-check-input">
+                <span><strong>Business details confirmed</strong><small>Confirm actual contact details, timezone and ordering hours before opening orders.</small></span>
+              </label>
+
+            </div>
+
+
+            <div class="admin-settings-grid admin-settings-order-grid">
+
+              <label>
+                Minimum delivery subtotal
+
+                <input
+                  name="minimum_delivery_order"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  class="form-control"
+                  required
+                >
+              </label>
+
+
+              <label>
+                Pickup preparation minutes
+
+                <input
+                  name="estimated_preparation_minutes"
+                  type="number"
+                  min="1"
+                  class="form-control"
+                  required
+                >
+              </label>
+
+              <label>
+                Delivery estimate minutes
+                <input name="estimated_delivery_minutes" type="number" min="1" class="form-control" required>
+              </label>
+
+              <label>
+                Service fee
+                <input name="service_fee" type="number" min="0" step="0.01" class="form-control" required>
+              </label>
+
+              <label>
+                Tax rate percent
+                <input name="tax_rate_percent" type="number" min="0" max="100" step="0.01" class="form-control" required>
+              </label>
+
+
+              <label>
+                Inventory deduction stage
+
+                <select
+                  name="inventory_deduction_stage"
+                  class="form-select"
+                >
+                  <option value="CONFIRMED">
+                    CONFIRMED
+                  </option>
+
+                  <option value="PREPARING">
+                    PREPARING
+                  </option>
+
+                  <option value="COMPLETED">
+                    COMPLETED
+                  </option>
+                </select>
+              </label>
+
+            </div>
+
+          </section>
+
+          <section class="panel admin-panel admin-settings-section">
+            <div class="admin-panel-heading">
+              <div>
+                <p class="admin-panel-kicker">Store operations</p>
+                <h2>Ordering hours</h2>
+                <p>Set the real schedule before enabling online ordering. All times use the timezone below.</p>
+              </div>
+            </div>
+            <div class="admin-settings-grid">
+              <label>
+                IANA timezone
+                <input name="timezone" class="form-control" required placeholder="Asia/Manila">
+              </label>
+            </div>
+            <div id="business-hours-editor" class="business-hours-editor"></div>
+          </section>
+
+
+          <div class="admin-settings-save-bar">
+
+            <div>
+              <i class="bi bi-info-circle"></i>
+
+              <span>
+                Changes apply to the live website after saving.
+              </span>
+            </div>
+
+
+            <button
+              class="btn-nbj admin-settings-save"
+              type="submit"
+            >
+              <i class="bi bi-check2-circle"></i>
+              Save website settings
+            </button>
+
+          </div>
+
+        </form>
+
+      </main>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/portal.js"
+  ></script>
+
+</body>
+</html>

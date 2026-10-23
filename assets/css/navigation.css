@@ -1,0 +1,1713 @@
+/* =========================================================
+   NICEY PREMIUM NAVBAR
+   Same structural style as reference,
+   but KEEP Nicey original colors.
+   ========================================================= */
+
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:128px;
+}
+
+#home-section,
+#menu,
+#promotions,
+#about,
+#contact{
+  scroll-margin-top:128px;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.premium-site-header{
+  position:sticky;
+  top:0;
+  z-index:2000;
+
+  width:100%;
+
+  background:
+    rgba(255,250,243,.96);
+
+  border-bottom:
+    1px solid
+    rgba(91,58,39,.08);
+
+  box-shadow:
+    0 8px 26px
+    rgba(65,34,19,.055);
+
+  backdrop-filter:
+    blur(18px);
+
+  -webkit-backdrop-filter:
+    blur(18px);
+}
+
+
+/* subtle Nicey glow */
+
+.premium-site-header::before{
+  content:"";
+
+  position:absolute;
+
+  top:-100px;
+  left:18%;
+
+  width:420px;
+  height:180px;
+
+  pointer-events:none;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(255,176,0,.08),
+      transparent 68%
+    );
+
+  filter:
+    blur(28px);
+}
+
+
+/* =========================================================
+   MAIN NAV
+   ========================================================= */
+
+.premium-nav-shell{
+  position:relative;
+  z-index:3;
+
+  min-height:62px;
+
+  display:grid;
+
+  grid-template-columns:
+    auto
+    minmax(0,1fr)
+    auto;
+
+  align-items:center;
+
+  gap:
+    clamp(
+      24px,
+      4vw,
+      55px
+    );
+}
+
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.premium-brand{
+  display:flex;
+  align-items:center;
+
+  flex-shrink:0;
+
+  text-decoration:none;
+}
+
+.premium-brand-logo{
+  width:118px;
+
+  height:46px;
+
+  display:block;
+
+  object-fit:contain;
+
+  filter:none !important;
+
+  transition:
+    transform .22s ease;
+}
+
+
+/* =========================================================
+   DESKTOP NAV
+   ========================================================= */
+
+.premium-desktop-nav{
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  gap:
+    clamp(
+      20px,
+      2.7vw,
+      42px
+    );
+}
+
+.premium-nav-link{
+  position:relative;
+
+  display:inline-flex;
+
+  align-items:center;
+
+  min-height:45px;
+
+  padding:
+    0
+    2px;
+
+  color:
+    var(--nbj-text,#2d211c);
+
+  opacity:.72;
+
+  font-size:14px;
+
+  font-weight:800;
+
+  text-decoration:none;
+
+  transition:
+    color .2s ease,
+    opacity .2s ease,
+    transform .2s ease;
+}
+
+.premium-nav-link:hover{
+  color:
+    var(--nbj-primary,#b42318);
+
+  opacity:1;
+
+  transform:
+    translateY(-1px);
+}
+
+
+/* active nav underline */
+
+.premium-nav-link::after{
+  content:"";
+
+  position:absolute;
+
+  left:50%;
+  bottom:4px;
+
+  width:0;
+  height:3px;
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--nbj-primary,#b42318),
+      var(--nbj-secondary,#ff7a00)
+    );
+
+  transform:
+    translateX(-50%);
+
+  transition:
+    width .22s ease;
+}
+
+.premium-nav-link.is-active{
+  color:
+    var(--nbj-primary,#b42318);
+
+  opacity:1;
+}
+
+.premium-nav-link.is-active::after{
+  width:100%;
+}
+
+
+/* =========================================================
+   RIGHT SIDE
+   ========================================================= */
+
+.premium-nav-actions{
+  display:flex;
+
+  align-items:center;
+  justify-content:flex-end;
+
+  gap:10px;
+}
+
+
+/* =========================================================
+   CART
+   ========================================================= */
+
+.premium-cart-button{
+  position:relative;
+
+  width:46px;
+  height:46px;
+
+  display:grid;
+
+  place-items:center;
+
+  flex:0 0 46px;
+
+  border:
+    1px solid
+    rgba(91,58,39,.1);
+
+  border-radius:14px;
+
+  background:#fff;
+
+  color:
+    var(--nbj-text,#2d211c);
+
+  font-size:17px;
+
+  text-decoration:none;
+
+  box-shadow:
+    0 5px 16px
+    rgba(65,34,19,.045);
+
+  transition:
+    transform .2s ease,
+    color .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease;
+}
+
+.premium-cart-button:hover{
+  transform:
+    translateY(-2px);
+
+  color:
+    var(--nbj-primary,#b42318);
+
+  border-color:
+    rgba(180,35,24,.2);
+
+  box-shadow:
+    0 10px 24px
+    rgba(65,34,19,.08);
+}
+
+.premium-cart-count{
+  position:absolute;
+
+  top:-7px;
+  right:-6px;
+
+  min-width:21px;
+  height:21px;
+
+  display:grid;
+
+  place-items:center;
+
+  padding:
+    0
+    5px;
+
+  border:
+    2px solid #fff;
+
+  border-radius:999px;
+
+  background:
+    var(--nbj-primary,#b42318);
+
+  color:#fff;
+
+  font-size:9px;
+
+  font-weight:950;
+}
+
+
+/* =========================================================
+   SIGN IN / ACCOUNT BUTTON
+   ========================================================= */
+
+.premium-login-button{
+  min-height:48px;
+
+  display:inline-flex;
+
+  align-items:center;
+  justify-content:center;
+
+  gap:8px;
+
+  padding:
+    0
+    20px;
+
+  border:
+    1px solid
+    rgba(180,35,24,.25);
+
+  border-radius:14px;
+
+  color:
+    var(--nbj-primary,#b42318);
+
+  background:#fff;
+
+  box-shadow:
+    0 7px 20px
+    rgba(65,34,19,.055);
+
+  font-size:13px;
+
+  font-weight:900;
+
+  text-decoration:none;
+
+  white-space:nowrap;
+
+  transition:
+    transform .2s ease,
+    background-color .2s ease,
+    color .2s ease,
+    box-shadow .2s ease;
+}
+
+.premium-login-button:hover{
+  color:#fff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--nbj-primary,#b42318),
+      #d83a29
+    );
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 12px 28px
+    rgba(180,35,24,.18);
+}
+
+.premium-account-button{
+  min-height:46px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 10px;
+  border-radius:14px;
+  background:#fff;
+  color:var(--nbj-text,#2d211c);
+  text-decoration:none;
+}
+
+.premium-account-button:hover{
+  color:var(--nbj-primary,#b42318);
+}
+
+
+/* =========================================================
+   SECTION PROGRESS
+   Like the small centered bar in your reference
+   ========================================================= */
+
+.premium-section-progress{
+  position:relative;
+  z-index:4;
+
+  min-height:46px;
+
+  display:flex;
+
+  align-items:center;
+
+  border-top:
+    1px solid
+    rgba(91,58,39,.055);
+
+  background:
+    rgba(255,255,255,.42);
+}
+
+.premium-progress-inner{
+  width:
+    min(
+      calc(100% - 32px),
+      430px
+    );
+
+  min-height:34px;
+
+  display:grid;
+
+  grid-template-columns:
+    auto
+    auto
+    1fr;
+
+  align-items:center;
+
+  gap:9px;
+
+  margin-inline:auto;
+
+  padding:
+    6px
+    12px;
+
+  border:
+    1px solid
+    rgba(91,58,39,.09);
+
+  border-radius:999px;
+
+  background:
+    rgba(255,255,255,.72);
+
+  box-shadow:
+    0 5px 15px
+    rgba(65,34,19,.035);
+}
+
+.premium-progress-number{
+  color:
+    var(--nbj-primary,#b42318);
+
+  font-size:9px;
+
+  font-weight:950;
+
+  letter-spacing:.08em;
+}
+
+.premium-progress-label{
+  color:
+    var(--nbj-text,#2d211c);
+
+  font-size:9px;
+
+  font-weight:900;
+
+  letter-spacing:.08em;
+}
+
+.premium-progress-track{
+  display:grid;
+
+  grid-template-columns:
+    repeat(5,1fr);
+
+  align-items:center;
+
+  gap:4px;
+
+  margin-left:8px;
+}
+
+.premium-progress-step{
+  position:relative;
+
+  height:14px;
+
+  display:flex;
+
+  align-items:center;
+
+  padding:0;
+
+  border:0;
+
+  background:transparent;
+
+  cursor:pointer;
+}
+
+.premium-progress-step::before{
+  content:"";
+
+  width:100%;
+  height:2px;
+
+  border-radius:999px;
+
+  background:
+    rgba(91,58,39,.14);
+}
+
+.premium-progress-step span{
+  position:absolute;
+
+  left:0;
+
+  width:0;
+  height:3px;
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--nbj-primary,#b42318),
+      var(--nbj-secondary,#ff7a00)
+    );
+
+  transition:
+    width .22s ease;
+}
+
+.premium-progress-step.is-complete span,
+.premium-progress-step.is-active span{
+  width:100%;
+}
+
+
+/* =========================================================
+   BURGER
+   Hidden on desktop
+   ========================================================= */
+
+.premium-mobile-toggle{
+  width:46px;
+  height:46px;
+
+  display:none;
+
+  place-content:center;
+
+  gap:5px;
+
+  padding:0;
+
+  border:
+    1px solid
+    rgba(91,58,39,.1);
+
+  border-radius:14px;
+
+  background:#fff;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 5px 16px
+    rgba(65,34,19,.045);
+}
+
+.premium-mobile-toggle span{
+  width:19px;
+  height:2px;
+
+  display:block;
+
+  border-radius:999px;
+
+  background:
+    var(--nbj-text,#2d211c);
+
+  transition:
+    transform .25s ease,
+    opacity .2s ease;
+}
+
+.premium-mobile-toggle.is-open
+span:nth-child(1){
+  transform:
+    translateY(7px)
+    rotate(45deg);
+}
+
+.premium-mobile-toggle.is-open
+span:nth-child(2){
+  opacity:0;
+}
+
+.premium-mobile-toggle.is-open
+span:nth-child(3){
+  transform:
+    translateY(-7px)
+    rotate(-45deg);
+}
+
+
+/* =========================================================
+   MOBILE MENU
+   ========================================================= */
+
+.premium-mobile-menu{
+  display:none;
+
+  max-height:0;
+
+  overflow:hidden;
+
+  opacity:0;
+
+  visibility:hidden;
+
+  border-top:
+    1px solid transparent;
+
+  background:
+    rgba(255,250,243,.985);
+
+  box-shadow:
+    0 18px 30px
+    rgba(65,34,19,.08);
+
+  transition:
+    max-height .3s ease,
+    opacity .22s ease,
+    visibility .22s ease;
+}
+
+.premium-mobile-menu-inner{
+  display:grid;
+
+  gap:7px;
+
+  padding:
+    12px
+    0
+    18px;
+}
+
+.premium-mobile-link{
+  display:grid;
+
+  grid-template-columns:
+    34px
+    minmax(0,1fr)
+    auto;
+
+  align-items:center;
+
+  gap:10px;
+
+  min-height:52px;
+
+  padding:
+    0
+    14px;
+
+  border:
+    1px solid
+    rgba(91,58,39,.08);
+
+  border-radius:13px;
+
+  background:#fff;
+
+  color:
+    var(--nbj-text,#2d211c);
+
+  text-decoration:none;
+}
+
+.premium-mobile-link > span{
+  color:
+    var(--nbj-primary,#b42318);
+
+  font-size:9px;
+
+  font-weight:950;
+}
+
+.premium-mobile-link strong{
+  font-size:13px;
+  font-weight:850;
+}
+
+.premium-mobile-link > i{
+  color:
+    var(--nbj-secondary,#ff7a00);
+}
+
+.premium-mobile-link.is-active{
+  color:
+    var(--nbj-primary,#b42318);
+
+  border-color:
+    rgba(180,35,24,.18);
+
+  background:#fff8f4;
+}
+
+.premium-mobile-auth{
+  display:grid;
+
+  gap:7px;
+
+  margin-top:4px;
+}
+
+.premium-mobile-account-area{
+  display:grid;
+  gap:8px;
+  margin-top:8px;
+  padding-top:12px;
+  border-top:1px solid rgba(91,58,39,.1);
+}
+
+.premium-mobile-auth-link{
+  grid-template-columns:42px minmax(0,1fr) 18px;
+  gap:12px;
+  min-height:68px;
+  padding:10px 14px;
+  border-color:rgba(180,35,24,.16);
+  background:#fff7f2;
+  box-shadow:0 6px 18px rgba(65,34,19,.045);
+}
+
+.premium-mobile-auth-link > .premium-mobile-auth-icon{
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  border-radius:12px;
+  background:#ffe7da;
+  color:var(--nbj-primary,#b42318);
+  font-size:20px;
+}
+
+.premium-mobile-auth-link > .premium-mobile-auth-copy{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+
+.premium-mobile-auth-copy strong{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  color:var(--nbj-text,#2d211c);
+  font-size:14px;
+}
+
+.premium-mobile-auth-copy small{
+  color:var(--nbj-muted,#776962);
+  font-size:11px;
+  font-weight:500;
+}
+
+.premium-mobile-auth-link > i{
+  color:var(--nbj-primary,#b42318);
+  font-size:16px;
+}
+
+.premium-mobile-logout{
+  width:100%;
+
+  text-align:left;
+
+  cursor:pointer;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:900px){
+
+  html{
+    scroll-padding-top:76px;
+  }
+
+  #home-section,
+  #menu,
+  #promotions,
+  #about,
+  #contact{
+    scroll-margin-top:76px;
+  }
+
+
+  .premium-nav-shell{
+    min-height:56px;
+
+    grid-template-columns:
+      auto
+      1fr
+      auto;
+
+    gap:12px;
+  }
+
+
+  .premium-brand-logo{
+    width:104px;
+
+    height:42px;
+  }
+
+
+  /* hide desktop nav */
+
+  .premium-desktop-nav{
+    display:none;
+  }
+
+  .premium-login-button,
+  .premium-account-button,
+  .premium-logout-button{
+    display:none;
+  }
+
+
+  /* Keep the section indicator visible on mobile. */
+
+  .premium-section-progress{
+    display:flex;
+    min-height:34px;
+  }
+
+  .premium-progress-inner{
+    min-height:27px;
+    padding:4px 10px;
+  }
+
+
+  /* show burger only when screen becomes small */
+
+  .premium-mobile-toggle{
+    display:grid;
+  }
+
+
+  .premium-mobile-menu{
+    display:block;
+  }
+
+
+  .premium-mobile-menu.is-open{
+    max-height:600px;
+    max-height:min(600px, calc(100dvh - 100px));
+
+    overflow-y:auto;
+
+    opacity:1;
+
+    visibility:visible;
+
+    border-top-color:
+      rgba(91,58,39,.08);
+  }
+
+}
+
+
+@media(max-width:620px){
+
+  .premium-nav-shell{
+    min-height:52px;
+    gap:8px;
+  }
+
+
+  .premium-brand-logo{
+    width:92px;
+
+    height:36px;
+  }
+
+
+  .premium-cart-button,
+  .premium-mobile-toggle{
+    width:42px;
+    height:42px;
+
+    flex-basis:42px;
+
+    border-radius:12px;
+  }
+
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+@media(hover:hover){
+
+  .premium-brand:hover
+  .premium-brand-logo{
+    transform:
+      translateY(-2px)
+      scale(1.015);
+  }
+
+
+  .premium-mobile-link:hover{
+    color:
+      var(--nbj-primary,#b42318);
+
+    border-color:
+      rgba(180,35,24,.15);
+
+    background:#fff8f2;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+  html{
+    scroll-behavior:auto;
+  }
+
+  .premium-brand-logo,
+  .premium-nav-link,
+  .premium-nav-link::after,
+  .premium-cart-button,
+  .premium-login-button,
+  .premium-progress-step span,
+  .premium-mobile-toggle span,
+  .premium-mobile-menu{
+    transition:none !important;
+  }
+
+}
+
+.auth-benefit-row{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:1rem;
+
+  width:100%;
+  max-width:none;
+
+  margin-top:1.5rem;
+}
+
+.auth-benefit-card{
+  min-width:0;
+
+  display:grid;
+  grid-template-columns:52px minmax(0,1fr);
+  align-items:start;
+
+  gap:.85rem;
+
+  padding:1rem;
+
+  border:
+    1px solid
+    rgba(91,58,39,.09);
+
+  border-radius:1.15rem;
+
+  background:
+    rgba(255,255,255,.88);
+
+  box-shadow:
+    0 8px 22px
+    rgba(65,34,19,.05);
+}
+
+.auth-benefit-icon{
+  width:52px;
+  height:52px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:.9rem;
+
+  background:#fff0dc;
+
+  color:
+    var(--nbj-primary);
+
+  font-size:1.15rem;
+}
+
+.auth-benefit-card h3{
+  margin:0 0 .2rem;
+
+  color:
+    var(--nbj-text);
+
+  font-size:.95rem;
+  font-weight:900;
+
+  line-height:1.2;
+}
+
+.auth-benefit-card p{
+  margin:0;
+
+  color:
+    var(--nbj-muted);
+
+  font-size:.78rem;
+  line-height:1.4;
+}
+
+
+/* Tablet */
+
+@media(max-width:900px){
+  .auth-benefit-row{
+    grid-template-columns:1fr;
+  }
+}
+
+
+/* Mobile */
+
+@media(max-width:560px){
+  .auth-benefit-card{
+    grid-template-columns:46px minmax(0,1fr);
+  }
+
+  .auth-benefit-icon{
+    width:46px;
+    height:46px;
+  }
+}
+
+/* =========================================================
+   NAVIGATION PERFORMANCE FIX
+   Keeps existing navbar/design intact.
+   ========================================================= */
+
+/*
+ * IMPORTANT:
+ * Disable long browser smooth-scroll animations.
+ * Clicking Home/Menu/Promotions/About/Contact becomes
+ * immediate and responsive instead of "freezing".
+ */
+html{
+  scroll-behavior:auto !important;
+  scroll-padding-top:128px;
+}
+
+
+/* Keep sections below sticky navbar */
+#home-section,
+#menu,
+#promotions,
+#about,
+#contact{
+  scroll-margin-top:128px;
+}
+
+
+/* =========================================================
+   NAVBAR PERFORMANCE
+   ========================================================= */
+
+.premium-site-header{
+  /*
+   * Keep sticky header.
+   * Use almost-solid background so the browser does not
+   * continuously repaint a large backdrop blur while scrolling.
+   */
+  background:
+    rgba(255,250,243,.985);
+
+  /*
+   * backdrop-filter on a sticky element can cause
+   * noticeable scroll lag on some browsers/devices.
+   */
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+
+  transform:translateZ(0);
+  backface-visibility:hidden;
+}
+
+
+/*
+ * Keep decorative glow but avoid expensive blur
+ * while the page is moving.
+ */
+.premium-site-header::before{
+  filter:none !important;
+
+  opacity:.55;
+}
+
+
+/* =========================================================
+   NAV LINKS
+   ========================================================= */
+
+.premium-nav-link,
+.premium-progress-step,
+.premium-mobile-link{
+  touch-action:manipulation;
+
+  -webkit-tap-highlight-color:
+    transparent;
+}
+
+
+/*
+ * Keep visual transitions short.
+ * Do not animate layout properties.
+ */
+.premium-nav-link{
+  transition:
+    color .15s ease,
+    opacity .15s ease !important;
+}
+
+
+/*
+ * Don't move the link itself on hover.
+ * This reduces repainting on the sticky header.
+ */
+.premium-nav-link:hover{
+  transform:none !important;
+}
+
+.premium-nav-link:active,
+.premium-mobile-link:active{
+  color:var(--nbj-primary,#b42318);
+  opacity:1;
+}
+
+.premium-mobile-link:active{
+  background:#fff1e8;
+}
+
+
+.premium-nav-link::after{
+  transition:
+    width .15s ease !important;
+}
+
+.premium-nav-link:active::after,
+.premium-progress-step:active span{
+  width:100%;
+}
+
+
+/* =========================================================
+   PROGRESS BAR
+   ========================================================= */
+
+.premium-progress-step span{
+  transition:none !important;
+}
+
+
+/* =========================================================
+   MOBILE NAVIGATION
+   ========================================================= */
+
+.premium-mobile-menu{
+  /*
+   * Only animate opacity.
+   * max-height animations are more expensive and can feel
+   * like the browser freezes on weaker devices.
+   */
+  transition:
+    opacity .16s ease,
+    visibility .16s ease !important;
+}
+
+
+@media(max-width:900px){
+
+  html{
+    scroll-padding-top:100px;
+  }
+
+
+  #home-section,
+  #menu,
+  #promotions,
+  #about,
+  #contact{
+    scroll-margin-top:100px;
+  }
+
+
+  .premium-mobile-menu{
+    max-height:0;
+  }
+
+
+  .premium-mobile-menu.is-open{
+    max-height:600px;
+    max-height:min(600px, calc(100dvh - 100px));
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE / TOUCH
+   ========================================================= */
+
+@media(hover:none){
+
+  .premium-nav-link:hover,
+  .premium-cart-button:hover,
+  .premium-brand:hover
+  .premium-brand-logo,
+  .premium-mobile-link:hover{
+    transform:none !important;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+  html{
+    scroll-behavior:auto !important;
+  }
+
+
+  .premium-nav-link,
+  .premium-nav-link::after,
+  .premium-progress-step span,
+  .premium-mobile-menu,
+  .premium-mobile-toggle span{
+    transition:none !important;
+  }
+
+}
+
+/* Banners use one column now that repeated mascot art has been removed. */
+.home-about-grid,
+.home-cta,
+.promotions-cta,
+.about-cta,
+.customer-dashboard-cta,
+.customer-orders-cta,
+.order-details-cta,
+.favorites-cta,
+.notifications-cta,
+.addresses-cta,
+.profile-cta{
+  grid-template-columns:minmax(0,1fr);
+}
+
+.home-cta,
+.promotions-cta,
+.about-cta,
+.customer-dashboard-cta,
+.customer-orders-cta,
+.order-details-cta,
+.favorites-cta,
+.notifications-cta,
+.addresses-cta,
+.profile-cta{
+  min-height:260px;
+}
+
+.home-contact-art{
+  min-height:220px;
+}
+
+.home-contact-art .home-contact-mascot{
+  width:min(100%,190px);
+  margin-top:0;
+  transform:none;
+}
+
+/* Override the older .site-header .brand-logo rule for the shared header. */
+.site-header .premium-brand-logo{
+  width:120px;
+  height:50px;
+}
+
+@media(max-width:900px){
+  .site-header .premium-brand-logo{
+    width:105px;
+    height:44px;
+  }
+}
+
+@media(max-width:620px){
+  .site-header .premium-brand-logo{
+    width:96px;
+    height:40px;
+  }
+}
+
+.about-story-logo,
+.about-story-brand-card:hover .about-story-logo{
+  transform:none;
+}
+
+.page-back-link{
+  min-height:40px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:18px;
+  padding:8px 13px;
+  border:1px solid rgba(180,35,24,.15);
+  border-radius:999px;
+  background:rgba(255,255,255,.78);
+  color:var(--nbj-primary,#b42318);
+  font-size:13px;
+  font-weight:800;
+  text-decoration:none;
+  touch-action:manipulation;
+}
+
+.page-back-link:hover,
+.page-back-link:focus-visible{
+  border-color:rgba(180,35,24,.3);
+  background:#fff;
+  color:var(--nbj-primary-dark,#8f1d13);
+}
+
+.page-utility-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:18px;
+}
+
+.page-utility-links .page-back-link{
+  margin-bottom:0;
+}
+
+body:not(.customer-access-page) .menu-hero .page-utility-links{
+  display:none;
+}
+
+/* Shared customer account sidebar. */
+.customer-shell{
+  --customer-sidebar-width:250px;
+}
+
+.customer-shell .premium-desktop-nav,
+.customer-shell .premium-mobile-toggle,
+.customer-shell .premium-mobile-menu,
+.customer-shell .premium-section-progress,
+.customer-access-page .premium-desktop-nav,
+.customer-access-page .premium-mobile-toggle,
+.customer-access-page .premium-mobile-menu,
+.customer-access-page .premium-section-progress{
+  display:none !important;
+}
+
+.customer-shell .premium-nav-shell,
+.customer-access-page .premium-nav-shell{
+  display:flex;
+  justify-content:space-between;
+}
+
+.customer-sidebar{
+  position:fixed;
+  view-transition-name:customer-sidebar;
+  inset:0 auto 0 0;
+  z-index:2101;
+  width:var(--customer-sidebar-width);
+  height:100vh;
+  height:100dvh;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  padding:22px 14px 18px;
+  overflow-y:auto;
+  background:linear-gradient(180deg,#30231c,#241913);
+  color:#fff;
+  box-shadow:12px 0 34px rgba(33,20,13,.12);
+}
+
+.customer-sidebar-heading{
+  display:flex;
+  align-items:start;
+  justify-content:space-between;
+  gap:12px;
+  padding:3px 10px 18px;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+
+.customer-sidebar-heading small,
+.customer-sidebar-heading strong{
+  display:block;
+}
+
+.customer-sidebar-heading small{
+  color:#eac9a6;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.1em;
+}
+
+.customer-sidebar-heading strong{
+  margin-top:3px;
+  font-size:22px;
+  line-height:1.1;
+}
+
+.customer-sidebar-label{
+  padding:14px 11px 0;
+  color:#b9a89e;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.14em;
+}
+
+.customer-sidebar-nav{
+  display:grid;
+  gap:4px;
+}
+
+.customer-sidebar-nav a,
+.customer-sidebar-signout{
+  min-height:44px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:10px 12px;
+  border:1px solid transparent;
+  border-radius:11px;
+  background:transparent;
+  color:#f6ebe2;
+  font-size:14px;
+  font-weight:750;
+  text-decoration:none;
+  text-align:left;
+  cursor:pointer;
+  touch-action:manipulation;
+}
+
+.customer-sidebar-nav a i,
+.customer-sidebar-signout i{
+  width:20px;
+  flex:0 0 20px;
+  color:#ffbf69;
+  font-size:17px;
+  text-align:center;
+}
+
+.customer-sidebar-nav a:hover,
+.customer-sidebar-nav a:focus-visible,
+.customer-sidebar-nav a[aria-current="page"],
+.customer-sidebar-signout:hover{
+  border-color:rgba(255,183,3,.2);
+  background:rgba(255,255,255,.1);
+  color:#fff;
+}
+
+.customer-sidebar-nav a[aria-current="page"]{
+  box-shadow:inset 3px 0 0 #ffb703;
+}
+
+.customer-sidebar-signout{
+  width:100%;
+  margin-top:auto;
+}
+
+.customer-sidebar-close,
+.customer-sidebar-toggle,
+.customer-sidebar-backdrop{
+  display:none;
+}
+
+.customer-shell .customer-dashboard-nav,
+.customer-shell .customer-orders-nav-section,
+.customer-shell .favorites-nav-section,
+.customer-shell .notifications-nav-section,
+.customer-shell .addresses-nav-section,
+.customer-shell .profile-nav-section{
+  display:none !important;
+}
+
+@media(min-width:901px){
+  .customer-shell .premium-site-header,
+  .customer-shell #main-content,
+  .customer-shell #site-footer,
+  .customer-shell .site-footer{
+    margin-left:var(--customer-sidebar-width);
+  }
+
+  .customer-shell .premium-site-header{
+    width:calc(100% - var(--customer-sidebar-width));
+  }
+}
+
+@media(max-width:900px){
+  .customer-sidebar{
+    width:min(290px, calc(100vw - 44px));
+    transform:translateX(-105%);
+    transition:transform .18s ease;
+  }
+
+  .customer-sidebar.is-open{
+    transform:translateX(0);
+  }
+
+  .customer-sidebar-toggle{
+    display:grid;
+    place-items:center;
+    flex:0 0 44px;
+    width:44px;
+    height:44px;
+  }
+
+  .customer-sidebar-close{
+    width:34px;
+    height:34px;
+    display:grid;
+    place-items:center;
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:10px;
+    background:rgba(255,255,255,.1);
+    color:#fff;
+    cursor:pointer;
+  }
+
+  .customer-sidebar-backdrop{
+    position:fixed;
+    inset:0;
+    z-index:2100;
+    display:block;
+    background:rgba(22,13,9,.52);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .18s ease;
+  }
+
+  .customer-sidebar-backdrop.is-open{
+    opacity:1;
+    pointer-events:auto;
+  }
+
+  body.customer-sidebar-open{
+    overflow:hidden;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .customer-sidebar,
+  .customer-sidebar-backdrop{
+    transition:none;
+  }
+}
+
+/* Create-account benefits: use a horizontal row when there is room. */
+.register-page-section .register-brand-panel{
+  grid-template-columns:minmax(0,1fr) !important;
+}
+
+.register-page-section .auth-brand-benefits{
+  max-width:none !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:10px !important;
+}
+
+.register-page-section .auth-brand-benefits > article{
+  grid-template-columns:minmax(0,1fr) !important;
+  align-content:start !important;
+  gap:10px !important;
+  min-height:170px;
+  padding:14px !important;
+}
+
+@media(max-width:540px){
+  .register-page-section .auth-brand-benefits{
+    grid-template-columns:minmax(0,1fr) !important;
+  }
+
+  .register-page-section .auth-brand-benefits > article{
+    grid-template-columns:46px minmax(0,1fr) !important;
+    align-items:center !important;
+    min-height:0;
+  }
+}
+
+/* Auth pages keep their message on wide screens and show the form first on narrow screens. */
+body[data-auth-mode="login"] .auth-brand-panel{
+  min-height:0;
+  align-self:stretch;
+  justify-content:center;
+}
+
+.register-page-section .register-brand-panel{
+  min-height:0 !important;
+  align-self:stretch !important;
+  align-content:center !important;
+}
+
+@media(max-width:820px){
+  body[data-auth-mode="login"] .auth-page-grid,
+  body[data-auth-mode="register"] .auth-page-grid{
+    grid-template-columns:minmax(0,1fr) !important;
+  }
+
+  body[data-auth-mode="login"] .auth-brand-panel,
+  body[data-auth-mode="register"] .auth-brand-panel{
+    display:none !important;
+  }
+
+  body[data-auth-mode="login"] .auth-form-column,
+  body[data-auth-mode="register"] .auth-form-column{
+    width:100% !important;
+    max-width:600px !important;
+    margin-inline:auto !important;
+  }
+
+  body[data-auth-mode="login"] .auth-page-section,
+  body[data-auth-mode="register"] .auth-page-section{
+    min-height:calc(100vh - 56px);
+    align-items:flex-start;
+    padding:1rem 0 2rem;
+  }
+}
+
+/* Same-origin page changes blend briefly when supported by the browser. */
+@view-transition{
+  navigation:auto;
+}
+
+.premium-site-header{
+  view-transition-name:site-header;
+}
+
+::view-transition-old(site-header),
+::view-transition-new(site-header){
+  animation-duration:0.01ms;
+}
+
+::view-transition-old(customer-sidebar),
+::view-transition-new(customer-sidebar){
+  animation-duration:0.01ms;
+}
+
+::view-transition-old(root),
+::view-transition-new(root){
+  animation-duration:110ms;
+}
+
+@media(prefers-reduced-motion:reduce){
+  ::view-transition-old(root),
+  ::view-transition-new(root){
+    animation-duration:0.01ms;
+  }
+}

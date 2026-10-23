@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    Stock Movements | Nicey Burger Junction
+  </title>
+
+  <meta
+    name="description"
+    content="Review Nicey Burger Junction inventory stock movements."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b52420"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/portal.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/print.css"
+    media="print"
+  >
+
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body
+  data-portal="admin"
+  data-controller="stock-movements"
+>
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+
+  <div class="portal-layout">
+
+    <aside
+      id="portal-sidebar"
+      class="portal-sidebar"
+    ></aside>
+
+
+    <div class="portal-main">
+
+      <header
+        id="portal-topbar"
+        class="portal-topbar"
+      ></header>
+      <script src="/assets/js/components/portal-shell-bootstrap.js"></script>
+
+
+      <main
+        id="main-content"
+        class="portal-content admin-page"
+      >
+
+        <section class="admin-page-heading">
+
+          <div class="admin-page-heading-copy">
+
+            <div class="admin-heading-icon">
+              <i class="bi bi-arrow-left-right"></i>
+            </div>
+
+            <div>
+              <p class="admin-page-kicker">
+                Inventory Audit
+              </p>
+
+              <h1>
+                Stock Movements
+              </h1>
+
+              <p class="admin-page-description">
+                Review purchases, usage, adjustments, waste, returns and stock corrections.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="admin-page-heading-badge">
+            <i class="bi bi-boxes"></i>
+            Inventory ledger
+          </div>
+
+        </section>
+
+
+        <div
+          id="page-error"
+          class="alert alert-danger"
+          role="alert"
+          hidden
+        ></div>
+
+
+        <section class="admin-movement-filters">
+
+          <div class="admin-search-wrap">
+
+            <i class="bi bi-search"></i>
+
+            <label
+              class="visually-hidden"
+              for="movement-search"
+            >
+              Search stock movements
+            </label>
+
+            <input
+              id="movement-search"
+              class="form-control"
+              type="search"
+              placeholder="Search ingredient, reference or actor"
+              autocomplete="off"
+            >
+
+          </div>
+
+
+          <div class="admin-filter-field">
+
+            <label for="movement-type">
+              Movement type
+            </label>
+
+            <select
+              id="movement-type"
+              class="form-select"
+            >
+              <option value="">
+                All types
+              </option>
+
+              <option>PURCHASE</option>
+              <option>SALE_USAGE</option>
+              <option>MANUAL_ADDITION</option>
+              <option>ADJUSTMENT</option>
+              <option>WASTE</option>
+              <option>SPOILAGE</option>
+              <option>RETURN</option>
+              <option>CORRECTION</option>
+              <option>SALE_REVERSAL</option>
+            </select>
+
+          </div>
+
+
+          <button
+            id="movement-export"
+            class="btn-nbj ghost admin-movement-export"
+            type="button"
+          >
+            <i class="bi bi-download"></i>
+            Export CSV
+          </button>
+
+        </section>
+
+
+        <section class="panel admin-panel admin-table-panel">
+
+          <div class="admin-panel-heading">
+
+            <div>
+              <p class="admin-panel-kicker">
+                Stock ledger
+              </p>
+
+              <h2>
+                Inventory movements
+              </h2>
+
+              <p>
+                Every stock change is recorded with quantity, reference and actor information.
+              </p>
+            </div>
+
+
+            <span class="admin-panel-heading-icon">
+              <i class="bi bi-clock-history"></i>
+            </span>
+
+          </div>
+
+
+          <div class="table-wrap admin-table-wrap">
+
+            <table class="admin-table admin-movements-table">
+
+              <caption class="visually-hidden">
+                Nicey Burger Junction stock movements
+              </caption>
+
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Ingredient</th>
+                  <th>Type</th>
+                  <th>Change</th>
+                  <th>Previous</th>
+                  <th>New</th>
+                  <th>Reference</th>
+                  <th>Actor</th>
+                </tr>
+              </thead>
+
+              <tbody
+                id="movements-tbody"
+                aria-live="polite"
+              ></tbody>
+
+            </table>
+
+          </div>
+
+        </section>
+
+      </main>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/portal.js"
+  ></script>
+
+</body>
+</html>

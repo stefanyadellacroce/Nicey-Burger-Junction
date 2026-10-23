@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    Orders | Nicey Burger Junction
+  </title>
+
+  <meta
+    name="description"
+    content="Manage Nicey Burger Junction customer and walk-in orders."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b52420"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/portal.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/print.css"
+    media="print"
+  >
+
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body
+  data-portal="admin"
+  data-controller="ops-orders"
+>
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+
+  <div class="portal-layout">
+
+    <aside
+      id="portal-sidebar"
+      class="portal-sidebar"
+    ></aside>
+
+
+    <div class="portal-main">
+
+      <header
+        id="portal-topbar"
+        class="portal-topbar"
+      ></header>
+      <script src="/assets/js/components/portal-shell-bootstrap.js"></script>
+
+
+      <main
+        id="main-content"
+        class="portal-content admin-page"
+      >
+
+        <section class="admin-page-heading">
+
+          <div class="admin-page-heading-copy">
+
+            <div class="admin-heading-icon">
+              <i class="bi bi-receipt-cutoff"></i>
+            </div>
+
+            <div>
+              <p class="admin-page-kicker">
+                Order Management
+              </p>
+
+              <h1>
+                Orders
+              </h1>
+
+              <p class="admin-page-description">
+                Search, filter and manage pickup, delivery and walk-in transactions.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="admin-page-heading-badge">
+            <i class="bi bi-list-check"></i>
+            Order control
+          </div>
+
+        </section>
+
+
+        <div
+          id="page-error"
+          class="alert alert-danger"
+          role="alert"
+          hidden
+        ></div>
+
+
+        <section class="admin-order-filters">
+
+          <div class="admin-search-wrap admin-order-search">
+
+            <i class="bi bi-search"></i>
+
+            <label
+              class="visually-hidden"
+              for="order-search"
+            >
+              Search orders
+            </label>
+
+            <input
+              id="order-search"
+              class="form-control"
+              type="search"
+              placeholder="Search order or customer"
+              autocomplete="off"
+            >
+
+          </div>
+
+
+          <div class="admin-filter-field">
+
+            <label for="order-status-filter">
+              Status
+            </label>
+
+            <select
+              id="order-status-filter"
+              class="form-select"
+            >
+              <option value="">
+                All statuses
+              </option>
+
+              <option>PENDING</option>
+              <option>CONFIRMED</option>
+              <option>PREPARING</option>
+              <option>READY</option>
+              <option>OUT_FOR_DELIVERY</option>
+              <option>COMPLETED</option>
+              <option>CANCELLED</option>
+            </select>
+
+          </div>
+
+
+          <div class="admin-filter-field">
+
+            <label for="order-fulfillment-filter">
+              Fulfillment
+            </label>
+
+            <select
+              id="order-fulfillment-filter"
+              class="form-select"
+            >
+              <option value="">
+                All fulfillment
+              </option>
+
+              <option>PICKUP</option>
+              <option>DELIVERY</option>
+              <option>WALK_IN</option>
+            </select>
+
+          </div>
+
+
+          <div class="admin-filter-field">
+
+            <label for="order-payment-filter">
+              Payment
+            </label>
+
+            <select
+              id="order-payment-filter"
+              class="form-select"
+            >
+              <option value="">
+                All payment states
+              </option>
+
+              <option>PENDING</option>
+              <option>SUBMITTED</option>
+              <option>PAID</option>
+              <option>REJECTED</option>
+            </select>
+
+          </div>
+
+        </section>
+
+
+        <section class="panel admin-panel admin-table-panel">
+
+          <div class="admin-panel-heading">
+
+            <div>
+              <p class="admin-panel-kicker">
+                Transaction queue
+              </p>
+
+              <h2>
+                All orders
+              </h2>
+
+              <p>
+                Review payment state, fulfillment method and order progress.
+              </p>
+            </div>
+
+
+            <span class="admin-panel-heading-icon">
+              <i class="bi bi-bag-check"></i>
+            </span>
+
+          </div>
+
+
+          <div class="table-wrap admin-table-wrap">
+
+            <table class="admin-table admin-orders-table">
+
+              <caption class="visually-hidden">
+                Nicey Burger Junction orders
+              </caption>
+
+              <thead>
+                <tr>
+                  <th>Order #</th>
+                  <th>Customer</th>
+                  <th>Items</th>
+                  <th>Total</th>
+                  <th>Payment</th>
+                  <th>Fulfillment</th>
+                  <th>Status</th>
+                  <th>Time</th>
+
+                  <th>
+                    <span class="visually-hidden">
+                      Actions
+                    </span>
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody
+                id="orders-tbody"
+                aria-live="polite"
+              ></tbody>
+
+            </table>
+
+          </div>
+
+        </section>
+
+      </main>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/portal.js"
+  ></script>
+
+</body>
+</html>

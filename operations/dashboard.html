@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    Operations Dashboard | Nicey Burger Junction
+  </title>
+
+  <meta
+    name="description"
+    content="Nicey Burger Junction operations dashboard."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b52420"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/portal.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/print.css"
+    media="print"
+  >
+
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body
+  data-portal="operations"
+  data-controller="ops-dashboard"
+>
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+
+  <div class="portal-layout">
+
+    <aside
+      id="portal-sidebar"
+      class="portal-sidebar"
+    ></aside>
+
+
+    <div class="portal-main">
+
+      <header
+        id="portal-topbar"
+        class="portal-topbar"
+      ></header>
+      <script src="/assets/js/components/portal-shell-bootstrap.js"></script>
+
+
+      <main
+        id="main-content"
+        class="portal-content ops-page"
+      >
+
+        <!-- PAGE HEADING -->
+        <section class="ops-page-heading">
+
+          <div class="ops-page-heading-copy">
+
+            <div class="ops-heading-icon">
+              <i class="bi bi-speedometer2"></i>
+            </div>
+
+            <div>
+              <p class="ops-page-kicker">
+                Nicey Operations
+              </p>
+
+              <h1>
+                Operations Dashboard
+              </h1>
+
+              <p class="ops-page-description">
+                Monitor sales, orders, inventory and payment activity from one place.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="ops-page-heading-badge">
+            <span></span>
+            Live operations
+          </div>
+
+        </section>
+
+
+        <div
+          id="page-error"
+          class="alert alert-danger"
+          role="alert"
+          hidden
+        ></div>
+
+
+        <!-- KPI -->
+        <section
+          class="ops-kpi-grid"
+          aria-label="Operations summary"
+        >
+
+          <article class="ops-kpi-card">
+            <span class="ops-kpi-icon">
+              <i class="bi bi-cash-stack"></i>
+            </span>
+
+            <div>
+              <span class="ops-kpi-label">
+                Today sales
+              </span>
+
+              <strong id="kpi-sales">
+                —
+              </strong>
+
+              <small>
+                Gross order value today
+              </small>
+            </div>
+          </article>
+
+
+          <article class="ops-kpi-card">
+            <span class="ops-kpi-icon">
+              <i class="bi bi-receipt"></i>
+            </span>
+
+            <div>
+              <span class="ops-kpi-label">
+                Today orders
+              </span>
+
+              <strong id="kpi-orders">
+                —
+              </strong>
+
+              <small>
+                Orders received today
+              </small>
+            </div>
+          </article>
+
+
+          <article class="ops-kpi-card">
+            <span class="ops-kpi-icon warning">
+              <i class="bi bi-hourglass-split"></i>
+            </span>
+
+            <div>
+              <span class="ops-kpi-label">
+                Pending
+              </span>
+
+              <strong id="kpi-pending">
+                —
+              </strong>
+
+              <small>
+                Awaiting confirmation
+              </small>
+            </div>
+          </article>
+
+
+          <article class="ops-kpi-card">
+            <span class="ops-kpi-icon info">
+              <i class="bi bi-fire"></i>
+            </span>
+
+            <div>
+              <span class="ops-kpi-label">
+                Preparing
+              </span>
+
+              <strong id="kpi-preparing">
+                —
+              </strong>
+
+              <small>
+                Currently in kitchen
+              </small>
+            </div>
+          </article>
+
+
+          <article class="ops-kpi-card">
+            <span class="ops-kpi-icon">
+              <i class="bi bi-graph-up-arrow"></i>
+            </span>
+
+            <div>
+              <span class="ops-kpi-label">
+                Avg order
+              </span>
+
+              <strong id="kpi-aov">
+                —
+              </strong>
+
+              <small>
+                Average order value
+              </small>
+            </div>
+          </article>
+
+
+          <article class="ops-kpi-card">
+            <span class="ops-kpi-icon warning">
+              <i class="bi bi-box-seam"></i>
+            </span>
+
+            <div>
+              <span class="ops-kpi-label">
+                Low stock
+              </span>
+
+              <strong id="kpi-low">
+                —
+              </strong>
+
+              <small>
+                Ingredients to reorder
+              </small>
+            </div>
+          </article>
+
+
+          <article class="ops-kpi-card">
+            <span class="ops-kpi-icon danger">
+              <i class="bi bi-box2"></i>
+            </span>
+
+            <div>
+              <span class="ops-kpi-label">
+                Out of stock
+              </span>
+
+              <strong id="kpi-out">
+                —
+              </strong>
+
+              <small>
+                Unavailable ingredients
+              </small>
+            </div>
+          </article>
+
+
+          <article class="ops-kpi-card">
+            <span class="ops-kpi-icon info">
+              <i class="bi bi-shield-check"></i>
+            </span>
+
+            <div>
+              <span class="ops-kpi-label">
+                Payment checks
+              </span>
+
+              <strong id="kpi-payments">
+                —
+              </strong>
+
+              <small>
+                Proofs awaiting review
+              </small>
+            </div>
+          </article>
+
+        </section>
+
+
+        <!-- ORDERS / LOW STOCK -->
+        <section class="ops-dashboard-grid">
+
+          <article class="panel ops-panel ops-orders-panel">
+
+            <div class="ops-panel-heading">
+
+              <div>
+                <p class="ops-panel-kicker">
+                  Order activity
+                </p>
+
+                <h2>
+                  Recent orders
+                </h2>
+
+                <p>
+                  Latest transactions across pickup and delivery.
+                </p>
+              </div>
+
+              <span class="ops-panel-heading-icon">
+                <i class="bi bi-receipt-cutoff"></i>
+              </span>
+
+            </div>
+
+
+            <div class="table-wrap ops-table-wrap">
+
+              <table class="ops-table">
+
+                <caption class="visually-hidden">
+                  Recent Nicey Burger Junction orders
+                </caption>
+
+                <thead>
+                  <tr>
+                    <th>Order</th>
+                    <th>Customer</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Total</th>
+                    <th>Time</th>
+                  </tr>
+                </thead>
+
+                <tbody id="recent-orders"></tbody>
+
+              </table>
+
+            </div>
+
+          </article>
+
+
+          <article class="panel ops-panel">
+
+            <div class="ops-panel-heading">
+
+              <div>
+                <p class="ops-panel-kicker">
+                  Inventory alert
+                </p>
+
+                <h2>
+                  Low stock
+                </h2>
+
+                <p>
+                  Ingredients approaching reorder levels.
+                </p>
+              </div>
+
+              <span class="ops-panel-heading-icon warning">
+                <i class="bi bi-exclamation-triangle"></i>
+              </span>
+
+            </div>
+
+
+            <div
+              id="low-stock-list"
+              class="ops-low-stock-list"
+              aria-live="polite"
+            ></div>
+
+          </article>
+
+        </section>
+
+
+        <!-- CHARTS -->
+        <section class="ops-dashboard-grid">
+
+          <article class="panel ops-panel chart-panel">
+
+            <div class="ops-panel-heading">
+
+              <div>
+                <p class="ops-panel-kicker">
+                  Workflow
+                </p>
+
+                <h2>
+                  Order status
+                </h2>
+              </div>
+
+              <span class="ops-panel-heading-icon">
+                <i class="bi bi-pie-chart"></i>
+              </span>
+
+            </div>
+
+
+            <div class="ops-chart-wrap">
+              <canvas id="status-chart"></canvas>
+            </div>
+
+          </article>
+
+
+          <article class="panel ops-panel chart-panel">
+
+            <div class="ops-panel-heading">
+
+              <div>
+                <p class="ops-panel-kicker">
+                  Demand
+                </p>
+
+                <h2>
+                  Peak order times
+                </h2>
+              </div>
+
+              <span class="ops-panel-heading-icon">
+                <i class="bi bi-bar-chart-line"></i>
+              </span>
+
+            </div>
+
+
+            <div class="ops-chart-wrap">
+              <canvas id="hour-chart"></canvas>
+            </div>
+
+          </article>
+
+        </section>
+
+      </main>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/portal.js"
+  ></script>
+
+</body>
+</html>

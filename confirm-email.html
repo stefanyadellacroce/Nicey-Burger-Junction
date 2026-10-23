@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>Confirm Account | Nicey Burger Junction</title>
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+</head>
+
+<body data-controller="confirm-email">
+
+  <main class="container-nbj">
+    <section class="auth-shell">
+      <div class="auth-form-card">
+
+        <h1>Confirm your account</h1>
+
+        <p>
+          Click the button below to verify your email address.
+        </p>
+
+        <div
+          id="confirmation-status"
+          role="status"
+        ></div>
+
+        <button
+          id="confirm-email-button"
+          type="button"
+          class="btn-nbj primary"
+        >
+          Confirm account
+        </button>
+
+      </div>
+    </section>
+  </main>
+
+  <div id="toast-region"></div>
+
+  <script defer
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+  ></script>
+
+  <script
+    type="module"
+    src="/assets/js/main.js"
+  ></script>
+
+</body>
+</html>

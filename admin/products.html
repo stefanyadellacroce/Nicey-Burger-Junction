@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    Products | Nicey Burger Junction
+  </title>
+
+  <meta
+    name="description"
+    content="Manage Nicey Burger Junction products."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b52420"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/portal.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/print.css"
+    media="print"
+  >
+
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body
+  data-portal="admin"
+  data-controller="admin-products"
+>
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+
+  <div class="portal-layout">
+
+    <aside
+      id="portal-sidebar"
+      class="portal-sidebar"
+    ></aside>
+
+
+    <div class="portal-main">
+
+      <header
+        id="portal-topbar"
+        class="portal-topbar"
+      ></header>
+      <script src="/assets/js/components/portal-shell-bootstrap.js"></script>
+
+
+      <main
+        id="main-content"
+        class="portal-content admin-page"
+      >
+
+        <section class="admin-page-heading">
+
+          <div class="admin-page-heading-copy">
+
+            <div class="admin-heading-icon">
+              <i class="bi bi-burger"></i>
+            </div>
+
+            <div>
+              <p class="admin-page-kicker">
+                Menu Management
+              </p>
+
+              <h1>
+                Products
+              </h1>
+
+              <p class="admin-page-description">
+                Manage menu items, pricing, images, visibility, variants and allowed add-ons.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="admin-page-heading-badge">
+            <i class="bi bi-shop-window"></i>
+            Product catalog
+          </div>
+
+        </section>
+
+
+        <div
+          id="page-error"
+          class="alert alert-danger"
+          role="alert"
+          hidden
+        ></div>
+
+
+        <section class="admin-toolbar">
+
+          <div class="admin-search-wrap">
+
+            <i
+              class="bi bi-search"
+              aria-hidden="true"
+            ></i>
+
+            <label
+              class="visually-hidden"
+              for="product-search"
+            >
+              Search products
+            </label>
+
+            <input
+              id="product-search"
+              class="form-control"
+              type="search"
+              placeholder="Search products"
+              autocomplete="off"
+            >
+
+          </div>
+
+
+          <button
+            id="add-product"
+            class="btn-nbj admin-add-button"
+            type="button"
+          >
+            <i class="bi bi-plus-lg"></i>
+            Add product
+          </button>
+
+        </section>
+
+
+        <section class="panel admin-panel admin-table-panel">
+
+          <div class="admin-panel-heading">
+
+            <div>
+              <p class="admin-panel-kicker">
+                Menu catalog
+              </p>
+
+              <h2>
+                Products
+              </h2>
+
+              <p>
+                Review pricing, availability and storefront visibility.
+              </p>
+            </div>
+
+
+            <span class="admin-panel-heading-icon">
+              <i class="bi bi-grid"></i>
+            </span>
+
+          </div>
+
+
+          <div class="table-wrap admin-table-wrap">
+
+            <table class="admin-table admin-products-table">
+
+              <caption class="visually-hidden">
+                Nicey Burger Junction products
+              </caption>
+
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Featured</th>
+                  <th>Sold out</th>
+                  <th>Active</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody
+                id="products-tbody"
+                aria-live="polite"
+              ></tbody>
+
+            </table>
+
+          </div>
+
+        </section>
+
+
+        <!-- PRODUCT EDITOR -->
+        <dialog
+          id="product-dialog"
+          class="nbj-dialog wide admin-dialog"
+        >
+
+          <div class="admin-dialog-shell">
+
+            <form
+              method="dialog"
+              class="admin-dialog-close-form"
+            >
+              <button
+                class="dialog-close admin-dialog-close"
+                value="cancel"
+                aria-label="Close dialog"
+              >
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </form>
+
+
+            <div class="admin-dialog-heading">
+
+              <span class="admin-dialog-icon">
+                <i class="bi bi-bag-plus"></i>
+              </span>
+
+              <div>
+                <p class="admin-panel-kicker">
+                  Product editor
+                </p>
+
+                <h2 id="product-dialog-title"></h2>
+
+                <p>
+                  Configure menu information, price, image and storefront state.
+                </p>
+              </div>
+
+            </div>
+
+
+            <form
+              id="product-form"
+              class="stack admin-product-form"
+            >
+
+              <div class="admin-product-form-grid">
+
+                <label>
+                  Name
+
+                  <input
+                    name="name"
+                    class="form-control"
+                    required
+                  >
+                </label>
+
+
+                <label>
+                  Slug
+
+                  <input
+                    name="slug"
+                    class="form-control"
+                    required
+                  >
+                </label>
+
+              </div>
+
+
+              <label>
+                Category
+
+                <div
+                  id="product-category-holder"
+                  class="admin-category-holder"
+                ></div>
+              </label>
+
+
+              <label>
+                Short description
+
+                <input
+                  name="short_description"
+                  class="form-control"
+                  maxlength="180"
+                >
+              </label>
+
+
+              <label>
+                Description
+
+                <textarea
+                  name="description"
+                  class="form-control"
+                  rows="4"
+                  required
+                ></textarea>
+              </label>
+
+
+              <div class="admin-product-form-grid">
+
+                <label>
+                  Base price
+
+                  <input
+                    name="base_price"
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    class="form-control"
+                    required
+                  >
+                </label>
+
+
+                <label>
+                  Sort order
+
+                  <input
+                    name="sort_order"
+                    type="number"
+                    class="form-control"
+                    value="0"
+                  >
+                </label>
+
+              </div>
+
+
+              <label>
+                Allergen notes
+
+                <textarea
+                  name="allergen_notes"
+                  class="form-control"
+                  rows="2"
+                ></textarea>
+              </label>
+
+
+              <label>
+                Product image
+
+                <input
+                  name="image"
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  class="form-control"
+                >
+              </label>
+
+
+              <div class="admin-product-toggle-grid">
+
+                <label class="form-check admin-product-toggle">
+
+                  <input
+                    name="active"
+                    type="checkbox"
+                    class="form-check-input"
+                    checked
+                  >
+
+                  <span>
+                    Active
+                  </span>
+
+                </label>
+
+
+                <label class="form-check admin-product-toggle">
+
+                  <input
+                    name="featured"
+                    type="checkbox"
+                    class="form-check-input"
+                  >
+
+                  <span>
+                    Featured
+                  </span>
+
+                </label>
+
+
+                <label class="form-check admin-product-toggle">
+
+                  <input
+                    name="bestseller"
+                    type="checkbox"
+                    class="form-check-input"
+                  >
+
+                  <span>
+                    Bestseller
+                  </span>
+
+                </label>
+
+
+                <label class="form-check admin-product-toggle">
+
+                  <input
+                    name="manually_sold_out"
+                    type="checkbox"
+                    class="form-check-input"
+                  >
+
+                  <span>
+                    Sold out
+                  </span>
+
+                </label>
+
+              </div>
+
+
+              <button
+                class="btn-nbj admin-product-save"
+                type="submit"
+              >
+                <i class="bi bi-check2-circle"></i>
+                Save product
+              </button>
+
+            </form>
+
+          </div>
+
+        </dialog>
+
+
+        <!-- OPTIONS -->
+        <dialog
+          id="options-dialog"
+          class="nbj-dialog wide admin-dialog"
+        >
+
+          <div class="admin-dialog-shell">
+
+            <form
+              method="dialog"
+              class="admin-dialog-close-form"
+            >
+              <button
+                class="dialog-close admin-dialog-close"
+                value="cancel"
+                aria-label="Close dialog"
+              >
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </form>
+
+
+            <div class="admin-dialog-heading">
+
+              <span class="admin-dialog-icon">
+                <i class="bi bi-sliders"></i>
+              </span>
+
+              <div>
+                <p class="admin-panel-kicker">
+                  Product options
+                </p>
+
+                <h2 id="options-title"></h2>
+
+                <p>
+                  Manage available variants and allowed add-ons.
+                </p>
+              </div>
+
+            </div>
+
+
+            <section class="admin-options-section">
+
+              <div class="admin-options-heading">
+
+                <div>
+                  <p class="admin-panel-kicker">
+                    Pricing options
+                  </p>
+
+                  <h3>
+                    Variants
+                  </h3>
+                </div>
+
+                <i class="bi bi-tags"></i>
+
+              </div>
+
+
+              <div
+                id="variant-list"
+                class="admin-variant-list"
+              ></div>
+
+
+              <form
+                id="variant-form"
+                class="admin-variant-form"
+              >
+
+                <input
+                  name="name"
+                  class="form-control"
+                  placeholder="Variant name"
+                  required
+                >
+
+                <input
+                  name="price_delta"
+                  class="form-control"
+                  type="number"
+                  step="0.01"
+                  placeholder="Price +/−"
+                  required
+                >
+
+                <button
+                  class="btn-nbj"
+                  type="submit"
+                >
+                  <i class="bi bi-plus-lg"></i>
+                  Add
+                </button>
+
+              </form>
+
+            </section>
+
+
+            <section class="admin-options-section">
+
+              <div class="admin-options-heading">
+
+                <div>
+                  <p class="admin-panel-kicker">
+                    Customer extras
+                  </p>
+
+                  <h3>
+                    Allowed add-ons
+                  </h3>
+                </div>
+
+                <i class="bi bi-plus-circle"></i>
+
+              </div>
+
+
+              <div
+                id="product-addon-checks"
+                class="stack admin-addon-checks"
+              ></div>
+
+
+              <button
+                id="save-addon-links"
+                class="btn-nbj admin-save-addon-links"
+                type="button"
+              >
+                <i class="bi bi-check2-circle"></i>
+                Save add-ons
+              </button>
+
+            </section>
+
+          </div>
+
+        </dialog>
+
+      </main>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/portal.js"
+  ></script>
+
+</body>
+</html>

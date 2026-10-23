@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    My Orders | Nicey Burger Junction
+  </title>
+
+  <meta
+    name="description"
+    content="View and track your Nicey Burger Junction order history and current orders."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b42318"
+  >
+
+  <meta
+    property="og:title"
+    content="My Orders | Nicey Burger Junction"
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link rel="modulepreload" href="/assets/js/main.js">
+
+  <script defer
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+  ></script>
+</head>
+
+<body class="customer-shell" data-controller="customer-orders">
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+
+  <div id="site-header"></div>
+  <script src="/assets/js/components/customer-shell-bootstrap.js"></script>
+
+
+  <main id="main-content">
+
+    <!-- =========================================
+         ORDERS HERO
+         ========================================= -->
+
+    <section class="customer-orders-hero">
+
+      <div
+        class="customer-orders-shape customer-orders-shape-one"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        class="customer-orders-shape customer-orders-shape-two"
+        aria-hidden="true"
+      ></div>
+
+
+      <div class="container-nbj customer-orders-hero-grid">
+
+        <div class="customer-orders-hero-copy">
+
+          <p class="eyebrow">
+
+            <i
+              class="bi bi-receipt-cutoff"
+              aria-hidden="true"
+            ></i>
+
+            Your order history
+
+          </p>
+
+
+          <h1>
+            My
+            <span>orders.</span>
+          </h1>
+
+
+          <p>
+            Check your current orders, revisit
+            previous Nicey cravings and keep track
+            of each order from one place.
+          </p>
+
+
+          <div class="customer-orders-hero-actions">
+
+            <a
+              href="/menu.html"
+              class="btn-nbj"
+            >
+
+              <i
+                class="bi bi-bag-plus"
+                aria-hidden="true"
+              ></i>
+
+              Start a new order
+
+            </a>
+
+
+            <a
+              href="/customer/profile.html"
+              class="btn-nbj ghost"
+            >
+
+              <i
+                class="bi bi-person"
+                aria-hidden="true"
+              ></i>
+
+              My profile
+
+            </a>
+
+          </div>
+
+
+          <div class="customer-orders-hero-points">
+
+            <span>
+
+              <i
+                class="bi bi-check-circle-fill"
+                aria-hidden="true"
+              ></i>
+
+              Track order progress
+
+            </span>
+
+
+            <span>
+
+              <i
+                class="bi bi-check-circle-fill"
+                aria-hidden="true"
+              ></i>
+
+              Review previous orders
+
+            </span>
+
+
+            <span>
+
+              <i
+                class="bi bi-check-circle-fill"
+                aria-hidden="true"
+              ></i>
+
+              Order again anytime
+
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- Mascot -->
+        <div
+          class="customer-orders-hero-art"
+          aria-hidden="true"
+        >
+
+          <div class="customer-orders-halo"></div>
+
+
+          <span class="customer-orders-chip customer-orders-chip-one">
+
+            <i class="bi bi-receipt"></i>
+
+            Order history
+
+          </span>
+
+
+          <span class="customer-orders-chip customer-orders-chip-two">
+
+            <i class="bi bi-stars"></i>
+
+            Everything Nice!
+
+          </span>
+
+
+          <img
+            src="/assets/images/nicey-mascot.png"
+            alt=""
+            class="customer-orders-mascot"
+            loading="eager"
+            decoding="async"
+          >
+
+
+          <div class="customer-orders-shadow"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         CUSTOMER NAVIGATION
+         ========================================= -->
+
+    <section class="customer-orders-nav-section">
+
+      <div class="container-nbj">
+
+        <nav
+          class="customer-orders-nav"
+          aria-label="Customer account navigation"
+        >
+
+          <a
+            href="/customer/orders.html"
+            aria-current="page"
+          >
+
+            <span>
+
+              <i
+                class="bi bi-receipt"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+            <strong>
+              Orders
+            </strong>
+
+          </a>
+
+
+          <a href="/customer/favorites.html">
+
+            <span>
+
+              <i
+                class="bi bi-heart"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+            <strong>
+              Favorites
+            </strong>
+
+          </a>
+
+
+          <a href="/customer/notifications.html">
+
+            <span>
+
+              <i
+                class="bi bi-bell"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+            <strong>
+              Notifications
+            </strong>
+
+          </a>
+
+
+          <a href="/customer/addresses.html">
+
+            <span>
+
+              <i
+                class="bi bi-geo-alt"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+            <strong>
+              Addresses
+            </strong>
+
+          </a>
+
+
+          <a href="/customer/profile.html">
+
+            <span>
+
+              <i
+                class="bi bi-person"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+            <strong>
+              Profile
+            </strong>
+
+          </a>
+
+        </nav>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         ORDERS LIST
+         ========================================= -->
+
+    <section class="section customer-orders-section">
+
+      <div class="container-nbj">
+
+        <div class="customer-orders-heading">
+
+          <div>
+
+            <p class="eyebrow">
+
+              <i
+                class="bi bi-clock-history"
+                aria-hidden="true"
+              ></i>
+
+              Order activity
+
+            </p>
+
+
+            <h2>
+              Your Nicey orders
+            </h2>
+
+
+            <p>
+              Current and previous orders associated
+              with your account will appear below.
+            </p>
+
+          </div>
+
+
+          <a
+            href="/menu.html"
+            class="section-link"
+          >
+
+            Order something Nice
+
+            <i
+              class="bi bi-arrow-right"
+              aria-hidden="true"
+            ></i>
+
+          </a>
+
+        </div>
+
+
+        <!--
+          Existing customer-orders controller
+          continues rendering order cards here.
+        -->
+        <div
+          id="orders-list"
+          class="stack customer-orders-list"
+          aria-live="polite"
+          aria-busy="false"
+        ></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         ORDER HELP
+         ========================================= -->
+
+    <section class="section customer-orders-help-section">
+
+      <div class="container-nbj">
+
+        <div class="customer-orders-help">
+
+          <div class="customer-orders-help-copy">
+
+            <span class="customer-orders-help-icon">
+
+              <i
+                class="bi bi-chat-heart"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+
+            <div>
+
+              <p class="eyebrow">
+                Need help with an order?
+              </p>
+
+
+              <h2>
+                We're here to help.
+              </h2>
+
+
+              <p>
+                If something looks wrong with an
+                order or you need assistance, send
+                Nicey Burger Junction a message.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <a
+            href="/contact.html"
+            class="btn-nbj ghost"
+          >
+
+            <i
+              class="bi bi-chat-dots"
+              aria-hidden="true"
+            ></i>
+
+            Contact us
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         FINAL CTA
+         ========================================= -->
+
+    <section class="section customer-orders-cta-section">
+
+      <div class="container-nbj">
+
+        <div class="customer-orders-cta">
+
+          <div class="customer-orders-cta-copy">
+
+            <p class="eyebrow">
+              Ready for another?
+            </p>
+
+
+            <h2>
+              Your next Nicey craving
+              starts here.
+            </h2>
+
+
+            <p>
+              Browse the menu and build another
+              order whenever you're ready.
+            </p>
+
+
+            <a
+              href="/menu.html"
+              class="btn-nbj"
+            >
+
+              <i
+                class="bi bi-bag-plus"
+                aria-hidden="true"
+              ></i>
+
+              Browse the menu
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <div
+      id="page-error"
+      class="container-nbj alert alert-danger mt-3"
+      role="alert"
+      hidden
+    ></div>
+
+  </main>
+
+
+  <div id="site-footer"></div>
+
+
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/main.js"
+  ></script>
+
+</body>
+</html>

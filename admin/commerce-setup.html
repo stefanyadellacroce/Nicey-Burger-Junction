@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Payment &amp; Delivery Setup | Nicey Burger Junction</title>
+  <meta name="description" content="Configure customer payment options and delivery zones.">
+  <meta name="theme-color" content="#b52420">
+  <link rel="icon" href="/assets/images/nicey-mascot.png?v=2" type="image/png">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/portal.css">
+  <link rel="stylesheet" href="/assets/css/print.css" media="print">
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body data-portal="admin" data-controller="commerce-setup">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="portal-layout">
+    <aside id="portal-sidebar" class="portal-sidebar"></aside>
+    <div class="portal-main">
+      <header id="portal-topbar" class="portal-topbar"></header>
+      <script src="/assets/js/components/portal-shell-bootstrap.js"></script>
+      <main id="main-content" class="portal-content admin-page">
+        <section class="admin-page-heading">
+          <div class="admin-page-heading-copy">
+            <div class="admin-heading-icon"><i class="bi bi-sliders"></i></div>
+            <div>
+              <p class="admin-page-kicker">Configuration</p>
+              <h1>Payment &amp; Delivery Setup</h1>
+              <p class="admin-page-description">Enter your actual payment instructions and delivery coverage before enabling them for customers.</p>
+            </div>
+          </div>
+        </section>
+        <div id="page-error" class="alert alert-danger" role="alert" hidden></div>
+
+        <section class="panel admin-panel admin-table-panel mb-4">
+          <div class="admin-panel-heading">
+            <div>
+              <p class="admin-panel-kicker">Checkout</p>
+              <h2>Payment methods</h2>
+              <p>Customers see these instructions after ordering. Enable digital methods only after adding the real recipient details.</p>
+            </div>
+          </div>
+          <div class="table-wrap admin-table-wrap">
+            <table class="admin-table">
+              <thead><tr><th>Method</th><th>Code</th><th>Instructions</th><th>Status</th><th>Action</th></tr></thead>
+              <tbody id="payment-methods-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel admin-panel admin-table-panel">
+          <div class="admin-panel-heading">
+            <div>
+              <p class="admin-panel-kicker">Fulfillment</p>
+              <h2>Delivery zones</h2>
+              <p>Use actual barangays or areas, fees, minimum orders, and estimates. After activating a real zone, enable delivery in <a href="/admin/settings.html">Website Settings</a>.</p>
+            </div>
+            <button id="add-zone" class="btn-nbj" type="button"><i class="bi bi-plus-lg"></i> Add zone</button>
+          </div>
+          <div class="table-wrap admin-table-wrap">
+            <table class="admin-table">
+              <thead><tr><th>Zone</th><th>Areas</th><th>Fee</th><th>Minimum</th><th>Estimate</th><th>Status</th><th>Action</th></tr></thead>
+              <tbody id="delivery-zones-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <dialog id="payment-dialog" class="nbj-dialog admin-dialog">
+          <div class="admin-dialog-shell">
+            <form method="dialog" class="admin-dialog-close-form"><button class="dialog-close admin-dialog-close" value="cancel" aria-label="Close dialog"><i class="bi bi-x-lg"></i></button></form>
+            <div class="admin-dialog-heading"><div><p class="admin-panel-kicker">Checkout</p><h2 id="payment-dialog-title">Edit payment method</h2></div></div>
+            <form id="payment-form" class="stack admin-crud-form">
+              <label>Name <input name="name" class="form-control" required maxlength="100"></label>
+              <label>Instructions shown to customer <textarea name="instructions" class="form-control" rows="5"></textarea></label>
+              <label>Sort order <input name="sort_order" class="form-control" type="number" step="1" min="0" required></label>
+              <label class="form-check"><input name="requires_proof" class="form-check-input" type="checkbox"> Require payment proof</label>
+              <label class="form-check"><input name="active" class="form-check-input" type="checkbox"> Available at checkout</label>
+              <button class="btn-nbj" type="submit">Save payment method</button>
+            </form>
+          </div>
+        </dialog>
+
+        <dialog id="zone-dialog" class="nbj-dialog admin-dialog">
+          <div class="admin-dialog-shell">
+            <form method="dialog" class="admin-dialog-close-form"><button class="dialog-close admin-dialog-close" value="cancel" aria-label="Close dialog"><i class="bi bi-x-lg"></i></button></form>
+            <div class="admin-dialog-heading"><div><p class="admin-panel-kicker">Fulfillment</p><h2 id="zone-dialog-title">Delivery zone</h2></div></div>
+            <form id="zone-form" class="stack admin-crud-form">
+              <label>Zone name <input name="name" class="form-control" required maxlength="100"></label>
+              <label>Covered areas (one per line) <textarea name="areas" class="form-control" rows="4" required></textarea></label>
+              <label>Delivery fee <input name="delivery_fee" class="form-control" type="number" min="0" step="0.01" required></label>
+              <label>Minimum order <input name="minimum_order" class="form-control" type="number" min="0" step="0.01" required></label>
+              <label>Estimated minutes <input name="estimated_minutes" class="form-control" type="number" min="1" step="1" required></label>
+              <label class="form-check"><input name="active" class="form-check-input" type="checkbox"> Available at checkout</label>
+              <button class="btn-nbj" type="submit">Save delivery zone</button>
+            </form>
+          </div>
+        </dialog>
+      </main>
+    </div>
+  </div>
+  <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+  <script type="module" src="/assets/js/portal.js"></script>
+</body>
+</html>

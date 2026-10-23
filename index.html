@@ -1,0 +1,1062 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    Nicey Burger Junction | Burgers Made to Crave
+  </title>
+
+  <meta
+    name="description"
+    content="Order freshly made burgers, fries, drinks, combos and more from Nicey Burger Junction for pickup or delivery."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b42318"
+  >
+
+  <meta
+    property="og:title"
+    content="Nicey Burger Junction | Burgers Made to Crave"
+  >
+
+  <meta
+    property="og:description"
+    content="Big flavor, hot fries and ice-cold drinks—freshly prepared for pickup or delivery."
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link rel="modulepreload" href="/assets/js/main.js">
+  <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+</head>
+
+<body
+  id="home"
+  data-controller="home"
+>
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+
+  <!-- Injected by site-shell.js -->
+  <div id="site-header"></div>
+  <script src="/assets/js/components/public-header-bootstrap.js"></script>
+
+
+  <main id="main-content">
+
+    <!-- =========================================
+         HOME / HERO
+         ========================================= -->
+
+    <section
+      id="home-section"
+      class="hero home-hero"
+    >
+
+      <div
+        class="hero-decor hero-decor-one"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        class="hero-decor hero-decor-two"
+        aria-hidden="true"
+      ></div>
+
+
+      <div class="container-nbj hero-grid">
+
+        <div class="hero-content">
+
+          <div
+            id="announcement"
+            class="announcement"
+            hidden
+          ></div>
+
+
+          <div class="hero-status-row">
+
+            <p class="eyebrow">
+
+              <i
+                class="bi bi-fire"
+                aria-hidden="true"
+              ></i>
+
+              Fresh off the grill
+
+              <span
+                class="hero-status-divider"
+                aria-hidden="true"
+              >
+                ·
+              </span>
+
+              <span
+                id="hero-store-status"
+                data-store-status
+              >
+                Checking…
+              </span>
+
+            </p>
+
+          </div>
+
+
+          <h1 class="display-title hero-title">
+
+            BURGERS
+
+            <span class="hero-title-accent">
+              MADE TO CRAVE.
+            </span>
+
+          </h1>
+
+
+          <p class="lead hero-copy">
+            Big burgers, crispy fries and
+            ice-cold drinks made fresh when
+            you order.
+          </p>
+
+
+          <div class="hero-actions">
+
+            <a
+              class="btn-nbj hero-primary-action"
+              href="#menu"
+            >
+
+              <i
+                class="bi bi-bag-plus"
+                aria-hidden="true"
+              ></i>
+
+              <span>
+                Explore menu
+              </span>
+
+            </a>
+
+
+            <a
+              class="btn-nbj ghost"
+              href="#promotions"
+            >
+
+              <i
+                class="bi bi-tag"
+                aria-hidden="true"
+              ></i>
+
+              <span>
+                See deals
+              </span>
+
+            </a>
+
+          </div>
+
+
+          <div class="hero-trust">
+
+            <div class="hero-trust-item">
+
+              <span class="hero-trust-icon">
+
+                <i
+                  class="bi bi-lightning-charge"
+                  aria-hidden="true"
+                ></i>
+
+              </span>
+
+
+              <div>
+
+                <strong>
+                  Freshly made
+                </strong>
+
+                <span>
+                  Prepared when ordered
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="hero-trust-item">
+
+              <span class="hero-trust-icon">
+
+                <i
+                  class="bi bi-bag-check"
+                  aria-hidden="true"
+                ></i>
+
+              </span>
+
+
+              <div>
+
+                <strong>
+                  Easy pickup
+                </strong>
+
+                <span>
+                  Skip the waiting
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="hero-trust-item">
+
+              <span class="hero-trust-icon">
+
+                <i
+                  class="bi bi-truck"
+                  aria-hidden="true"
+                ></i>
+
+              </span>
+
+
+              <div>
+
+                <strong>
+                  Delivery
+                </strong>
+
+                <span>
+                  Where available
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Hero visual -->
+        <div
+          class="hero-visual"
+          aria-hidden="true"
+        >
+
+          <div class="hero-mascot-stage">
+
+            <div class="hero-mascot-halo"></div>
+
+
+            <span class="hero-floating-chip hero-chip-one">
+
+              <i class="bi bi-star-fill"></i>
+
+              Customer favorite
+
+            </span>
+
+
+            <span class="hero-floating-chip hero-chip-two">
+
+              <i class="bi bi-fire"></i>
+
+              Fresh & hot
+
+            </span>
+
+
+            <img
+              src="/assets/images/nicey-mascot.png"
+              alt=""
+              class="hero-mascot"
+              loading="eager"
+              decoding="async"
+            >
+
+
+            <div class="hero-mascot-shadow"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         TRUST STRIP
+         ========================================= -->
+
+    <section
+      class="trust-strip"
+      aria-label="Nicey Burger Junction benefits"
+    >
+
+      <div class="trust-item">
+
+        <i
+          class="bi bi-shop"
+          aria-hidden="true"
+        ></i>
+
+        <div>
+
+          <strong>
+            Made fresh
+          </strong>
+
+          <span>
+            Cooked when you order
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="trust-item">
+
+        <i
+          class="bi bi-clock"
+          aria-hidden="true"
+        ></i>
+
+        <div>
+
+          <strong>
+            Quick ordering
+          </strong>
+
+          <span>
+            Simple online checkout
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="trust-item">
+
+        <i
+          class="bi bi-shield-check"
+          aria-hidden="true"
+        ></i>
+
+        <div>
+
+          <strong>
+            Secure checkout
+          </strong>
+
+          <span>
+            Safe order processing
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="trust-item">
+
+        <i
+          class="bi bi-heart"
+          aria-hidden="true"
+        ></i>
+
+        <div>
+
+          <strong>
+            Everything Nice
+          </strong>
+
+          <span>
+            Made for every craving
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         MENU
+         ========================================= -->
+
+    <section
+      id="menu"
+      class="section home-menu-section"
+    >
+
+      <div class="container-nbj">
+
+        <div class="section-heading">
+
+          <div>
+
+            <p class="eyebrow">
+
+              <i
+                class="bi bi-fire"
+                aria-hidden="true"
+              ></i>
+
+              Customer favorites
+
+            </p>
+
+
+            <h2>
+              Our menu
+            </h2>
+
+
+            <p>
+              Start with the Nicey favorites
+              customers keep coming back for.
+            </p>
+
+          </div>
+
+
+          <a
+            href="/menu.html"
+            class="section-link"
+          >
+
+            See full menu
+
+            <i
+              class="bi bi-arrow-right"
+              aria-hidden="true"
+            ></i>
+
+          </a>
+
+        </div>
+
+
+        <div
+          id="featured-products"
+          class="product-grid"
+          aria-live="polite"
+        ></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         CATEGORIES
+         ========================================= -->
+
+    <section class="section surface home-category-section">
+
+      <div class="container-nbj">
+
+        <div class="section-heading">
+
+          <div>
+
+            <p class="eyebrow">
+
+              <i
+                class="bi bi-grid"
+                aria-hidden="true"
+              ></i>
+
+              Browse fast
+
+            </p>
+
+
+            <h2>
+              Pick your craving
+            </h2>
+
+
+            <p>
+              Find burgers, combos, fries,
+              drinks and more.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div
+          id="home-categories"
+          class="category-grid"
+          aria-live="polite"
+        ></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         RECOMMENDATIONS
+         ========================================= -->
+
+    <section class="section">
+
+      <div class="container-nbj">
+
+        <div class="section-heading">
+
+          <div>
+
+            <p class="eyebrow">
+
+              <i
+                class="bi bi-stars"
+                aria-hidden="true"
+              ></i>
+
+              Made for you
+
+            </p>
+
+
+            <h2>
+              Recommended
+            </h2>
+
+
+            <p>
+              Popular picks and recommendations
+              for your next Nicey order.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div
+          id="recommended-products"
+          class="product-grid"
+          aria-live="polite"
+        ></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         PROMOTIONS
+         ========================================= -->
+
+    <section
+      id="promotions"
+      class="section surface home-promotions-section"
+    >
+
+      <div class="container-nbj">
+
+        <div class="section-heading">
+
+          <div>
+
+            <p class="eyebrow">
+
+              <i
+                class="bi bi-tag"
+                aria-hidden="true"
+              ></i>
+
+              Current offers
+
+            </p>
+
+
+            <h2>
+              Deals worth biting into
+            </h2>
+
+
+            <p>
+              Check out the latest Nicey offers
+              and promos available for your order.
+            </p>
+
+          </div>
+
+
+          <a
+            href="/promotions.html"
+            class="section-link"
+          >
+
+            View all deals
+
+            <i
+              class="bi bi-arrow-right"
+              aria-hidden="true"
+            ></i>
+
+          </a>
+
+        </div>
+
+
+        <div class="home-community-grid">
+
+          <article class="home-content-panel">
+
+            <div class="home-panel-heading">
+
+              <span class="home-panel-icon">
+
+                <i
+                  class="bi bi-tag"
+                  aria-hidden="true"
+                ></i>
+
+              </span>
+
+
+              <div>
+
+                <p class="eyebrow">
+                  Promotions
+                </p>
+
+                <h3>
+                  Nicey deals
+                </h3>
+
+              </div>
+
+            </div>
+
+
+            <div
+              id="home-promotions"
+              class="stack"
+              aria-live="polite"
+            ></div>
+
+          </article>
+
+
+          <article class="home-content-panel">
+
+            <div class="home-panel-heading">
+
+              <span class="home-panel-icon">
+
+                <i
+                  class="bi bi-chat-heart"
+                  aria-hidden="true"
+                ></i>
+
+              </span>
+
+
+              <div>
+
+                <p class="eyebrow">
+                  Loved locally
+                </p>
+
+                <h3>
+                  Customer reviews
+                </h3>
+
+              </div>
+
+            </div>
+
+
+            <div
+              id="home-reviews"
+              class="stack"
+              aria-live="polite"
+            ></div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         ABOUT
+         ========================================= -->
+
+    <section
+      id="about"
+      class="section home-about-section"
+    >
+
+      <div class="container-nbj">
+
+        <div class="home-about-grid">
+          <div class="home-about-copy">
+
+            <p class="eyebrow">
+
+              <i
+                class="bi bi-heart-fill"
+                aria-hidden="true"
+              ></i>
+
+              About Nicey
+
+            </p>
+
+
+            <h2>
+              Big flavor.
+              <span>Everything Nice.</span>
+            </h2>
+
+
+            <p>
+              Nicey Burger Junction is all about
+              satisfying cravings with freshly
+              prepared burgers, sides, drinks and
+              combos served with a fun Nicey spirit.
+            </p>
+
+
+            <p>
+              Whether you're picking up your food
+              or having it delivered, we want every
+              order to feel simple, warm and worth
+              coming back for.
+            </p>
+
+
+            <div class="home-about-points">
+
+              <div>
+
+                <i
+                  class="bi bi-check-circle-fill"
+                  aria-hidden="true"
+                ></i>
+
+                <span>
+                  Freshly prepared
+                </span>
+
+              </div>
+
+
+              <div>
+
+                <i
+                  class="bi bi-check-circle-fill"
+                  aria-hidden="true"
+                ></i>
+
+                <span>
+                  Made for cravings
+                </span>
+
+              </div>
+
+
+              <div>
+
+                <i
+                  class="bi bi-check-circle-fill"
+                  aria-hidden="true"
+                ></i>
+
+                <span>
+                  Pickup and delivery
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <a
+              href="/about.html"
+              class="btn-nbj ghost"
+            >
+
+              Learn more about Nicey
+
+              <i
+                class="bi bi-arrow-right"
+                aria-hidden="true"
+              ></i>
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         CONTACT
+         ========================================= -->
+
+    <section
+      id="contact"
+      class="section surface home-contact-section"
+    >
+
+      <div class="container-nbj">
+
+        <div class="home-contact-card">
+
+          <div class="home-contact-copy">
+
+            <p class="eyebrow">
+
+              <i
+                class="bi bi-chat-heart"
+                aria-hidden="true"
+              ></i>
+
+              Contact Nicey
+
+            </p>
+
+
+            <h2>
+              Got a question?
+              We're here to help.
+            </h2>
+
+
+            <p>
+              Need help with an order, delivery,
+              payment or anything else? Send us
+              a message and we'll point you in the
+              right direction.
+            </p>
+
+
+            <div class="home-contact-actions">
+
+              <a
+                href="/contact.html"
+                class="btn-nbj"
+              >
+
+                <i
+                  class="bi bi-chat-dots"
+                  aria-hidden="true"
+                ></i>
+
+                Contact us
+
+              </a>
+
+
+              <a
+                href="/customer/orders.html"
+                class="btn-nbj ghost"
+              >
+
+                <i
+                  class="bi bi-receipt"
+                  aria-hidden="true"
+                ></i>
+
+                My orders
+
+              </a>
+
+            </div>
+
+          </div>
+
+
+          <div
+            class="home-contact-art"
+            aria-hidden="true"
+          >
+
+            <img
+              src="/assets/images/nicey-mascot.png"
+              alt=""
+              class="home-contact-mascot"
+              loading="lazy"
+            >
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         FINAL CTA
+         ========================================= -->
+
+    <section class="section home-cta-section">
+
+      <div class="container-nbj">
+
+        <div class="home-cta">
+
+          <div class="home-cta-copy">
+
+            <p class="eyebrow">
+              Hungry already?
+            </p>
+
+
+            <h2>
+              Your next Nicey meal is just
+              a few clicks away.
+            </h2>
+
+
+            <p>
+              Browse the full menu, customize
+              your favorites and order for
+              pickup or delivery.
+            </p>
+
+
+            <div class="cluster">
+
+              <a
+                href="/menu.html"
+                class="btn-nbj"
+              >
+
+                <i
+                  class="bi bi-bag-plus"
+                  aria-hidden="true"
+                ></i>
+
+                Start your order
+
+              </a>
+
+
+              <a
+                href="#contact"
+                class="btn-nbj ghost"
+              >
+
+                Contact us
+
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <div
+      id="page-error"
+      class="container-nbj alert alert-danger mt-3"
+      role="alert"
+      hidden
+    ></div>
+
+  </main>
+
+
+  <!-- Injected by site-shell.js -->
+  <div id="site-footer"></div>
+
+
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/main.js"
+  ></script>
+
+</body>
+</html>

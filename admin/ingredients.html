@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>Ingredients | Nicey Burger Junction</title>
+
+  <meta
+    name="description"
+    content="Manage Nicey Burger Junction ingredients."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b52420"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/portal.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/print.css"
+    media="print"
+  >
+
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body
+  data-portal="admin"
+  data-controller="admin-crud"
+  data-entity="ingredients"
+>
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+
+  <div class="portal-layout">
+
+    <aside
+      id="portal-sidebar"
+      class="portal-sidebar"
+    ></aside>
+
+
+    <div class="portal-main">
+
+      <header
+        id="portal-topbar"
+        class="portal-topbar"
+      ></header>
+      <script src="/assets/js/components/portal-shell-bootstrap.js"></script>
+
+
+      <main
+        id="main-content"
+        class="portal-content admin-page"
+      >
+
+        <section class="admin-page-heading">
+
+          <div class="admin-page-heading-copy">
+
+            <div class="admin-heading-icon">
+              <i class="bi bi-basket2"></i>
+            </div>
+
+            <div>
+              <p class="admin-page-kicker">
+                Inventory Setup
+              </p>
+
+              <h1>
+                Ingredients
+              </h1>
+
+              <p class="admin-page-description">
+                Maintain ingredients, measurement units, categories and matching stock records.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="admin-page-heading-badge">
+            <i class="bi bi-box-seam"></i>
+            Stock catalog
+          </div>
+
+        </section>
+
+
+        <div
+          id="page-error"
+          class="alert alert-danger"
+          role="alert"
+          hidden
+        ></div>
+
+
+        <section class="admin-toolbar">
+
+          <div class="admin-search-wrap">
+
+            <i class="bi bi-search"></i>
+
+            <label
+              class="visually-hidden"
+              for="crud-search"
+            >
+              Search ingredients
+            </label>
+
+            <input
+              id="crud-search"
+              class="form-control"
+              type="search"
+              placeholder="Search ingredients"
+              autocomplete="off"
+            >
+
+          </div>
+
+
+          <button
+            id="crud-add"
+            class="btn-nbj admin-add-button"
+            type="button"
+          >
+            <i class="bi bi-plus-lg"></i>
+            Add Ingredient
+          </button>
+
+        </section>
+
+
+        <section class="panel admin-panel admin-table-panel">
+
+          <div class="admin-panel-heading">
+
+            <div>
+              <p class="admin-panel-kicker">
+                Ingredient catalog
+              </p>
+
+              <h2>
+                Ingredients
+              </h2>
+
+              <p>
+                Manage the raw materials used throughout the Nicey menu.
+              </p>
+            </div>
+
+
+            <span class="admin-panel-heading-icon">
+              <i class="bi bi-basket"></i>
+            </span>
+
+          </div>
+
+
+          <div class="table-wrap admin-table-wrap">
+
+            <table class="admin-table">
+
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Unit</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="crud-tbody"></tbody>
+
+            </table>
+
+          </div>
+
+        </section>
+
+
+        <dialog
+          id="crud-dialog"
+          class="nbj-dialog admin-dialog"
+        >
+
+          <div class="admin-dialog-shell">
+
+            <form
+              method="dialog"
+              class="admin-dialog-close-form"
+            >
+              <button
+                class="dialog-close admin-dialog-close"
+                value="cancel"
+                aria-label="Close dialog"
+              >
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </form>
+
+
+            <div class="admin-dialog-heading">
+
+              <span class="admin-dialog-icon">
+                <i class="bi bi-basket2"></i>
+              </span>
+
+              <div>
+                <p class="admin-panel-kicker">
+                  Ingredient editor
+                </p>
+
+                <h2 id="crud-dialog-title"></h2>
+
+                <p>
+                  Configure the ingredient information below.
+                </p>
+              </div>
+
+            </div>
+
+
+            <form
+              id="crud-form"
+              class="stack admin-crud-form"
+            ></form>
+
+
+            <div class="admin-dialog-actions">
+
+              <button
+                id="crud-save"
+                class="btn-nbj"
+                type="button"
+              >
+                <i class="bi bi-check2-circle"></i>
+                Save
+              </button>
+
+            </div>
+
+          </div>
+
+        </dialog>
+
+      </main>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/portal.js"
+  ></script>
+
+</body>
+</html>

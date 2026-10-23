@@ -1,0 +1,525 @@
+/* =========================================================
+   ADMIN RECIPES / REPORTS / SETTINGS / STOCK MOVEMENTS
+   ========================================================= */
+
+
+/* =========================================================
+   RECIPES
+   ========================================================= */
+
+.admin-recipe-filters{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
+
+  gap:.75rem;
+
+  padding:.85rem;
+
+  border:
+    1px solid
+    rgba(91,58,39,.09);
+
+  border-radius:1rem;
+
+  background:#fff;
+
+  box-shadow:
+    0 8px 24px
+    rgba(65,34,19,.04);
+}
+
+.admin-recipe-filters
+.form-select{
+  min-height:44px;
+
+  border-radius:.75rem;
+}
+
+.admin-recipes-table{
+  min-width:760px;
+}
+
+.admin-recipe-form{
+  margin:0!important;
+}
+
+.admin-recipe-form-grid{
+  display:grid;
+
+  grid-template-columns:
+    minmax(220px,1.5fr)
+    minmax(140px,.6fr)
+    minmax(130px,.5fr)
+    auto;
+
+  align-items:end;
+
+  gap:.75rem;
+}
+
+.admin-recipe-form-grid > label:not(.form-check){
+  display:grid;
+
+  gap:.35rem;
+
+  color:
+    var(--nbj-text,#2c211c);
+
+  font-size:.75rem;
+
+  font-weight:850;
+}
+
+.admin-recipe-check{
+  display:flex;
+
+  align-items:center;
+
+  gap:.5rem;
+
+  min-height:46px;
+
+  margin:0;
+
+  padding:.7rem .8rem;
+
+  border:
+    1px solid
+    rgba(91,58,39,.09);
+
+  border-radius:.8rem;
+
+  background:#fffaf5;
+}
+
+.admin-recipe-check
+.form-check-input{
+  margin:0;
+}
+
+.admin-recipe-check
+.form-check-label{
+  font-size:.75rem;
+
+  font-weight:850;
+}
+
+.admin-recipe-submit{
+  min-height:46px;
+
+  white-space:nowrap;
+}
+
+
+/* =========================================================
+   REPORTS
+   ========================================================= */
+
+.admin-report-toolbar{
+  display:grid;
+
+  grid-template-columns:
+    minmax(170px,.5fr)
+    minmax(170px,.5fr)
+    auto
+    auto;
+
+  align-items:end;
+
+  gap:.75rem;
+
+  padding:.85rem;
+
+  border:
+    1px solid
+    rgba(91,58,39,.09);
+
+  border-radius:1rem;
+
+  background:#fff;
+
+  box-shadow:
+    0 8px 24px
+    rgba(65,34,19,.04);
+}
+
+.admin-report-date{
+  min-width:0;
+}
+
+.admin-report-date label{
+  display:block;
+
+  margin-bottom:.35rem;
+
+  color:
+    var(--nbj-muted,#75665f);
+
+  font-size:.67rem;
+
+  font-weight:850;
+
+  letter-spacing:.045em;
+
+  text-transform:uppercase;
+}
+
+.admin-report-date
+.form-control{
+  min-height:44px;
+
+  border-radius:.75rem;
+}
+
+.admin-report-toolbar
+.btn-nbj{
+  min-height:44px;
+
+  white-space:nowrap;
+}
+
+.admin-report-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+  gap:1rem;
+}
+
+.admin-report-chart{
+  position:relative;
+
+  width:100%;
+
+  min-height:320px;
+}
+
+.admin-report-chart canvas{
+  width:100%!important;
+
+  max-width:100%;
+
+  max-height:350px;
+}
+
+.admin-report-products-table{
+  min-width:620px;
+}
+
+
+/* =========================================================
+   SETTINGS
+   ========================================================= */
+
+.admin-settings-form{
+  display:grid;
+
+  gap:1rem;
+}
+
+.admin-settings-section{
+  margin:0!important;
+}
+
+.admin-settings-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
+
+  gap:.85rem;
+}
+
+.admin-settings-grid label{
+  display:grid;
+
+  gap:.35rem;
+
+  min-width:0;
+
+  color:
+    var(--nbj-text,#2c211c);
+
+  font-size:.75rem;
+
+  font-weight:850;
+}
+
+.admin-settings-full{
+  grid-column:
+    1 / -1;
+}
+
+.admin-settings-order-grid{
+  margin-top:1rem;
+
+  grid-template-columns:
+    repeat(4,minmax(0,1fr));
+}
+
+.admin-settings-toggle-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
+
+  gap:.75rem;
+}
+
+.admin-settings-toggle{
+  display:grid;
+
+  grid-template-columns:
+    auto minmax(0,1fr);
+
+  align-items:flex-start;
+
+  gap:.65rem;
+
+  min-height:82px;
+
+  margin:0;
+
+  padding:.85rem;
+
+  border:
+    1px solid
+    rgba(91,58,39,.09);
+
+  border-radius:.9rem;
+
+  background:#fffaf5;
+}
+
+.admin-settings-toggle
+.form-check-input{
+  margin:.15rem 0 0;
+}
+
+.admin-settings-toggle span{
+  display:grid;
+
+  gap:.15rem;
+}
+
+.admin-settings-toggle strong{
+  color:
+    var(--nbj-text,#2c211c);
+
+  font-size:.77rem;
+}
+
+.admin-settings-toggle small{
+  color:
+    var(--nbj-muted,#75665f);
+
+  font-size:.67rem;
+
+  line-height:1.4;
+}
+
+.admin-settings-save-bar{
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:1rem;
+
+  padding:.9rem 1rem;
+
+  border:
+    1px solid
+    rgba(91,58,39,.09);
+
+  border-radius:1rem;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff,
+      #fff8ef
+    );
+
+  box-shadow:
+    0 7px 22px
+    rgba(65,34,19,.04);
+}
+
+.admin-settings-save-bar > div{
+  display:flex;
+
+  align-items:center;
+
+  gap:.45rem;
+
+  color:
+    var(--nbj-muted,#75665f);
+
+  font-size:.72rem;
+}
+
+.admin-settings-save-bar
+i{
+  color:
+    var(--nbj-secondary,#ff7a00);
+}
+
+.admin-settings-save{
+  min-height:46px;
+
+  flex:0 0 auto;
+}
+
+
+/* =========================================================
+   STOCK MOVEMENTS
+   ========================================================= */
+
+.admin-movement-filters{
+  display:grid;
+
+  grid-template-columns:
+    minmax(260px,1fr)
+    minmax(210px,280px)
+    auto;
+
+  align-items:end;
+
+  gap:.75rem;
+
+  padding:.85rem;
+
+  border:
+    1px solid
+    rgba(91,58,39,.09);
+
+  border-radius:1rem;
+
+  background:#fff;
+
+  box-shadow:
+    0 8px 24px
+    rgba(65,34,19,.04);
+}
+
+.admin-movement-filters
+.admin-search-wrap{
+  width:100%;
+}
+
+.admin-movement-export{
+  min-height:44px;
+
+  white-space:nowrap;
+}
+
+.admin-movements-table{
+  min-width:1050px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:1050px){
+
+  .admin-recipe-form-grid{
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+  }
+
+  .admin-settings-grid{
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+  }
+
+  .admin-settings-order-grid{
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+  }
+
+  .admin-settings-toggle-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+
+@media(max-width:900px){
+
+  .admin-report-toolbar{
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+  }
+
+  .admin-report-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+
+@media(max-width:720px){
+
+  .admin-recipe-filters,
+  .admin-recipe-form-grid,
+  .admin-settings-grid,
+  .admin-settings-order-grid{
+    grid-template-columns:1fr;
+  }
+
+  .admin-settings-full{
+    grid-column:auto;
+  }
+
+  .admin-report-toolbar{
+    grid-template-columns:1fr;
+  }
+
+  .admin-report-toolbar
+  .btn-nbj{
+    width:100%;
+  }
+
+  .admin-movement-filters{
+    grid-template-columns:1fr;
+  }
+
+  .admin-movement-export{
+    width:100%;
+  }
+
+  .admin-settings-save-bar{
+    align-items:stretch;
+
+    flex-direction:column;
+  }
+
+  .admin-settings-save{
+    width:100%;
+  }
+
+}
+
+
+@media(max-width:480px){
+
+  .admin-recipe-check{
+    min-height:44px;
+  }
+
+  .admin-recipe-submit{
+    width:100%;
+  }
+
+  .admin-report-chart{
+    min-height:250px;
+  }
+
+}

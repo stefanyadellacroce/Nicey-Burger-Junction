@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>Admin Dashboard | Nicey Burger Junction</title>
+
+  <meta
+    name="description"
+    content="Nicey Burger Junction administration dashboard."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b52420"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/portal.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/print.css"
+    media="print"
+  >
+
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body
+  data-portal="admin"
+  data-controller="admin-dashboard"
+>
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+
+  <div class="portal-layout">
+
+    <aside
+      id="portal-sidebar"
+      class="portal-sidebar"
+    ></aside>
+
+
+    <div class="portal-main">
+
+      <header
+        id="portal-topbar"
+        class="portal-topbar"
+      ></header>
+      <script src="/assets/js/components/portal-shell-bootstrap.js"></script>
+
+
+      <main
+        id="main-content"
+        class="portal-content admin-page"
+      >
+
+        <section class="admin-page-heading">
+
+          <div class="admin-page-heading-copy">
+
+            <div class="admin-heading-icon">
+              <i class="bi bi-speedometer2"></i>
+            </div>
+
+            <div>
+              <p class="admin-page-kicker">
+                Administration
+              </p>
+
+              <h1>
+                Admin Dashboard
+              </h1>
+
+              <p class="admin-page-description">
+                Monitor sales, order activity, inventory health and business performance.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="admin-page-heading-badge">
+            <i class="bi bi-shield-check"></i>
+            Admin overview
+          </div>
+
+        </section>
+
+
+        <div
+          id="page-error"
+          class="alert alert-danger"
+          role="alert"
+          hidden
+        ></div>
+
+
+        <!-- KPI CARDS -->
+        <section
+          class="admin-kpi-grid"
+          aria-label="Business summary"
+        >
+
+          <article class="admin-kpi-card">
+
+            <span class="admin-kpi-icon">
+              <i class="bi bi-cash-stack"></i>
+            </span>
+
+            <div>
+              <span class="admin-kpi-label">
+                Today sales
+              </span>
+
+              <strong id="kpi-sales">—</strong>
+
+              <small>
+                Gross sales today
+              </small>
+            </div>
+
+          </article>
+
+
+          <article class="admin-kpi-card">
+
+            <span class="admin-kpi-icon">
+              <i class="bi bi-receipt"></i>
+            </span>
+
+            <div>
+              <span class="admin-kpi-label">
+                Today orders
+              </span>
+
+              <strong id="kpi-orders">—</strong>
+
+              <small>
+                Orders received today
+              </small>
+            </div>
+
+          </article>
+
+
+          <article class="admin-kpi-card">
+
+            <span class="admin-kpi-icon warning">
+              <i class="bi bi-hourglass-split"></i>
+            </span>
+
+            <div>
+              <span class="admin-kpi-label">
+                Pending
+              </span>
+
+              <strong id="kpi-pending">—</strong>
+
+              <small>
+                Awaiting confirmation
+              </small>
+            </div>
+
+          </article>
+
+
+          <article class="admin-kpi-card">
+
+            <span class="admin-kpi-icon info">
+              <i class="bi bi-fire"></i>
+            </span>
+
+            <div>
+              <span class="admin-kpi-label">
+                Preparing
+              </span>
+
+              <strong id="kpi-preparing">—</strong>
+
+              <small>
+                Active kitchen orders
+              </small>
+            </div>
+
+          </article>
+
+
+          <article class="admin-kpi-card">
+
+            <span class="admin-kpi-icon">
+              <i class="bi bi-graph-up-arrow"></i>
+            </span>
+
+            <div>
+              <span class="admin-kpi-label">
+                Avg order
+              </span>
+
+              <strong id="kpi-aov">—</strong>
+
+              <small>
+                Average order value
+              </small>
+            </div>
+
+          </article>
+
+
+          <article class="admin-kpi-card">
+
+            <span class="admin-kpi-icon warning">
+              <i class="bi bi-box-seam"></i>
+            </span>
+
+            <div>
+              <span class="admin-kpi-label">
+                Low stock
+              </span>
+
+              <strong id="kpi-low">—</strong>
+
+              <small>
+                Near reorder level
+              </small>
+            </div>
+
+          </article>
+
+
+          <article class="admin-kpi-card">
+
+            <span class="admin-kpi-icon danger">
+              <i class="bi bi-box2"></i>
+            </span>
+
+            <div>
+              <span class="admin-kpi-label">
+                Out of stock
+              </span>
+
+              <strong id="kpi-out">—</strong>
+
+              <small>
+                Currently unavailable
+              </small>
+            </div>
+
+          </article>
+
+
+          <article class="admin-kpi-card">
+
+            <span class="admin-kpi-icon info">
+              <i class="bi bi-credit-card-2-front"></i>
+            </span>
+
+            <div>
+              <span class="admin-kpi-label">
+                Payment checks
+              </span>
+
+              <strong id="kpi-payments">—</strong>
+
+              <small>
+                Awaiting verification
+              </small>
+            </div>
+
+          </article>
+
+        </section>
+
+
+        <!-- RECENT ORDERS / LOW STOCK -->
+        <section class="admin-dashboard-grid">
+
+          <article class="panel admin-panel admin-dashboard-wide">
+
+            <div class="admin-panel-heading">
+
+              <div>
+                <p class="admin-panel-kicker">
+                  Order activity
+                </p>
+
+                <h2>
+                  Recent orders
+                </h2>
+
+                <p>
+                  Latest pickup, delivery and walk-in transactions.
+                </p>
+              </div>
+
+
+              <span class="admin-panel-heading-icon">
+                <i class="bi bi-receipt-cutoff"></i>
+              </span>
+
+            </div>
+
+
+            <div class="table-wrap admin-table-wrap">
+
+              <table class="admin-table">
+
+                <thead>
+                  <tr>
+                    <th>Order</th>
+                    <th>Customer</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Total</th>
+                    <th>Time</th>
+                  </tr>
+                </thead>
+
+                <tbody id="recent-orders"></tbody>
+
+              </table>
+
+            </div>
+
+          </article>
+
+
+          <article class="panel admin-panel">
+
+            <div class="admin-panel-heading">
+
+              <div>
+                <p class="admin-panel-kicker">
+                  Inventory alert
+                </p>
+
+                <h2>
+                  Low stock
+                </h2>
+
+                <p>
+                  Ingredients requiring attention.
+                </p>
+              </div>
+
+
+              <span class="admin-panel-heading-icon warning">
+                <i class="bi bi-exclamation-triangle"></i>
+              </span>
+
+            </div>
+
+
+            <div
+              id="low-stock-list"
+              class="admin-low-stock-list"
+            ></div>
+
+          </article>
+
+        </section>
+
+
+        <!-- ORDER CHARTS -->
+        <section class="admin-dashboard-grid equal">
+
+          <article class="panel admin-panel chart-panel">
+
+            <div class="admin-panel-heading">
+
+              <div>
+                <p class="admin-panel-kicker">
+                  Workflow
+                </p>
+
+                <h2>
+                  Order status
+                </h2>
+              </div>
+
+
+              <span class="admin-panel-heading-icon">
+                <i class="bi bi-pie-chart"></i>
+              </span>
+
+            </div>
+
+
+            <div class="admin-chart-wrap">
+              <canvas id="status-chart"></canvas>
+            </div>
+
+          </article>
+
+
+          <article class="panel admin-panel chart-panel">
+
+            <div class="admin-panel-heading">
+
+              <div>
+                <p class="admin-panel-kicker">
+                  Demand
+                </p>
+
+                <h2>
+                  Peak order times
+                </h2>
+              </div>
+
+
+              <span class="admin-panel-heading-icon">
+                <i class="bi bi-bar-chart-line"></i>
+              </span>
+
+            </div>
+
+
+            <div class="admin-chart-wrap">
+              <canvas id="hour-chart"></canvas>
+            </div>
+
+          </article>
+
+        </section>
+
+
+        <!-- ADMIN ANALYTICS -->
+        <section class="admin-dashboard-grid equal">
+
+          <article class="panel admin-panel chart-panel">
+
+            <div class="admin-panel-heading">
+
+              <div>
+                <p class="admin-panel-kicker">
+                  Revenue trend
+                </p>
+
+                <h2>
+                  14-day sales
+                </h2>
+              </div>
+
+
+              <span class="admin-panel-heading-icon">
+                <i class="bi bi-graph-up"></i>
+              </span>
+
+            </div>
+
+
+            <div class="admin-chart-wrap">
+              <canvas id="admin-sales-chart"></canvas>
+            </div>
+
+          </article>
+
+
+          <article class="panel admin-panel chart-panel">
+
+            <div class="admin-panel-heading">
+
+              <div>
+                <p class="admin-panel-kicker">
+                  Product performance
+                </p>
+
+                <h2>
+                  Best sellers
+                </h2>
+              </div>
+
+
+              <span class="admin-panel-heading-icon">
+                <i class="bi bi-trophy"></i>
+              </span>
+
+            </div>
+
+
+            <div class="admin-chart-wrap">
+              <canvas id="admin-products-chart"></canvas>
+            </div>
+
+          </article>
+
+        </section>
+
+      </main>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/portal.js"
+  ></script>
+
+</body>
+</html>

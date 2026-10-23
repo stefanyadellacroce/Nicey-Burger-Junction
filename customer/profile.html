@@ -1,0 +1,1000 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    Profile | Nicey Burger Junction
+  </title>
+
+  <meta
+    name="description"
+    content="Manage your Nicey Burger Junction profile, contact details and notification preferences."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b42318"
+  >
+
+  <meta
+    property="og:title"
+    content="Profile | Nicey Burger Junction"
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link rel="modulepreload" href="/assets/js/main.js">
+
+  <script defer
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+  ></script>
+</head>
+
+<body class="customer-shell" data-controller="profile">
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+
+  <div id="site-header"></div>
+  <script src="/assets/js/components/customer-shell-bootstrap.js"></script>
+
+
+  <main id="main-content">
+
+    <!-- =========================================
+         PROFILE HERO
+         ========================================= -->
+
+    <section class="profile-page-hero">
+
+      <div
+        class="profile-hero-shape profile-hero-shape-one"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        class="profile-hero-shape profile-hero-shape-two"
+        aria-hidden="true"
+      ></div>
+
+
+      <div class="container-nbj profile-hero-grid">
+
+        <div class="profile-hero-copy">
+
+          <p class="eyebrow">
+
+            <i
+              class="bi bi-person-heart"
+              aria-hidden="true"
+            ></i>
+
+            Your Nicey account
+
+          </p>
+
+
+          <h1>
+            Make your profile
+            <span>feel like you.</span>
+          </h1>
+
+
+          <p class="profile-hero-lead">
+            Keep your contact information current,
+            manage your profile photo and choose
+            which Nicey updates you'd like to receive.
+          </p>
+
+
+          <div class="profile-hero-actions">
+
+            <a
+              href="/customer/dashboard.html"
+              class="btn-nbj"
+            >
+
+              <i
+                class="bi bi-grid"
+                aria-hidden="true"
+              ></i>
+
+              My account
+
+            </a>
+
+
+            <a
+              href="/customer/orders.html"
+              class="btn-nbj ghost"
+            >
+
+              <i
+                class="bi bi-receipt"
+                aria-hidden="true"
+              ></i>
+
+              My orders
+
+            </a>
+
+          </div>
+
+
+          <div class="profile-hero-points">
+
+            <span>
+
+              <i
+                class="bi bi-check-circle-fill"
+                aria-hidden="true"
+              ></i>
+
+              Account details
+
+            </span>
+
+
+            <span>
+
+              <i
+                class="bi bi-check-circle-fill"
+                aria-hidden="true"
+              ></i>
+
+              Profile photo
+
+            </span>
+
+
+            <span>
+
+              <i
+                class="bi bi-check-circle-fill"
+                aria-hidden="true"
+              ></i>
+
+              Notification preferences
+
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="profile-hero-art"
+          aria-hidden="true"
+        >
+
+          <div class="profile-hero-halo"></div>
+
+
+          <span class="profile-floating-chip profile-chip-one">
+
+            <i class="bi bi-person-check"></i>
+
+            Your account
+
+          </span>
+
+
+          <span class="profile-floating-chip profile-chip-two">
+
+            <i class="bi bi-stars"></i>
+
+            Everything Nice!
+
+          </span>
+
+
+          <img
+            src="/assets/images/nicey-mascot.png"
+            alt=""
+            class="profile-hero-mascot"
+            loading="eager"
+            decoding="async"
+          >
+
+
+          <div class="profile-hero-shadow"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         CUSTOMER NAV
+         ========================================= -->
+
+    <section class="profile-nav-section">
+
+      <div class="container-nbj">
+
+        <nav
+          class="profile-account-nav"
+          aria-label="Customer account navigation"
+        >
+
+          <a href="/customer/orders.html">
+
+            <span>
+              <i class="bi bi-receipt"></i>
+            </span>
+
+            <strong>
+              Orders
+            </strong>
+
+          </a>
+
+
+          <a href="/customer/favorites.html">
+
+            <span>
+              <i class="bi bi-heart"></i>
+            </span>
+
+            <strong>
+              Favorites
+            </strong>
+
+          </a>
+
+
+          <a href="/customer/notifications.html">
+
+            <span>
+              <i class="bi bi-bell"></i>
+            </span>
+
+            <strong>
+              Notifications
+            </strong>
+
+          </a>
+
+
+          <a href="/customer/addresses.html">
+
+            <span>
+              <i class="bi bi-geo-alt"></i>
+            </span>
+
+            <strong>
+              Addresses
+            </strong>
+
+          </a>
+
+
+          <a
+            href="/customer/profile.html"
+            aria-current="page"
+          >
+
+            <span>
+              <i class="bi bi-person-fill"></i>
+            </span>
+
+            <strong>
+              Profile
+            </strong>
+
+          </a>
+
+        </nav>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         PROFILE FORM
+         ========================================= -->
+
+    <section class="section profile-page-section">
+
+      <div class="container-nbj narrow">
+
+        <div class="profile-page-heading">
+
+          <div>
+
+            <p class="eyebrow">
+
+              <i
+                class="bi bi-person-gear"
+                aria-hidden="true"
+              ></i>
+
+              Account settings
+
+            </p>
+
+
+            <h2>
+              Profile
+            </h2>
+
+
+            <p>
+              Update the personal details used
+              throughout your Nicey account.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <form
+          id="profile-form"
+          class="panel stack profile-form-card"
+        >
+
+          <!-- =====================================
+               PROFILE PHOTO
+               ===================================== -->
+
+          <section class="profile-form-section">
+
+            <div class="profile-section-heading">
+
+              <span>
+
+                <i
+                  class="bi bi-camera"
+                  aria-hidden="true"
+                ></i>
+
+              </span>
+
+
+              <div>
+
+                <p class="eyebrow">
+                  Your photo
+                </p>
+
+                <h2>
+                  Profile image
+                </h2>
+
+                <p>
+                  Add a photo to personalize your account.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="profile-avatar-row">
+
+              <div class="profile-avatar-stage">
+
+                <div class="profile-avatar-ring">
+
+                  <img
+                    id="profile-avatar"
+                    src="/assets/images/favicon.svg"
+                    alt="Profile avatar"
+                    loading="eager"
+                    decoding="async"
+                  >
+
+                </div>
+
+
+                <span
+                  class="profile-avatar-camera"
+                  aria-hidden="true"
+                >
+
+                  <i class="bi bi-camera-fill"></i>
+
+                </span>
+
+              </div>
+
+
+              <div class="profile-avatar-upload">
+
+                <label for="avatar-input">
+                  Profile image
+                </label>
+
+
+                <input
+                  id="avatar-input"
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  class="form-control"
+                >
+
+
+                <p class="profile-field-help">
+
+                  <i
+                    class="bi bi-image"
+                    aria-hidden="true"
+                  ></i>
+
+                  JPEG, PNG or WebP image.
+                </p>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- =====================================
+               PERSONAL DETAILS
+               ===================================== -->
+
+          <section class="profile-form-section">
+
+            <div class="profile-section-heading">
+
+              <span>
+
+                <i
+                  class="bi bi-person-vcard"
+                  aria-hidden="true"
+                ></i>
+
+              </span>
+
+
+              <div>
+
+                <p class="eyebrow">
+                  Personal information
+                </p>
+
+                <h2>
+                  Your details
+                </h2>
+
+                <p>
+                  Keep your contact information accurate
+                  for orders and account updates.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="profile-fields-grid">
+
+              <div class="field">
+
+                <label for="profile-full-name">
+                  Full name
+                </label>
+
+
+                <div class="profile-input-wrap">
+
+                  <i
+                    class="bi bi-person"
+                    aria-hidden="true"
+                  ></i>
+
+
+                  <input
+                    id="profile-full-name"
+                    name="full_name"
+                    class="form-control"
+                    type="text"
+                    required
+                    autocomplete="name"
+                    placeholder="Your full name"
+                  >
+
+                </div>
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="profile-email">
+                  Email
+                </label>
+
+
+                <div class="profile-input-wrap">
+
+                  <i
+                    class="bi bi-envelope"
+                    aria-hidden="true"
+                  ></i>
+
+
+                  <input
+                    id="profile-email"
+                    name="email"
+                    type="email"
+                    class="form-control"
+                    readonly
+                    autocomplete="email"
+                  >
+
+                </div>
+
+
+                <p class="profile-field-help">
+                  Your sign-in email is shown here
+                  for reference.
+                </p>
+
+              </div>
+
+
+              <div class="field profile-field-full">
+
+                <label for="profile-phone">
+                  Phone
+                </label>
+
+
+                <div class="profile-input-wrap">
+
+                  <i
+                    class="bi bi-phone"
+                    aria-hidden="true"
+                  ></i>
+
+
+                  <input
+                    id="profile-phone"
+                    name="phone"
+                    class="form-control"
+                    type="tel"
+                    autocomplete="tel"
+                    inputmode="tel"
+                    placeholder="09XX XXX XXXX"
+                  >
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- =====================================
+               NOTIFICATION SETTINGS
+               ===================================== -->
+
+          <fieldset class="stack tight profile-form-section profile-notification-section">
+
+            <legend class="visually-hidden">
+              Notifications
+            </legend>
+
+
+            <div class="profile-section-heading">
+
+              <span>
+
+                <i
+                  class="bi bi-bell"
+                  aria-hidden="true"
+                ></i>
+
+              </span>
+
+
+              <div>
+
+                <p class="eyebrow">
+                  Stay informed
+                </p>
+
+                <h2>
+                  Notifications
+                </h2>
+
+                <p>
+                  Choose the updates you'd like
+                  to receive from Nicey.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="profile-preference-grid">
+
+              <label class="form-check profile-preference-card">
+
+                <input
+                  name="notify_order"
+                  type="checkbox"
+                  class="form-check-input"
+                >
+
+
+                <span class="profile-preference-icon">
+
+                  <i
+                    class="bi bi-bag-check"
+                    aria-hidden="true"
+                  ></i>
+
+                </span>
+
+
+                <span class="profile-preference-copy">
+
+                  <strong>
+                    Order updates
+                  </strong>
+
+                  <small>
+                    Receive account notifications about
+                    your order activity.
+                  </small>
+
+                </span>
+
+              </label>
+
+
+              <label class="form-check profile-preference-card">
+
+                <input
+                  name="notify_promotions"
+                  type="checkbox"
+                  class="form-check-input"
+                >
+
+
+                <span class="profile-preference-icon">
+
+                  <i
+                    class="bi bi-tag"
+                    aria-hidden="true"
+                  ></i>
+
+                </span>
+
+
+                <span class="profile-preference-copy">
+
+                  <strong>
+                    Promotions
+                  </strong>
+
+                  <small>
+                    Receive updates about selected
+                    Nicey promotions and offers.
+                  </small>
+
+                </span>
+
+              </label>
+
+            </div>
+
+          </fieldset>
+
+
+          <!-- =====================================
+               SECURITY / ROLE NOTE
+               ===================================== -->
+
+          <div class="profile-role-notice">
+
+            <span>
+
+              <i
+                class="bi bi-shield-lock"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+
+            <div>
+
+              <strong>
+                Account permissions are protected.
+              </strong>
+
+              <p class="muted">
+                Authorization roles cannot be changed
+                from this form.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- =====================================
+               SAVE
+               ===================================== -->
+
+          <div class="profile-form-actions">
+
+            <a
+              href="/customer/dashboard.html"
+              class="btn-nbj ghost"
+            >
+
+              <i
+                class="bi bi-arrow-left"
+                aria-hidden="true"
+              ></i>
+
+              Back to account
+
+            </a>
+
+
+            <button
+              class="btn-nbj profile-save-button"
+              type="submit"
+            >
+
+              <i
+                class="bi bi-check2-circle"
+                aria-hidden="true"
+              ></i>
+
+              Save profile
+
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         PROFILE INFO
+         ========================================= -->
+
+    <section class="section profile-info-section">
+
+      <div class="container-nbj narrow">
+
+        <div class="profile-info-grid">
+
+          <article class="profile-info-card">
+
+            <span>
+
+              <i
+                class="bi bi-person-check"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+
+            <div>
+
+              <strong>
+                Keep details current
+              </strong>
+
+              <p>
+                Accurate contact details make your
+                ordering experience smoother.
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <article class="profile-info-card">
+
+            <span>
+
+              <i
+                class="bi bi-bell"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+
+            <div>
+
+              <strong>
+                Choose your updates
+              </strong>
+
+              <p>
+                Control the customer notifications
+                that are useful to you.
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <article class="profile-info-card">
+
+            <span>
+
+              <i
+                class="bi bi-shield-check"
+                aria-hidden="true"
+              ></i>
+
+            </span>
+
+
+            <div>
+
+              <strong>
+                Protected permissions
+              </strong>
+
+              <p>
+                Customer-facing profile fields stay
+                separate from authorization roles.
+              </p>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         CTA
+         ========================================= -->
+
+    <section class="section profile-cta-section">
+
+      <div class="container-nbj narrow">
+
+        <div class="profile-cta">
+
+          <div class="profile-cta-copy">
+
+            <img
+              src="/assets/images/nicey-burger-logo-transparent.png"
+              alt="Nicey Burger Junction"
+              class="profile-cta-logo"
+              loading="lazy"
+              decoding="async"
+            >
+
+
+            <p class="eyebrow">
+              Profile updated?
+            </p>
+
+
+            <h2>
+              Time for something Nice.
+            </h2>
+
+
+            <p>
+              Head back to the menu and find
+              your next Nicey favorite.
+            </p>
+
+
+            <a
+              href="/menu.html"
+              class="btn-nbj"
+            >
+
+              <i
+                class="bi bi-bag-plus"
+                aria-hidden="true"
+              ></i>
+
+              Browse menu
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <div
+      id="page-error"
+      class="container-nbj alert alert-danger mt-3"
+      role="alert"
+      hidden
+    ></div>
+
+  </main>
+
+
+  <div id="site-footer"></div>
+
+
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/main.js"
+  ></script>
+
+</body>
+</html>

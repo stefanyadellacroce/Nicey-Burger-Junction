@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    Reports | Nicey Burger Junction
+  </title>
+
+  <meta
+    name="description"
+    content="Review Nicey Burger Junction sales and product reports."
+  >
+
+  <meta
+    name="theme-color"
+    content="#b52420"
+  >
+
+  <link
+    rel="icon"
+    href="/assets/images/nicey-mascot.png?v=2"
+    type="image/png"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/main.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/portal.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/assets/css/print.css"
+    media="print"
+  >
+
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body
+  data-portal="admin"
+  data-controller="reports"
+>
+
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Skip to content
+  </a>
+
+
+  <div class="portal-layout">
+
+    <aside
+      id="portal-sidebar"
+      class="portal-sidebar"
+    ></aside>
+
+
+    <div class="portal-main">
+
+      <header
+        id="portal-topbar"
+        class="portal-topbar"
+      ></header>
+      <script src="/assets/js/components/portal-shell-bootstrap.js"></script>
+
+
+      <main
+        id="main-content"
+        class="portal-content admin-page"
+      >
+
+        <section class="admin-page-heading">
+
+          <div class="admin-page-heading-copy">
+
+            <div class="admin-heading-icon">
+              <i class="bi bi-bar-chart-line"></i>
+            </div>
+
+            <div>
+              <p class="admin-page-kicker">
+                Business Intelligence
+              </p>
+
+              <h1>
+                Reports
+              </h1>
+
+              <p class="admin-page-description">
+                Analyze sales trends, category performance and product revenue over a selected period.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="admin-page-heading-badge">
+            <i class="bi bi-graph-up-arrow"></i>
+            Reporting
+          </div>
+
+        </section>
+
+
+        <div
+          id="page-error"
+          class="alert alert-danger"
+          role="alert"
+          hidden
+        ></div>
+
+
+        <section class="admin-report-toolbar">
+
+          <div class="admin-report-date">
+
+            <label for="report-start">
+              From
+            </label>
+
+            <input
+              id="report-start"
+              type="date"
+              class="form-control"
+            >
+
+          </div>
+
+
+          <div class="admin-report-date">
+
+            <label for="report-end">
+              To
+            </label>
+
+            <input
+              id="report-end"
+              type="date"
+              class="form-control"
+            >
+
+          </div>
+
+
+          <button
+            id="report-run"
+            class="btn-nbj"
+            type="button"
+          >
+            <i class="bi bi-play-circle"></i>
+            Run reports
+          </button>
+
+
+          <button
+            id="report-export"
+            class="btn-nbj ghost"
+            type="button"
+          >
+            <i class="bi bi-download"></i>
+            Export sales CSV
+          </button>
+
+        </section>
+
+
+        <section class="admin-report-grid">
+
+          <article class="panel admin-panel chart-panel">
+
+            <div class="admin-panel-heading">
+
+              <div>
+                <p class="admin-panel-kicker">
+                  Revenue
+                </p>
+
+                <h2>
+                  Sales
+                </h2>
+
+                <p>
+                  Revenue performance within the selected date range.
+                </p>
+              </div>
+
+
+              <span class="admin-panel-heading-icon">
+                <i class="bi bi-graph-up"></i>
+              </span>
+
+            </div>
+
+
+            <div class="admin-report-chart">
+              <canvas id="report-sales-chart"></canvas>
+            </div>
+
+          </article>
+
+
+          <article class="panel admin-panel chart-panel">
+
+            <div class="admin-panel-heading">
+
+              <div>
+                <p class="admin-panel-kicker">
+                  Menu mix
+                </p>
+
+                <h2>
+                  Category performance
+                </h2>
+
+                <p>
+                  Compare sales contribution across menu categories.
+                </p>
+              </div>
+
+
+              <span class="admin-panel-heading-icon">
+                <i class="bi bi-pie-chart"></i>
+              </span>
+
+            </div>
+
+
+            <div class="admin-report-chart">
+              <canvas id="report-category-chart"></canvas>
+            </div>
+
+          </article>
+
+        </section>
+
+
+        <section class="panel admin-panel">
+
+          <div class="admin-panel-heading">
+
+            <div>
+              <p class="admin-panel-kicker">
+                Product analytics
+              </p>
+
+              <h2>
+                Product performance
+              </h2>
+
+              <p>
+                Compare quantity sold and revenue generated by individual products.
+              </p>
+            </div>
+
+
+            <span class="admin-panel-heading-icon">
+              <i class="bi bi-trophy"></i>
+            </span>
+
+          </div>
+
+
+          <div class="table-wrap admin-table-wrap">
+
+            <table class="admin-table admin-report-products-table">
+
+              <caption class="visually-hidden">
+                Product sales performance
+              </caption>
+
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Qty sold</th>
+                  <th>Revenue</th>
+                </tr>
+              </thead>
+
+              <tbody
+                id="report-products"
+                aria-live="polite"
+              ></tbody>
+
+            </table>
+
+          </div>
+
+        </section>
+
+      </main>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="toast-region"
+    class="toast-region"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <script
+    type="module"
+    src="/assets/js/portal.js"
+  ></script>
+
+</body>
+</html>
