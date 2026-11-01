@@ -4,6 +4,7 @@ import argparse
 import os
 import shutil
 import sys
+import tempfile
 from pathlib import Path
 import tomllib
 
@@ -20,7 +21,25 @@ def build(output: Path) -> int:
     if output == ROOT or (ROOT in output.parents and output != ROOT / "dist"):
         raise ValueError("Choose a dedicated empty output directory, such as dist.")
     if output.exists() and any(output.iterdir()):
-        raise FileExistsError(f"Output directory is not empty: {output}")
+        if output != ROOT / "dist":
+            raise FileExistsError(f"Output directory is not empty: {output}")
+
+        with tempfile.TemporaryDirectory(
+            prefix=".nbj-dist-build-",
+            dir=ROOT.parent
+        ) as temporary_directory:
+            staged_output = Path(temporary_directory) / "dist"
+            count = _export(staged_output)
+            if output.is_symlink() or not output.is_dir():
+                raise ValueError(f"Refusing to replace non-directory build output: {output}")
+            shutil.rmtree(output)
+            os.replace(staged_output, output)
+            return count
+
+    return _export(output)
+
+
+def _export(output: Path) -> int:
     public_config(ROOT)
 
     files = list(ROOT.glob("*.html"))
@@ -45,6 +64,7 @@ def build(output: Path) -> int:
         if os.environ.get(name) or configured_environment.get(name)
     }
     config_path = output / "assets/js/config.js"
+    config_path.parent.mkdir(parents=True, exist_ok=True)
     config_path.write_bytes(
         render_public_config(ROOT, public_environment)
     )

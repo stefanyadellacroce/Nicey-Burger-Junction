@@ -106,6 +106,26 @@ class ConfigTests(unittest.TestCase):
                 "https://leafy-valkyrie-c0f0a0.netlify.app",
             )
 
+    def test_netlify_build_replaces_existing_dist_with_fresh_output(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "project"
+            (root / "assets/js").mkdir(parents=True)
+            (root / "dist").mkdir()
+            (root / "index.html").write_text("<html>Fresh build</html>", encoding="utf-8")
+            (root / "netlify.toml").write_text(
+                '[build]\ncommand = "python tools/build_site.py"\n'
+                'publish = "dist"\n',
+                encoding="utf-8",
+            )
+            (root / "dist/stale-file.txt").write_text("stale", encoding="utf-8")
+
+            with patch("tools.build_site.ROOT", root):
+                build(root / "dist")
+
+            self.assertTrue((root / "dist/index.html").is_file())
+            self.assertFalse((root / "dist/stale-file.txt").exists())
+            self.assertTrue((root / "dist/assets/js/config.js").is_file())
+
 
 if __name__ == "__main__":
     unittest.main()
