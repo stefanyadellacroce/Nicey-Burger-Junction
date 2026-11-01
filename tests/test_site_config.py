@@ -84,6 +84,28 @@ class ConfigTests(unittest.TestCase):
             self.assertEqual(config_json["SUPABASE_URL"], "")
             self.assertEqual(config_json["SUPABASE_ANON_KEY"], "")
 
+    def test_static_export_uses_netlify_public_config_when_environment_is_empty(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "site"
+            with patch.dict("os.environ", {}, clear=True):
+                build(output)
+
+            generated_config = (output / "assets/js/config.js").read_bytes()
+            prefix = b"window.NBJ_ENV = Object.freeze("
+            self.assertTrue(generated_config.startswith(prefix))
+            config_json = json.loads(generated_config[len(prefix):-3])
+            self.assertEqual(
+                config_json["SUPABASE_URL"],
+                "https://wcqohzdsrvqiqlopwbdr.supabase.co",
+            )
+            self.assertTrue(
+                config_json["SUPABASE_ANON_KEY"].startswith("sb_publishable_")
+            )
+            self.assertEqual(
+                config_json["SITE_URL"],
+                "https://leafy-valkyrie-c0f0a0.netlify.app",
+            )
+
 
 if __name__ == "__main__":
     unittest.main()
