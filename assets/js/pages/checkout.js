@@ -58,8 +58,22 @@ function updatePaymentOptions(methods, cart, zones, settings) {
     select.append(el('option', { value: method.code, text: method.name }));
   }
   if ([...select.options].some(option => option.value === previous)) select.value = previous;
+  updatePaymentInstructions(methods);
   document.getElementById('delivery-fields').hidden = fulfillment !== 'DELIVERY';
   renderEstimate(cart, zones, settings);
+}
+
+function updatePaymentInstructions(methods) {
+  const select = document.getElementById('payment_method');
+  const instructions = document.getElementById('payment-method-instructions');
+  const method = methods.find(item => item.code === select.value);
+
+  instructions.hidden = !method?.instructions;
+  instructions.textContent = method
+    ? `${method.instructions || ''}${method.requires_proof
+      ? ' After placing your order, upload your transfer receipt and reference for staff verification.'
+      : ''}`
+    : '';
 }
 
 function orderPayload(form, profile, cart, zones, settings) {
@@ -196,6 +210,9 @@ export async function init() {
     canOrder ? undefined : 'warning');
   };
   fulfillmentInputs.forEach(input => input.addEventListener('change', refreshAvailability));
+  document.getElementById('payment_method').addEventListener('change', () => {
+    updatePaymentInstructions(methods);
+  });
   refreshAvailability();
 
   // Reuse the key on retry: a timeout may occur after the order was saved.

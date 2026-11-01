@@ -6,8 +6,22 @@ let supabase;
 let methods = [];
 let zones = [];
 
-function cell(value) {
-  return el('td', { text: String(value ?? '—') });
+const SAMPLE_PAYMENT_INSTRUCTIONS = [
+  'Send payment using the merchant details configured by the restaurant, then upload proof and reference.',
+  'Transfer to the configured business account, then upload proof and reference.'
+];
+
+function paymentInstructionsWithoutExamples(value) {
+  return SAMPLE_PAYMENT_INSTRUCTIONS
+    .reduce((instructions, sample) => instructions.split(sample).join(''), String(value || ''))
+    .trim();
+}
+
+function cell(label, value) {
+  return el('td', {
+    'data-label': label,
+    text: String(value ?? '—')
+  });
 }
 
 function editButton(label, onClick) {
@@ -21,26 +35,43 @@ function editButton(label, onClick) {
 
 function renderMethods() {
   const body = document.getElementById('payment-methods-body');
-  replaceChildren(body, methods.map(method => el('tr', {}, [
-    cell(method.name),
-    cell(method.code),
-    cell(method.instructions || '—'),
-    cell(method.active ? 'Active' : 'Inactive'),
-    el('td', {}, editButton('Edit', () => openPayment(method)))
-  ])));
+  replaceChildren(body, methods.length
+    ? methods.map(method => el('tr', {}, [
+      cell('Method', method.name),
+      cell('Type', method.method_type === 'CASH'
+        ? 'Cash'
+        : method.method_type === 'EXTERNAL_GATEWAY'
+          ? 'Online gateway'
+          : 'Manual online transfer'),
+      cell('Instructions', method.instructions || '—'),
+      cell('Proof', method.requires_proof ? 'Customer receipt required' : 'Not required'),
+      cell('Status', method.active ? 'Active' : 'Inactive'),
+      el('td', { 'data-label': 'Action' }, editButton('Edit', () => openPayment(method)))
+    ]))
+    : [el('tr', {}, el('td', {
+      colspan: '6',
+      className: 'commerce-setup-empty',
+      text: 'No payment methods are configured.'
+    }))]);
 }
 
 function renderZones() {
   const body = document.getElementById('delivery-zones-body');
-  replaceChildren(body, zones.map(zone => el('tr', {}, [
-    cell(zone.name),
-    cell((zone.areas || []).join(', ')),
-    cell(money(zone.delivery_fee)),
-    cell(money(zone.minimum_order)),
-    cell(`${zone.estimated_minutes} min`),
-    cell(zone.active ? 'Active' : 'Inactive'),
-    el('td', {}, editButton('Edit', () => openZone(zone)))
-  ])));
+  replaceChildren(body, zones.length
+    ? zones.map(zone => el('tr', {}, [
+      cell('Zone', zone.name),
+      cell('Areas', (zone.areas || []).join(', ')),
+      cell('Fee', money(zone.delivery_fee)),
+      cell('Minimum', money(zone.minimum_order)),
+      cell('Estimate', `${zone.estimated_minutes} min`),
+      cell('Status', zone.active ? 'Active' : 'Inactive'),
+      el('td', { 'data-label': 'Action' }, editButton('Edit', () => openZone(zone)))
+    ]))
+    : [el('tr', {}, el('td', {
+      colspan: '7',
+      className: 'commerce-setup-empty',
+      text: 'No delivery zones are configured. Add a real service area before enabling delivery.'
+    }))]);
 }
 
 async function load() {
@@ -61,9 +92,11 @@ function openPayment(method) {
   const form = document.getElementById('payment-form');
   form.reset();
   form.dataset.id = method.id;
-  document.getElementById('payment-dialog-title').textContent = `Edit ${method.name}`;
+  document.getElementById('payment-dialog-title').textContent =
+    `Edit ${method.name}${['MANUAL_DIGITAL', 'BANK_TRANSFER'].includes(method.method_type) ? ' online transfer' : ''}`;
   form.elements.namedItem('name').value = method.name;
-  form.elements.namedItem('instructions').value = method.instructions || '';
+  form.elements.namedItem('instructions').value =
+    paymentInstructionsWithoutExamples(method.instructions);
   form.elements.namedItem('sort_order').value = method.sort_order;
   form.elements.namedItem('requires_proof').checked =
     ['MANUAL_DIGITAL', 'BANK_TRANSFER'].includes(method.method_type);
@@ -94,12 +127,14 @@ async function savePayment(event) {
   if (button.disabled || !form.reportValidity()) return;
   const method = methods.find(row => row.id === form.dataset.id);
   if (!method) return;
-  const instructions = form.elements.namedItem('instructions').value.trim();
+  const instructions = paymentInstructionsWithoutExamples(
+    form.elements.namedItem('instructions').value
+  );
   const active = form.elements.namedItem('active').checked;
   const manualPayment = ['MANUAL_DIGITAL', 'BANK_TRANSFER'].includes(method.method_type);
   if (active && manualPayment &&
       (instructions.length < 15 || /configured by the restaurant|configured business account/i.test(instructions))) {
-    notify('Enter the actual recipient or bank details before enabling this method.', 'danger');
+    notify('Add the recipient name and account number to the instructions before enabling this method.', 'danger');
     return;
   }
   const payload = {

@@ -22,7 +22,7 @@
     <div class="portal-main">
       <header id="portal-topbar" class="portal-topbar"></header>
       <script src="/assets/js/components/portal-shell-bootstrap.js"></script>
-      <main id="main-content" class="portal-content admin-page">
+      <main id="main-content" class="portal-content admin-page commerce-setup-page">
         <section class="admin-page-heading">
           <div class="admin-page-heading-copy">
             <div class="admin-heading-icon"><i class="bi bi-sliders"></i></div>
@@ -40,12 +40,13 @@
             <div>
               <p class="admin-panel-kicker">Checkout</p>
               <h2>Payment methods</h2>
-              <p>Customers see these instructions after ordering. Enable digital methods only after adding the real recipient details.</p>
+              <p>GCash and Maya are available as manual online transfers. Add the real recipient details and enable a method here before it appears at checkout. Customers can review instructions at checkout, submit a receipt after ordering, and staff can verify it in Payments.</p>
             </div>
           </div>
           <div class="table-wrap admin-table-wrap">
-            <table class="admin-table">
-              <thead><tr><th>Method</th><th>Code</th><th>Instructions</th><th>Status</th><th>Action</th></tr></thead>
+            <table class="admin-table commerce-setup-table payment-methods-table">
+              <caption class="visually-hidden">Configured payment methods</caption>
+              <thead><tr><th scope="col">Method</th><th scope="col">Type</th><th scope="col">Instructions</th><th scope="col">Proof</th><th scope="col">Status</th><th scope="col">Action</th></tr></thead>
               <tbody id="payment-methods-body"></tbody>
             </table>
           </div>
@@ -61,8 +62,9 @@
             <button id="add-zone" class="btn-nbj" type="button"><i class="bi bi-plus-lg"></i> Add zone</button>
           </div>
           <div class="table-wrap admin-table-wrap">
-            <table class="admin-table">
-              <thead><tr><th>Zone</th><th>Areas</th><th>Fee</th><th>Minimum</th><th>Estimate</th><th>Status</th><th>Action</th></tr></thead>
+            <table class="admin-table commerce-setup-table delivery-zones-table">
+              <caption class="visually-hidden">Configured delivery zones</caption>
+              <thead><tr><th scope="col">Zone</th><th scope="col">Areas</th><th scope="col">Fee</th><th scope="col">Minimum</th><th scope="col">Estimate</th><th scope="col">Status</th><th scope="col">Action</th></tr></thead>
               <tbody id="delivery-zones-body"></tbody>
             </table>
           </div>
@@ -74,7 +76,7 @@
             <div class="admin-dialog-heading"><div><p class="admin-panel-kicker">Checkout</p><h2 id="payment-dialog-title">Edit payment method</h2></div></div>
             <form id="payment-form" class="stack admin-crud-form">
               <label>Name <input name="name" class="form-control" required maxlength="100"></label>
-              <label>Instructions shown to customer <textarea name="instructions" class="form-control" rows="5"></textarea></label>
+              <label>Instructions shown to customer <textarea name="instructions" class="form-control" rows="5" placeholder="Recipient name:&#10;Account number:&#10;Tell customers to upload their receipt after sending payment."></textarea></label>
               <label>Sort order <input name="sort_order" class="form-control" type="number" step="1" min="0" required></label>
               <label class="form-check"><input name="requires_proof" class="form-check-input" type="checkbox"> Require payment proof</label>
               <label class="form-check"><input name="active" class="form-check-input" type="checkbox"> Available at checkout</label>

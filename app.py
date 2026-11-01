@@ -103,6 +103,12 @@ class SiteHandler(SimpleHTTPRequestHandler):
     def end_headers(self):
         self.send_header("X-Content-Type-Options", "nosniff")
         self.send_header("Referrer-Policy", "strict-origin-when-cross-origin")
+        request_path = urlsplit(self.path).path
+        if (
+            Path(request_path).suffix.lower() in {".html", ".js", ".css"}
+            and request_path != "/assets/js/config.js"
+        ):
+            self.send_header("Cache-Control", "no-cache")
         super().end_headers()
 
 

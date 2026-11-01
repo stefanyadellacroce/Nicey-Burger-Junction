@@ -5,6 +5,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from site_config import public_config
 from tools.build_site import build
@@ -47,6 +48,41 @@ class ConfigTests(unittest.TestCase):
             self.assertFalse((output / ".env.local").exists())
             self.assertFalse((output / "app.py").exists())
             self.assertIn(b"SUPABASE_URL", (output / "assets/js/config.js").read_bytes())
+            headers = (output / "_headers").read_text(encoding="utf-8")
+            self.assertIn("/assets/js/*\n  Cache-Control: no-cache", headers)
+            self.assertIn("/assets/css/*\n  Cache-Control: no-cache", headers)
+            self.assertIn("/admin/*.html\n  Cache-Control: no-cache", headers)
+
+    def test_static_export_allows_design_only_configuration(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "site"
+            config = {
+                "SUPABASE_URL": "",
+                "SUPABASE_ANON_KEY": "",
+                "SITE_URL": "",
+                "CURRENCY": "PHP",
+                "CURRENCY_LOCALE": "en-PH",
+                "DEBUG": False,
+            }
+            with patch(
+                "site_config.public_config",
+                return_value=config,
+            ), patch(
+                "tools.build_site.public_config",
+                return_value=config,
+            ):
+                count = build(output)
+
+            self.assertGreater(count, 50)
+            self.assertTrue((output / "index.html").is_file())
+            generated_config = (
+                output / "assets/js/config.js"
+            ).read_bytes()
+            prefix = b"window.NBJ_ENV = Object.freeze("
+            self.assertTrue(generated_config.startswith(prefix))
+            config_json = json.loads(generated_config[len(prefix):-3])
+            self.assertEqual(config_json["SUPABASE_URL"], "")
+            self.assertEqual(config_json["SUPABASE_ANON_KEY"], "")
 
 
 if __name__ == "__main__":

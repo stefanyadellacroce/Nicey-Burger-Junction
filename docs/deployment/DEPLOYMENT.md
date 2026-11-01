@@ -1,13 +1,37 @@
 # Deployment
 
-1. Set `NBJ_SUPABASE_URL` and a browser-safe `NBJ_SUPABASE_PUBLISHABLE_KEY` in the build environment (or `.env.local` for local builds). Optionally set `NBJ_SITE_URL`, `NBJ_CURRENCY`, and `NBJ_CURRENCY_LOCALE`. Never put a service-role key in browser configuration.
-2. Run `python tools/build_site.py`. Publish **only** the generated `dist/` directory to a static HTTPS host. The output contains HTML and browser assets, including generated `assets/js/config.js`; source files, local environment, migrations, and tools are excluded. Start with an empty `dist/` for each build.
-3. Set Supabase Auth Site URL to the production HTTPS origin and allow the required confirmation/reset redirects. Configure `404.html` on the host.
-4. Back up an existing database. Apply migrations `001` through `016` in order on a fresh project, or only unapplied versions on an existing project. Seed **only** a fresh development project. Check `supabase migration list --linked` before future pushes. Run `tests/permission_checks.sql` after migrating.
-5. Deploy `supabase/functions/` Edge Functions. Set `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, and any function-specific secrets in Supabase Function secrets. Test those functions with role-specific accounts.
-6. Verify private Storage policies, Realtime publication, and payment-proof access. Configure HTTPS and host security headers, including CSP, Referrer-Policy, Permissions-Policy, and X-Content-Type-Options.
-7. In `/admin/settings.html`, set the actual contact details, seven-day hours, timezone, preparation/delivery estimates, fees, and ordering controls. Check the explicit business confirmation and save. In `/admin/commerce-setup.html`, set actual payment instructions and delivery zones, then enable them and delivery if offered.
-8. Run the [workflow checklist](../testing/TESTING.md) with CUSTOMER, STAFF, and ADMIN accounts before accepting customer orders.
+## Deploy the frontend with Netlify
+
+1. Create or select the production Supabase project and copy its Project URL and publishable key. Do not use the service-role key as a frontend value.
+2. In Netlify, choose **Add new site > Import an existing project**, connect this Git repository, and select the production branch. `netlify.toml` configures the build command (`python tools/build_site.py`) and publish directory (`dist`). The build also emits a Netlify `_headers` file so baseline headers are applied when publishing the generated folder directly.
+3. In the Netlify site, open **Site configuration > Environment variables** and set:
+   - `NBJ_SUPABASE_URL` to the Supabase Project URL.
+   - `NBJ_SUPABASE_PUBLISHABLE_KEY` to the browser-safe publishable key.
+   - `NBJ_SITE_URL` to the final HTTPS site origin, such as `https://your-site.netlify.app` or your custom domain.
+   - Optionally, `NBJ_CURRENCY` and `NBJ_CURRENCY_LOCALE`.
+4. Trigger a new deploy. Netlify builds and publishes only `dist/`; the generated `assets/js/config.js` contains the public browser configuration. To deploy manually, run the build locally and upload only the contents of `dist/`. Do not add `SUPABASE_SERVICE_ROLE_KEY` to Netlify build variables.
+5. In Supabase **Authentication > URL Configuration**, set the Site URL to the exact Netlify/custom-domain HTTPS origin. Add that origin and the app's confirmation/reset callback URLs to the allowed redirect URLs. Configure your custom domain and HTTPS in Netlify if using one.
+
+## Configure the Supabase backend
+
+1. Back up an existing database. On a new project, apply migrations `001` through `017` in order. On an existing project, inspect `supabase migration list --linked` and apply only verified unapplied migrations; reconcile migration history before pushing if migrations were previously applied outside the CLI. Do not seed a live business project. Run `tests/permission_checks.sql` after migrating.
+2. From a trusted local terminal with the Supabase CLI installed and authenticated, link the project and deploy the functions:
+
+   ```powershell
+   npx supabase login
+   npx supabase link --project-ref YOUR_PROJECT_REF
+   npx supabase functions deploy admin-users
+   npx supabase functions deploy ml-sync
+   ```
+
+3. Set `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` as Supabase Edge Function secrets (not frontend or Netlify build variables). Add any function-specific secrets required by the function implementation. Test both functions with role-appropriate accounts.
+4. Verify private Storage policies, Realtime publication, and payment-proof access. Netlify provides HTTPS; the Netlify build configuration and generated `_headers` set baseline `Referrer-Policy`, `Permissions-Policy`, and `X-Content-Type-Options` headers.
+
+## Finish business setup and verify
+
+1. In `/admin/settings.html`, enter the real contact details, seven-day hours, timezone, preparation/delivery estimates, fees, and ordering controls. Check the explicit business confirmation and save.
+2. In `/admin/commerce-setup.html`, set the actual payment instructions and delivery zones, then enable them and delivery if offered. Review catalog, prices, and opening stock.
+3. Run the [workflow checklist](../testing/TESTING.md) with CUSTOMER, STAFF, and ADMIN accounts on a separate test project before accepting customer orders.
 
 ## Backup and recovery
 

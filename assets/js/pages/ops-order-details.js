@@ -4,13 +4,9 @@ import {
 
 import {
     getOrder,
-    subscribeToMyOrder,
-    cancelMyOrder
+    updateOrderStatus,
+    subscribeToMyOrder
 } from '../services/orders.js';
-
-import {
-    addToCart
-} from '../services/cart.js';
 
 import {
     el,
@@ -18,8 +14,8 @@ import {
 } from '../core/dom.js';
 
 import {
-    money,
     formatDate,
+    money,
     notify,
     parseQuery,
     setBusy
@@ -38,19 +34,13 @@ const ORDER_STEPS = [
 
 let orderId = null;
 
-let renderRunning = false;
-
-let renderQueued = false;
-
 
 function setText(
     id,
     value
 ) {
     const node =
-        document.getElementById(
-            id
-        );
+        document.getElementById(id);
 
 
     if (node) {
@@ -60,18 +50,75 @@ function setText(
 }
 
 
-function renderItems(
-    order
+function renderDetails(
+    targetId,
+    rows,
+    emptyMessage
 ) {
-    const container =
-        document.getElementById(
-            'order-items'
+    const target =
+        document.getElementById(targetId);
+
+
+    if (!target) {
+        return;
+    }
+
+
+    const entries =
+        rows.filter(
+            ([, value]) =>
+                value !== null &&
+                value !== undefined &&
+                String(value).trim() !== ''
         );
 
 
-    if (!container) {
+    if (!entries.length) {
+        replaceChildren(
+            target,
+            el(
+                'p',
+                {
+                    className: 'muted',
+                    text: emptyMessage
+                }
+            )
+        );
+
         return;
     }
+
+
+    replaceChildren(
+        target,
+        entries.map(
+            ([label, value]) =>
+                el(
+                    'p',
+                    {
+                        className: 'summary-row'
+                    },
+                    [
+                        el('strong', {
+                            text: label
+                        }),
+                        el('span', {
+                            text: String(value)
+                        })
+                    ]
+                )
+        )
+    );
+}
+
+
+function renderItems(
+    order
+) {
+    const target =
+        document.getElementById(
+            'detail-items'
+        );
 
 
     const items =
@@ -80,19 +127,14 @@ function renderItems(
 
     if (!items.length) {
         replaceChildren(
-            container,
-            [
-                el(
-                    'div',
-                    {
-                        className:
-                            'empty-state',
-
-                        text:
-                            'No order items found.'
-                    }
-                )
-            ]
+            target,
+            el(
+                'p',
+                {
+                    className: 'muted',
+                    text: 'No order items found.'
+                }
+            )
         );
 
         return;
@@ -100,45 +142,37 @@ function renderItems(
 
 
     replaceChildren(
-        container,
+        target,
         items.map(
-            item =>
-                el(
+            item => {
+                const description = [
+                    `${item.quantity}× ${item.product_name || 'Item'}`,
+                    item.variant_name
+                        ? `Variant: ${item.variant_name}`
+                        : '',
+                    item.instructions
+                        ? `Note: ${item.instructions}`
+                        : ''
+                ]
+                    .filter(Boolean)
+                    .join(' · ');
+
+
+                return el(
                     'div',
                     {
-                        className:
-                            'summary-row'
+                        className: 'summary-row'
                     },
                     [
-                        el(
-                            'span',
-                            {
-                                text:
-                                    `${item.quantity}× ${
-                                        item.product_name
-                                        ||
-                                        'Item'
-                                    }${
-                                        item.variant_name
-                                            ? ` (${item.variant_name})`
-                                            : ''
-                                    }`
-                            }
-                        ),
-
-                        el(
-                            'span',
-                            {
-                                text:
-                                    money(
-                                        item.line_total
-                                        ||
-                                        0
-                                    )
-                            }
-                        )
+                        el('span', {
+                            text: description
+                        }),
+                        el('strong', {
+                            text: money(item.line_total || 0)
+                        })
                     ]
-                )
+                );
+            }
         )
     );
 }
@@ -147,68 +181,41 @@ function renderItems(
 function renderTimeline(
     order
 ) {
-    const container =
+    const target =
         document.getElementById(
-            'order-timeline'
+            'detail-history'
         );
 
 
-    if (!container) {
-        return;
-    }
-
-
-    if (
-        order.status ===
-        'CANCELLED'
-    ) {
+    if (order.status === 'CANCELLED') {
         replaceChildren(
-            container,
-            [
-                el(
-                    'div',
-                    {
-                        className:
-                            'status-step current'
-                    },
-                    [
-                        el(
-                            'span',
-                            {
-                                className:
-                                    'status-dot'
-                            }
-                        ),
-
-                        el(
-                            'div',
-                            {},
-                            [
-                                el(
-                                    'strong',
-                                    {
-                                        text:
-                                            'Cancelled'
-                                    }
-                                ),
-
-                                el(
-                                    'p',
-                                    {
-                                        className:
-                                            'muted',
-
-                                        text:
-                                            order.cancellation_reason
-                                            ||
-                                            ''
-                                    }
-                                )
-                            ]
-                        )
-                    ]
-                )
-            ]
+            target,
+            el(
+                'div',
+                {
+                    className: 'status-step current'
+                },
+                [
+                    el('span', {
+                        className: 'status-dot'
+                    }),
+                    el(
+                        'div',
+                        {},
+                        [
+                            el('strong', {
+                                text: 'Cancelled'
+                            }),
+                            el('p', {
+                                className: 'muted',
+                                text:
+                                    order.cancellation_reason
+                                    || ''
+                            })
+                        ]
+                    )
+                ]
+            )
         );
 
         return;
@@ -216,20 +223,16 @@ function renderTimeline(
 
 
     const steps =
-        order.fulfillment_type ===
-        'PICKUP'
+        order.fulfillment_type === 'PICKUP'
             ? ORDER_STEPS.filter(
                 status =>
-                    status !==
-                    'OUT_FOR_DELIVERY'
+                    status !== 'OUT_FOR_DELIVERY'
             )
             : ORDER_STEPS;
 
 
     const currentIndex =
-        steps.indexOf(
-            order.status
-        );
+        steps.indexOf(order.status);
 
 
     const history =
@@ -237,85 +240,49 @@ function renderTimeline(
 
 
     replaceChildren(
-        container,
+        target,
         steps.map(
-            (
-                status,
-                index
-            ) => {
-                const historyEntry =
+            (status, index) => {
+                const entry =
                     history.find(
-                        entry =>
-                            entry.new_status ===
-                            status
+                        item =>
+                            item.new_status === status
                     );
 
 
-                let stateClass =
-                    '';
-
-
-                if (
-                    currentIndex >= 0
-                    &&
+                const state =
+                    currentIndex >= 0 &&
                     index < currentIndex
-                ) {
-                    stateClass =
-                        'done';
-
-                } else if (
-                    index ===
-                    currentIndex
-                ) {
-                    stateClass =
-                        'current';
-                }
+                        ? 'done'
+                        : index === currentIndex
+                            ? 'current'
+                            : '';
 
 
                 return el(
                     'div',
                     {
-                        className:
-                            `status-step ${stateClass}`
+                        className: `status-step ${state}`
                     },
                     [
-                        el(
-                            'span',
-                            {
-                                className:
-                                    'status-dot'
-                            }
-                        ),
-
+                        el('span', {
+                            className: 'status-dot'
+                        }),
                         el(
                             'div',
                             {},
                             [
-                                el(
-                                    'strong',
-                                    {
-                                        text:
-                                            status.replaceAll(
-                                                '_',
-                                                ' '
-                                            )
-                                    }
-                                ),
-
-                                el(
-                                    'small',
-                                    {
-                                        className:
-                                            'd-block muted',
-
-                                        text:
-                                            historyEntry
-                                                ? formatDate(
-                                                    historyEntry.created_at
-                                                )
-                                                : ''
-                                    }
-                                )
+                                el('strong', {
+                                    text:
+                                        status.replaceAll('_', ' ')
+                                }),
+                                el('small', {
+                                    className: 'd-block muted',
+                                    text:
+                                        entry
+                                            ? formatDate(entry.created_at)
+                                            : ''
+                                })
                             ]
                         )
                     ]
@@ -326,35 +293,117 @@ function renderTimeline(
 }
 
 
-function configureCancel(
+function nextStatus(
     order
 ) {
-    const button =
+    const next = {
+        PENDING: 'CONFIRMED',
+        CONFIRMED: 'PREPARING',
+        PREPARING: 'READY',
+        READY:
+            order.fulfillment_type === 'DELIVERY'
+                ? 'OUT_FOR_DELIVERY'
+                : 'COMPLETED',
+        OUT_FOR_DELIVERY: 'COMPLETED'
+    };
+
+
+    return next[order.status] || null;
+}
+
+
+function configureActions(
+    order
+) {
+    const advanceButton =
         document.getElementById(
-            'cancel-order'
+            'detail-next-status'
         );
 
 
-    if (!button) {
-        return;
-    }
+    const cancelButton =
+        document.getElementById(
+            'detail-cancel'
+        );
 
 
-    button.hidden =
-        ![
-            'PENDING',
-            'CONFIRMED'
-        ]
-            .includes(
-                order.status
+    const next =
+        nextStatus(order);
+
+
+    advanceButton.hidden =
+        !next;
+
+
+    advanceButton.textContent =
+        next
+            ? `Advance to ${next.replaceAll('_', ' ')}`
+            : 'Advance status';
+
+
+    advanceButton.onclick =
+        async () => {
+            if (!next || advanceButton.disabled) {
+                return;
+            }
+
+
+            setBusy(
+                advanceButton,
+                true,
+                'Updating…'
             );
 
 
-    button.onclick =
+            try {
+                await updateOrderStatus(
+                    order.id,
+                    next
+                );
+
+
+                notify(
+                    `Order ${order.order_number || ''} updated.`,
+                    'success'
+                );
+
+
+                await renderOrder();
+
+            } catch (error) {
+                console.error(
+                    'Order status update error:',
+                    error
+                );
+
+                notify(
+                    error?.message
+                    || 'Unable to update the order status.',
+                    'danger'
+                );
+
+            } finally {
+                setBusy(
+                    advanceButton,
+                    false
+                );
+            }
+        };
+
+
+    cancelButton.hidden =
+        ![
+            'PENDING',
+            'CONFIRMED',
+            'PREPARING',
+            'READY',
+            'OUT_FOR_DELIVERY'
+        ].includes(order.status);
+
+
+    cancelButton.onclick =
         async () => {
-            if (
-                button.disabled
-            ) {
+            if (cancelButton.disabled) {
                 return;
             }
 
@@ -363,9 +412,7 @@ function configureCancel(
                 String(
                     window.prompt(
                         'Why are you cancelling this order?'
-                    )
-                    ||
-                    ''
+                    ) || ''
                 ).trim();
 
 
@@ -375,15 +422,16 @@ function configureCancel(
 
 
             setBusy(
-                button,
+                cancelButton,
                 true,
                 'Cancelling…'
             );
 
 
             try {
-                await cancelMyOrder(
+                await updateOrderStatus(
                     order.id,
+                    'CANCELLED',
                     reason
                 );
 
@@ -394,25 +442,23 @@ function configureCancel(
                 );
 
 
-                await requestRender();
+                await renderOrder();
 
             } catch (error) {
                 console.error(
-                    'Cancel order error:',
+                    'Order cancellation error:',
                     error
                 );
 
-
                 notify(
                     error?.message
-                    ||
-                    'Unable to cancel this order.',
+                    || 'Unable to cancel the order.',
                     'danger'
                 );
 
             } finally {
                 setBusy(
-                    button,
+                    cancelButton,
                     false
                 );
             }
@@ -420,177 +466,9 @@ function configureCancel(
 }
 
 
-function configureReorder(
-    order
-) {
-    const button =
-        document.getElementById(
-            'reorder'
-        );
-
-
-    if (!button) {
-        return;
-    }
-
-
-    const reorderableItems =
-        (
-            order.items || []
-        )
-            .filter(
-                item =>
-                    item.product_id
-            );
-
-
-    button.disabled =
-        !reorderableItems.length;
-
-
-    button.onclick =
-        async () => {
-            if (
-                button.disabled
-            ) {
-                return;
-            }
-
-
-            setBusy(
-                button,
-                true,
-                'Adding…'
-            );
-
-
-            try {
-                let added =
-                    0;
-
-
-                let skipped =
-                    0;
-
-
-                for (
-                    const item
-                    of reorderableItems
-                ) {
-                    try {
-                        await addToCart({
-                            product_id:
-                                item.product_id,
-
-                            variant_id:
-                                item.variant_id
-                                ||
-                                null,
-
-                            addon_ids:
-                                (
-                                    item.addons || []
-                                )
-                                    .map(
-                                        addon =>
-                                            addon.addon_id
-                                    )
-                                    .filter(Boolean),
-
-                            quantity:
-                                Number(
-                                    item.quantity
-                                    ||
-                                    1
-                                ),
-
-                            instructions:
-                                item.instructions
-                                ||
-                                '',
-
-                            removed_ingredients:
-                                item.removed_ingredients
-                                ||
-                                []
-                        });
-
-
-                        added += 1;
-
-                    } catch (error) {
-                        console.warn(
-                            'Reorder item skipped:',
-                            error
-                        );
-
-
-                        skipped += 1;
-                    }
-                }
-
-
-                if (!added) {
-                    throw new Error(
-                        'None of the items from this order are currently available.'
-                    );
-                }
-
-
-                if (skipped) {
-                    notify(
-                        `${added} item type${
-                            added === 1
-                                ? ''
-                                : 's'
-                        } added to your cart. ${skipped} unavailable item type${
-                            skipped === 1
-                                ? ' was'
-                                : 's were'
-                        } skipped.`,
-                        'warning'
-                    );
-
-                } else {
-                    notify(
-                        'Order items added to your cart.',
-                        'success'
-                    );
-                }
-
-
-                window.location.href =
-                    '/customer/cart.html';
-
-            } catch (error) {
-                console.error(
-                    'Reorder error:',
-                    error
-                );
-
-
-                notify(
-                    error?.message
-                    ||
-                    'Unable to add this order to your cart.',
-                    'danger'
-                );
-
-
-                setBusy(
-                    button,
-                    false
-                );
-            }
-        };
-}
-
-
-async function performRender() {
+async function renderOrder() {
     const order =
-        await getOrder(
-            orderId
-        );
+        await getOrder(orderId);
 
 
     if (!order) {
@@ -601,123 +479,104 @@ async function performRender() {
 
 
     setText(
-        'order-number',
-        order.order_number
-        ||
-        '—'
+        'detail-order-number',
+        order.order_number || '—'
     );
 
 
     setText(
-        'order-meta',
+        'detail-order-meta',
         [
-            formatDate(
-                order.created_at
-            ),
-            order.fulfillment_type
+            formatDate(order.created_at),
+            order.fulfillment_type,
+            order.status?.replaceAll('_', ' ')
         ]
             .filter(Boolean)
-            .join(
-                ' · '
-            )
+            .join(' · ')
     );
 
 
     setText(
-        'order-total',
-        money(
-            order.total
-            ||
-            0
-        )
+        'detail-total',
+        money(order.total || 0)
     );
 
 
-    setText(
-        'order-payment',
-        order.payment_status
-        ||
-        '—'
+    renderDetails(
+        'detail-customer',
+        [
+            ['Name', order.customer_name],
+            ['Phone', order.customer_phone],
+            ['Email', order.customer_email]
+        ],
+        'Customer information is unavailable.'
     );
 
 
-    renderItems(
-        order
-    );
+    const address =
+        order.delivery_address || {};
 
 
-    renderTimeline(
-        order
-    );
-
-
-    configureCancel(
-        order
-    );
-
-
-    configureReorder(
-        order
-    );
-}
-
-
-async function requestRender() {
-    if (renderRunning) {
-        renderQueued =
-            true;
-
-        return;
-    }
-
-
-    renderRunning =
-        true;
-
-
-    try {
-        do {
-            renderQueued =
-                false;
-
-
-            await performRender();
-
-        } while (
-            renderQueued
-        );
-
-    } catch (error) {
-        console.error(
-            'Order details refresh error:',
-            error
-        );
-
-
-        notify(
-            error?.message
-            ||
-            'Order details could not be refreshed.',
-            'danger'
-        );
-
-    } finally {
-        renderRunning =
-            false;
-    }
-}
-
-
-export async function init() {
-    const context =
-        await requireAuth({
-            roles: [
-                'CUSTOMER'
+    renderDetails(
+        'detail-address',
+        order.fulfillment_type === 'DELIVERY'
+            ? [
+                ['Recipient', address.recipient_name],
+                ['Phone', address.phone],
+                ['Address', address.address_line1],
+                ['Address details', address.address_line2],
+                ['Barangay', address.barangay],
+                ['City', address.city],
+                ['Province', address.province],
+                ['Postal code', address.postal_code]
             ]
+            : [
+                ['Fulfillment', 'Pickup'],
+                ['Pickup notes', order.pickup_notes]
+            ],
+        order.fulfillment_type === 'DELIVERY'
+            ? 'Delivery address is unavailable.'
+            : 'No pickup notes.'
+    );
+
+
+    const payment =
+        (order.payments || [])[0] || {};
+
+
+    renderDetails(
+        'detail-payment',
+        [
+            ['Status', order.payment_status],
+            ['Method', payment.method?.name || payment.method_name],
+            ['Reference', payment.reference_number || payment.reference]
+        ],
+        'Payment information is unavailable.'
+    );
+
+
+    renderItems(order);
+    renderTimeline(order);
+    configureActions(order);
+}
+
+
+export async function init({
+    kind = 'operations'
+} = {}) {
+    const roles =
+        kind === 'admin'
+            ? ['ADMIN']
+            : ['STAFF', 'MANAGER', 'ADMIN'];
+
+
+    const profile =
+        await requireAuth({
+            roles
         });
 
 
-    if (!context) {
+    if (!profile) {
         return;
     }
 
@@ -732,14 +591,31 @@ export async function init() {
         );
     }
 
+    document.getElementById(
+        'print-receipt'
+    )?.addEventListener(
+        'click',
+        () => window.print()
+    );
 
-    await requestRender();
+    await renderOrder();
 
 
     await subscribeToMyOrder(
         orderId,
         () => {
-            requestRender();
+            renderOrder().catch(error => {
+                console.error(
+                    'Order details refresh error:',
+                    error
+                );
+
+                notify(
+                    error?.message
+                    || 'Order details could not be refreshed.',
+                    'danger'
+                );
+            });
         }
     );
 }

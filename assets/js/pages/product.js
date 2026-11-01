@@ -1079,6 +1079,13 @@ async function configureReviewForm(
     form.hidden =
         false;
 
+    if (location.hash === '#review-form') {
+        form.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
+    }
+
 
     form.addEventListener(
         'submit',

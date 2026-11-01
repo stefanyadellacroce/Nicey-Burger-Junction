@@ -41,6 +41,7 @@ class SiteServerTests(unittest.TestCase):
         for path, expected in (
             ("/", b"<html"),
             ("/admin/ingredients.html", b"<html"),
+            ("/admin/suppliers.html", b"<html"),
             ("/assets/css/main.css", b"@import"),
             ("/assets/css/customer-shopping.css", b"CUSTOMER DASHBOARD"),
         ):
@@ -55,6 +56,13 @@ class SiteServerTests(unittest.TestCase):
         self.assertEqual(status, 200)
         self.assertEqual(body, b"")
         self.assertIn("text/html", headers["content-type"])
+        self.assertEqual(headers["cache-control"], "no-cache")
+
+    def test_javascript_is_revalidated(self):
+        status, headers, body = self.request("/assets/js/components/persistent-navigation.js")
+        self.assertEqual(status, 200)
+        self.assertIn(b"dataset.entity", body)
+        self.assertEqual(headers["cache-control"], "no-cache")
 
     def test_public_config_is_generated_at_request_time(self):
         status, headers, body = self.request("/assets/js/config.js")

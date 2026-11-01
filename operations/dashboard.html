@@ -420,8 +420,12 @@
                 </p>
 
                 <h2>
-                  Order status
+                  How many orders are at each step?
                 </h2>
+
+                <p>
+                  Counts orders waiting for confirmation, being prepared, ready for pickup or delivery, and completed. These are current order counts, not a timeline.
+                </p>
               </div>
 
               <span class="ops-panel-heading-icon">
@@ -433,6 +437,14 @@
 
             <div class="ops-chart-wrap">
               <canvas id="status-chart"></canvas>
+              <div
+                id="status-chart-summary"
+                class="dashboard-status-summary"
+                aria-label="Order counts by status"
+              ></div>
+              <p id="status-chart-empty" class="dashboard-chart-empty" hidden>
+                No orders yet. Order-status counts will appear here.
+              </p>
             </div>
 
           </article>
@@ -448,8 +460,12 @@
                 </p>
 
                 <h2>
-                  Peak order times
+                  When were orders placed?
                 </h2>
+
+                <p>
+                  Counts orders by hour of day in your browser's local time, using up to the latest 200 orders. This helps identify busy hours.
+                </p>
               </div>
 
               <span class="ops-panel-heading-icon">
@@ -461,6 +477,9 @@
 
             <div class="ops-chart-wrap">
               <canvas id="hour-chart"></canvas>
+              <p id="hour-chart-empty" class="dashboard-chart-empty" hidden>
+                No orders yet. Hourly order counts will appear here.
+              </p>
             </div>
 
           </article>

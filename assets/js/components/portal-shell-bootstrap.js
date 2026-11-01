@@ -12,6 +12,7 @@
       ['Kitchen Queue', '/operations/kitchen.html', 'fire'],
       ['Walk-in / POS', '/operations/walk-in.html', 'calculator']
     ]],
+    ['Finance', [['Payments', '/operations/payments.html', 'credit-card']]],
     ['Customers', [['Customers', '/operations/customers.html', 'people']]],
     ['Inventory', [['Inventory', '/operations/inventory.html', 'boxes']]]
   ];
@@ -45,12 +46,13 @@
     ['Marketing', [['Promotions', '/admin/promotions.html', 'tag']]],
     ['Analytics', [
       ['Reports', '/admin/reports.html', 'bar-chart'],
-      ['Machine Learning', '/admin/machine-learning.html', 'cpu']
+      ['Stock & Sales Outlook', '/admin/machine-learning.html', 'cpu']
     ]],
     ['Administration', [
       ['Users', '/admin/users.html', 'person-gear'],
       ['Activity Logs', '/admin/activity-logs.html', 'clock-history'],
-      ['Settings', '/admin/settings.html', 'gear']
+      ['Settings', '/admin/settings.html', 'gear'],
+      ['Payment & Delivery', '/admin/commerce-setup.html', 'sliders']
     ]]
   ];
 

@@ -166,6 +166,8 @@ export function enablePersistentNavigation({ area, onNavigate }) {
       document.title = doc.title;
       document.body.dataset.controller =
         doc.body.dataset.controller || '';
+      document.body.dataset.entity =
+        doc.body.dataset.entity || '';
 
       if (addHistory) {
         history.pushState({}, '', destination.href);

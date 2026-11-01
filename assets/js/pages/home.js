@@ -350,7 +350,7 @@ async function renderPromotions(
                     `starts_at.is.null,starts_at.lte.${now}`
                 )
                 .or(
-                    `ends_at.is.null,ends_at.gt.${now}`
+                    `ends_at.is.null,ends_at.gte.${now}`
                 )
                 .order(
                     'created_at',
@@ -369,12 +369,12 @@ async function renderPromotions(
         }
 
 
+        const promotions = data || [];
+
         replaceChildren(
             container,
-            (
-                data || []
-            )
-                .map(
+            promotions.length
+                ? promotions.map(
                     promotion =>
                         el(
                             'article',
@@ -448,6 +448,36 @@ async function renderPromotions(
                             ]
                         )
                 )
+                : el(
+                    'div',
+                    {
+                        className:
+                            'empty-state panel'
+                    },
+                    [
+                        el(
+                            'i',
+                            {
+                                className:
+                                    'bi bi-tag'
+                            }
+                        ),
+                        el(
+                            'strong',
+                            {
+                                text:
+                                    'No promotions are active right now'
+                            }
+                        ),
+                        el(
+                            'p',
+                            {
+                                text:
+                                    'Check that the promotion is active and its start and end dates include today.'
+                            }
+                        )
+                    ]
+                )
         );
 
     } catch (error) {
@@ -459,7 +489,17 @@ async function renderPromotions(
 
         replaceChildren(
             container,
-            []
+            el(
+                'div',
+                {
+                    className:
+                        'alert alert-warning',
+                    role:
+                        'status',
+                    text:
+                        'Promotions could not be loaded right now. Please try again later.'
+                }
+            )
         );
     }
 }

@@ -201,7 +201,7 @@ export async function getRecommendations(
                 `
                 score,
                 reason,
-                recommended:products(
+                recommended:products!product_recommendations_recommended_product_id_fkey(
                     id,
                     slug,
                     name,

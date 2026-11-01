@@ -548,21 +548,29 @@
                 class="admin-variant-form"
               >
 
-                <input
-                  name="name"
-                  class="form-control"
-                  placeholder="Variant name"
-                  required
-                >
+                <label for="variant-name">
+                  Variant name
+                  <input
+                    id="variant-name"
+                    name="name"
+                    class="form-control"
+                    placeholder="Variant name"
+                    required
+                  >
+                </label>
 
-                <input
-                  name="price_delta"
-                  class="form-control"
-                  type="number"
-                  step="0.01"
-                  placeholder="Price +/−"
-                  required
-                >
+                <label for="variant-price-delta">
+                  Price difference
+                  <input
+                    id="variant-price-delta"
+                    name="price_delta"
+                    class="form-control"
+                    type="number"
+                    step="0.01"
+                    placeholder="Price +/−"
+                    required
+                  >
+                </label>
 
                 <button
                   class="btn-nbj"

@@ -1566,6 +1566,83 @@ i{
   max-height:340px;
 }
 
+.dashboard-chart-empty{
+  display:grid;
+
+  min-height:260px;
+
+  place-items:center;
+
+  margin:0;
+
+  color:
+    var(--nbj-muted,#75665f);
+
+  font-size:.85rem;
+
+  text-align:center;
+}
+
+.dashboard-status-summary{
+  display:grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(135px,1fr));
+
+  gap:.5rem;
+
+  margin-top:.75rem;
+}
+
+.dashboard-status-count{
+  display:grid;
+
+  grid-template-columns:
+    auto minmax(0,1fr) auto;
+
+  align-items:center;
+
+  gap:.45rem;
+
+  padding:.55rem .65rem;
+
+  border:
+    1px solid
+    var(--nbj-border,#eadfd3);
+
+  border-radius:.7rem;
+
+  background:
+    var(--nbj-surface,#fff);
+
+  font-size:.7rem;
+}
+
+.dashboard-status-dot{
+  width:.65rem;
+  height:.65rem;
+
+  border-radius:50%;
+}
+
+.dashboard-status-name{
+  min-width:0;
+
+  color:
+    var(--nbj-muted,#75665f);
+}
+
+.dashboard-status-value{
+  color:
+    var(--nbj-text,#2c211c);
+
+  font-size:.85rem;
+}
+
+.dashboard-chart-empty[hidden]{
+  display:none;
+}
+
 
 /* =========================================================
    DIALOG
@@ -3624,6 +3701,31 @@ button{
   min-width:950px;
 }
 
+.admin-inventory-table th:last-child{
+  width:190px;
+}
+
+.admin-inventory-actions{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  align-items:center;
+  gap:.5rem;
+  min-width:180px;
+}
+
+.admin-inventory-actions .status-pill{
+  grid-column:1 / -1;
+  justify-self:start;
+}
+
+.admin-inventory-actions .btn-nbj{
+  width:100%;
+  min-height:38px;
+  padding:.45rem .55rem;
+  font-size:.72rem;
+  white-space:nowrap;
+}
+
 .admin-expenses-table{
   min-width:900px;
 }
@@ -4290,7 +4392,34 @@ button{
    ========================================================= */
 
 .admin-products-table{
-  min-width:900px;
+  min-width:1080px;
+}
+
+.admin-products-table th:last-child{
+  width:300px;
+}
+
+.admin-product-actions{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:.5rem;
+  min-width:280px;
+}
+
+.admin-product-actions .btn-nbj{
+  width:100%;
+  min-height:38px;
+  padding:.45rem .55rem;
+  font-size:.72rem;
+}
+
+.admin-product-actions .admin-product-action-secondary{
+  color:var(--nbj-primary,#b42318);
+  text-decoration:none;
+}
+
+.admin-product-actions .admin-product-action-secondary:hover{
+  color:#fff;
 }
 
 
@@ -4479,7 +4608,21 @@ textarea,
   gap:.55rem;
 
   align-items:center;
+  align-items:center;
 }
+.admin-variant-form > label{
+  display:grid;
+
+  gap:.35rem;
+
+  color:
+    var(--nbj-text,#2c211c);
+
+  font-size:.72rem;
+
+  font-weight:800;
+}
+
 
 .admin-variant-form
 .btn-nbj{
@@ -4507,6 +4650,114 @@ textarea,
   border-radius:.75rem;
 
   background:#fffaf5;
+}
+
+.commerce-setup-table{
+  table-layout:fixed;
+}
+
+.payment-methods-table{
+  min-width:820px;
+}
+
+.delivery-zones-table{
+  min-width:980px;
+}
+
+.commerce-setup-table th,
+.commerce-setup-table td{
+  overflow-wrap:anywhere;
+}
+
+.commerce-setup-empty{
+  padding:1.5rem!important;
+  color:var(--nbj-muted,#75665f)!important;
+  text-align:center;
+}
+
+@media(max-width:720px){
+  .commerce-setup-page .admin-panel-heading{
+    align-items:stretch;
+    flex-direction:column;
+  }
+
+  .commerce-setup-page .admin-panel-heading > .btn-nbj{
+    align-self:flex-start;
+  }
+
+  .commerce-setup-page .admin-table-wrap{
+    overflow:visible;
+    border:0;
+  }
+
+  .commerce-setup-page .commerce-setup-table,
+  .commerce-setup-page .commerce-setup-table tbody{
+    display:block;
+    width:100%;
+    min-width:0;
+  }
+
+  .commerce-setup-page .commerce-setup-table thead{
+    position:absolute;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    white-space:nowrap;
+    clip-path:inset(50%);
+  }
+
+  .commerce-setup-page .commerce-setup-table tbody{
+    display:grid;
+    gap:.75rem;
+  }
+
+  .commerce-setup-page .commerce-setup-table tbody tr{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:.65rem;
+    padding:.85rem;
+    border:1px solid var(--nbj-border,#eadfd3);
+    border-radius:.85rem;
+    background:#fff;
+  }
+
+  .commerce-setup-page .commerce-setup-table tbody td{
+    display:grid;
+    align-content:start;
+    gap:.25rem;
+    min-width:0;
+    padding:0;
+    border:0;
+    font-size:.78rem;
+  }
+
+  .commerce-setup-page .commerce-setup-table tbody td::before{
+    content:attr(data-label);
+    color:var(--nbj-muted,#75665f);
+    font-size:.63rem;
+    font-weight:900;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+  }
+
+  .commerce-setup-page .commerce-setup-table tbody td[data-label="Action"]{
+    grid-column:1 / -1;
+    justify-items:start;
+    padding-top:.35rem;
+    border-top:1px solid var(--nbj-border,#eadfd3);
+  }
+
+  .commerce-setup-page .commerce-setup-table tbody td[data-label="Action"]::before,
+  .commerce-setup-page .commerce-setup-table tbody td[colspan]::before{
+    content:none;
+  }
+
+  .commerce-setup-page .commerce-setup-table tbody td[colspan]{
+    grid-column:1 / -1;
+    display:block;
+    text-align:center;
+  }
 }
 
 .admin-save-addon-links{

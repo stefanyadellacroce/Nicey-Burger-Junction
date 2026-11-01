@@ -933,7 +933,7 @@
 @media(max-width:768px){
 
   .customer-dashboard-hero{
-    min-height:auto;
+    min-height:420px;
   }
 
   .customer-dashboard-hero-grid{
@@ -3803,4 +3803,3 @@
   }
 
 }
-

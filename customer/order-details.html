@@ -362,6 +362,34 @@
 
         </div>
 
+        <section class="order-details-panel payment-proof-panel mt-3">
+          <div class="order-details-panel-heading">
+            <div class="order-details-panel-title">
+              <span><i class="bi bi-wallet2" aria-hidden="true"></i></span>
+              <div>
+                <p class="eyebrow">Payment</p>
+                <h2>Payment details</h2>
+              </div>
+            </div>
+          </div>
+          <p id="order-payment-note" class="muted"></p>
+          <div id="order-payment-instructions" class="muted payment-instructions" hidden></div>
+          <form id="order-proof-form" class="stack payment-proof-form" hidden>
+            <div class="payment-proof-grid">
+              <div class="field">
+                <label for="order-payment-reference">Transaction reference</label>
+                <input id="order-payment-reference" name="reference" class="form-control" type="text" maxlength="120" autocomplete="off">
+              </div>
+              <div class="field">
+                <label for="order-payment-proof">Payment receipt</label>
+                <input id="order-payment-proof" name="proof" class="form-control" type="file" accept="image/jpeg,image/png,image/webp,application/pdf" required>
+                <small class="payment-field-help">JPG, PNG, WebP or PDF. Maximum 5 MB.</small>
+              </div>
+            </div>
+            <button class="btn-nbj payment-proof-submit" type="submit">Submit payment proof</button>
+          </form>
+        </section>
+
 
         <!-- =====================================
              ORDER ACTIONS

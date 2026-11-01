@@ -19,9 +19,7 @@ def build(output: Path) -> int:
         raise ValueError("Choose a dedicated empty output directory, such as dist.")
     if output.exists() and any(output.iterdir()):
         raise FileExistsError(f"Output directory is not empty: {output}")
-    config = public_config(ROOT)
-    if not config["SUPABASE_URL"] or not config["SUPABASE_ANON_KEY"]:
-        raise ValueError("Set NBJ_SUPABASE_URL and NBJ_SUPABASE_PUBLISHABLE_KEY first.")
+    public_config(ROOT)
 
     files = list(ROOT.glob("*.html"))
     for directory in PAGE_DIRECTORIES:
@@ -37,6 +35,26 @@ def build(output: Path) -> int:
         shutil.copy2(source, target)
     config_path = output / "assets/js/config.js"
     config_path.write_bytes(render_public_config(ROOT))
+    headers_path = output / "_headers"
+    headers_path.write_text(
+        "/*\n"
+        "  X-Content-Type-Options: nosniff\n"
+        "  Referrer-Policy: strict-origin-when-cross-origin\n"
+        "  Permissions-Policy: camera=(), microphone=(), geolocation=()\n"
+        "/*.html\n"
+        "  Cache-Control: no-cache\n"
+        "/admin/*.html\n"
+        "  Cache-Control: no-cache\n"
+        "/customer/*.html\n"
+        "  Cache-Control: no-cache\n"
+        "/operations/*.html\n"
+        "  Cache-Control: no-cache\n"
+        "/assets/css/*\n"
+        "  Cache-Control: no-cache\n"
+        "/assets/js/*\n"
+        "  Cache-Control: no-cache\n",
+        encoding="utf-8",
+    )
     return len(files)
 
 

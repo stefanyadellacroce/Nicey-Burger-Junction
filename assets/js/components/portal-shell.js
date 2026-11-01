@@ -19,6 +19,10 @@ const nav = {
       ['Walk-in / POS', 'walk-in.html', 'calculator']
     ]],
 
+    ['Finance', [
+      ['Payments', 'payments.html', 'credit-card']
+    ]],
+
     ['Customers', [
       ['Customers', 'customers.html', 'people']
     ]],

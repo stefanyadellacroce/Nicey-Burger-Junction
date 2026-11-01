@@ -20,6 +20,7 @@ import {
 
 
 let rows = [];
+let canRecordRefunds = true;
 
 
 function getReference(
@@ -362,6 +363,15 @@ function createActionCell(
         payment.method
             ?.method_type !==
             'CASH'
+        &&
+        (
+            payment.status ===
+                'SUBMITTED'
+            ||
+            payment.method
+                ?.requires_proof !==
+                true
+        )
     ) {
         const verifyButton =
             el(
@@ -523,6 +533,7 @@ function createActionCell(
 
 
     if (
+        canRecordRefunds &&
         [
             'PAID',
             'VERIFIED',
@@ -850,7 +861,12 @@ function render() {
 }
 
 
-export async function init() {
+export async function init({
+    kind = 'admin'
+} = {}) {
+    canRecordRefunds =
+        kind === 'admin';
+
     const search =
         document.getElementById(
             'payment-search'

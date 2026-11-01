@@ -4,10 +4,11 @@ root=Path(__file__).resolve().parents[1]
 ignored={'.git','.venv','node_modules','__pycache__','dist','.temp'}
 def project_files(pattern):
     return (p for p in root.rglob(pattern) if not any(part in ignored for part in p.relative_to(root).parts))
-required=['app.py','site_config.py','tools/build_site.py','index.html','menu.html','product.html','login.html','register.html','customer/cart.html','customer/checkout.html','operations/dashboard.html','operations/orders.html','operations/kitchen.html','operations/walk-in.html','admin/dashboard.html','admin/products.html','admin/inventory.html','admin/reports.html','admin/machine-learning.html','admin/users.html','admin/settings.html','admin/commerce-setup.html','README.md','supabase/migrations/001_schema.sql','supabase/migrations/002_functions.sql','supabase/migrations/003_rls.sql','supabase/migrations/013_checkout_integrity.sql']
+required=['app.py','site_config.py','tools/build_site.py','index.html','menu.html','product.html','login.html','register.html','customer/cart.html','customer/checkout.html','operations/dashboard.html','operations/orders.html','operations/kitchen.html','operations/walk-in.html','admin/dashboard.html','admin/products.html','admin/inventory.html','admin/reports.html','admin/machine-learning.html','admin/users.html','admin/settings.html','admin/commerce-setup.html','supabase/migrations/001_schema.sql','supabase/migrations/002_functions.sql','supabase/migrations/003_rls.sql','supabase/migrations/013_checkout_integrity.sql']
 required.append('supabase/migrations/014_require_business_confirmation.sql')
 required.append('supabase/migrations/015_atomic_purchase_orders_and_write_grants.sql')
 required.append('supabase/migrations/016_fix_order_snapshot.sql')
+required.append('supabase/migrations/017_require_order_items.sql')
 errors=[]
 for p in required:
     if not (root/p).is_file(): errors.append(f'MISSING required file: {p}')
@@ -19,7 +20,7 @@ for f in project_files('*.html'):
         if not target.exists(): errors.append(f'BROKEN local ref {f.relative_to(root)} -> {ref}')
 for f in project_files('*.js'):
     text=f.read_text(errors='ignore')
-    for ref in re.findall(r"(?:from\\s*|import\\s*)[\"'](\\.{1,2}/[^\"']+)[\"']",text):
+    for ref in re.findall(r"(?:from\s*|import\s*\(?\s*)[\"'](\.{1,2}/[^\"']+)[\"']",text):
         target=(f.parent/ref).resolve()
         if not target.exists(): errors.append(f'BROKEN JS import {f.relative_to(root)} -> {ref}')
 for f in project_files('*.css'):

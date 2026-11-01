@@ -217,7 +217,7 @@ function createProductRow(
             'td',
             {
                 className:
-                    'cluster'
+                    'admin-product-actions'
             }
         );
 
@@ -269,7 +269,7 @@ function createProductRow(
             'button',
             {
                 className:
-                    'btn btn-link p-0',
+                    'btn-nbj ghost sm admin-product-action-secondary',
                 type:
                     'button',
                 text:
@@ -348,7 +348,7 @@ function createProductRow(
             'button',
             {
                 className:
-                    'btn btn-link p-0',
+                    'btn-nbj ghost sm admin-product-action-secondary',
                 type:
                     'button',
                 text:

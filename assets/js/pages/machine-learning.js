@@ -62,7 +62,7 @@ function renderModels(
                             'empty-state',
 
                         text:
-                            'No active trained models have been synced yet.'
+                            'Forecasts have not been set up yet. Ask your system administrator to load them.'
                     }
                 )
             ]
@@ -87,19 +87,9 @@ function renderModels(
                             'span',
                             {
                                 text:
-                                    `${
-                                        model.name
-                                        ||
-                                        'Model'
-                                    } v${
-                                        model.version
-                                        ||
-                                        '—'
-                                    } · ${
-                                        model.algorithm
-                                        ||
-                                        'Algorithm unavailable'
-                                    }`
+                                    model.name
+                                    ||
+                                    'Forecast data is connected'
                             }
                         ),
 
@@ -111,10 +101,8 @@ function renderModels(
 
                                 text:
                                     model.trained_at
-                                        ? formatDate(
-                                            model.trained_at
-                                        )
-                                        : 'Training date unavailable'
+                                        ? `Updated ${formatDate(model.trained_at)}`
+                                        : 'Update date unavailable'
                             }
                         )
                     ]
@@ -149,7 +137,7 @@ function renderInventoryRisk(
                             'empty-state',
 
                         text:
-                            'No inventory forecast has been generated yet.'
+                            'No stock estimates are available yet. Check the Inventory page for current quantities.'
                     }
                 )
             ]
@@ -174,6 +162,16 @@ function renderInventoryRisk(
                             ||
                             0
                         );
+                    const riskLabels = {
+                        HEALTHY: 'Stock looks okay',
+                        WATCH: 'Keep an eye on stock',
+                        REORDER_SOON: 'Restock soon',
+                        CRITICAL: 'Restock now'
+                    };
+                    const riskLabel =
+                        riskLabels[item.risk_level]
+                        ||
+                        'Stock status unavailable';
 
 
                     return el(
@@ -198,11 +196,7 @@ function renderInventoryRisk(
                                 'strong',
                                 {
                                     text:
-                                        `${
-                                            item.risk_level
-                                            ||
-                                            'UNKNOWN'
-                                        }: ${
+                                        `${riskLabel} · Suggested restock: ${
                                             Number.isFinite(
                                                 reorder
                                             )
@@ -316,7 +310,7 @@ async function renderDemandChart(
                 datasets: [
                     {
                         label:
-                            'Forecast quantity',
+                            'Expected sales',
 
                         data:
                             grouped.map(
@@ -364,7 +358,7 @@ function renderDemandTable(
                             'empty-state',
 
                         text:
-                            'No demand forecast has been generated yet.'
+                            'No sales estimates are available yet. Forecasts may not have been set up.'
                     }
                 )
             ]
@@ -406,7 +400,7 @@ function renderDemandTable(
                                 'th',
                                 {
                                     text:
-                                        'Forecast'
+                                        'Expected sales'
                                 }
                             ),
 
@@ -414,7 +408,7 @@ function renderDemandTable(
                                 'th',
                                 {
                                     text:
-                                        'Lower'
+                                        'Low estimate'
                                 }
                             ),
 
@@ -422,7 +416,7 @@ function renderDemandTable(
                                 'th',
                                 {
                                     text:
-                                        'Upper'
+                                        'High estimate'
                                 }
                             )
                         ]

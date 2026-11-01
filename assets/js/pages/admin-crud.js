@@ -1547,12 +1547,21 @@ async function saveCurrentRecord() {
 
 
 export async function init() {
-    cfg =
-        configs[
-            document.body
+    const routeEntity =
+        window.location.pathname
+            .split('/')
+            .pop()
+            .replace(/\.html$/i, '');
+
+    const entity =
+        configs[routeEntity]
+            ? routeEntity
+            : document.body
                 .dataset
-                .entity
-        ];
+                .entity;
+
+    cfg =
+        configs[entity];
 
 
     if (!cfg) {
@@ -1560,6 +1569,9 @@ export async function init() {
             'Unknown admin entity.'
         );
     }
+
+    document.body.dataset.entity =
+        entity;
 
 
     const addButton =

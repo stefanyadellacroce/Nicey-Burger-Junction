@@ -36,6 +36,16 @@ const ORDER_STATUSES = [
     'CANCELLED'
 ];
 
+const ORDER_STATUS_COLORS = {
+    PENDING: '#d97706',
+    CONFIRMED: '#2563eb',
+    PREPARING: '#7c3aed',
+    READY: '#0891b2',
+    OUT_FOR_DELIVERY: '#db2777',
+    COMPLETED: '#15803d',
+    CANCELLED: '#64748b'
+};
+
 
 function asArray(value) {
     return Array.isArray(value)
@@ -516,10 +526,31 @@ async function renderStatusChart(orders) {
             'status-chart'
         );
 
+    const summary =
+        document.getElementById(
+            'status-chart-summary'
+        );
+
+    const emptyState =
+        document.getElementById(
+            'status-chart-empty'
+        );
+
 
     if (!canvas) {
         return;
     }
+
+    if (!orders.length) {
+        canvas.hidden = true;
+        if (summary) summary.hidden = true;
+        if (emptyState) emptyState.hidden = false;
+        return;
+    }
+
+    canvas.hidden = false;
+    if (summary) summary.hidden = false;
+    if (emptyState) emptyState.hidden = true;
 
 
     const counts =
@@ -527,42 +558,126 @@ async function renderStatusChart(orders) {
             orders
         );
 
+    if (summary) {
+        replaceChildren(
+            summary,
+            ORDER_STATUSES.map(
+                status =>
+                    el(
+                        'div',
+                        {
+                            className:
+                                'dashboard-status-count'
+                        },
+                        [
+                            el(
+                                'span',
+                                {
+                                    className:
+                                        'dashboard-status-dot',
+                                    'aria-hidden': 'true'
+                                }
+                            ),
+                            el(
+                                'span',
+                                {
+                                    className:
+                                        'dashboard-status-name',
+                                    text:
+                                        status.replaceAll(
+                                            '_',
+                                            ' '
+                                        )
+                                }
+                            ),
+                            el(
+                                'strong',
+                                {
+                                    className:
+                                        'dashboard-status-value',
+                                    text:
+                                        String(counts[status])
+                                }
+                            )
+                        ]
+                    )
+            )
+        );
+
+        ORDER_STATUSES.forEach(
+            (status, index) => {
+                summary.children[index]
+                    .querySelector(
+                        '.dashboard-status-dot'
+                    )
+                    .style.backgroundColor =
+                        ORDER_STATUS_COLORS[status];
+            }
+        );
+    }
+
 
     await renderChart(
         canvas,
         {
-            type:
-                'doughnut',
+            type: 'doughnut',
 
             data: {
                 labels:
-                    ORDER_STATUSES,
+                    ORDER_STATUSES.map(
+                        status =>
+                            status.replaceAll(
+                                '_',
+                                ' '
+                            )
+                    ),
 
                 datasets: [
                     {
-                        label:
-                            'Orders',
+                        label: 'Orders',
 
                         data:
                             ORDER_STATUSES.map(
                                 status =>
                                     counts[status]
-                            )
+                            ),
+
+                        backgroundColor:
+                            ORDER_STATUSES.map(
+                                status =>
+                                    ORDER_STATUS_COLORS[status]
+                            ),
+
+                        borderColor:
+                            '#ffffff',
+
+                        borderWidth: 3,
+                        hoverOffset: 8
                     }
                 ]
             },
 
             options: {
-                responsive:
-                    true,
-
-                maintainAspectRatio:
-                    false,
+                cutout: '62%',
 
                 plugins: {
                     legend: {
-                        position:
-                            'bottom'
+                        display: false
+                    },
+
+                    tooltip: {
+                        callbacks: {
+                            label: context => {
+                                const count =
+                                    context.parsed;
+
+                                return `${context.label}: ${count} ${
+                                    count === 1
+                                        ? 'order'
+                                        : 'orders'
+                                }`;
+                            }
+                        }
                     }
                 }
             }
@@ -577,10 +692,24 @@ async function renderHourlyChart(orders) {
             'hour-chart'
         );
 
+    const emptyState =
+        document.getElementById(
+            'hour-chart-empty'
+        );
+
 
     if (!canvas) {
         return;
     }
+
+    if (!orders.length) {
+        canvas.hidden = true;
+        if (emptyState) emptyState.hidden = false;
+        return;
+    }
+
+    canvas.hidden = false;
+    if (emptyState) emptyState.hidden = true;
 
 
     const hourly =
@@ -613,8 +742,7 @@ async function renderHourlyChart(orders) {
 
                 datasets: [
                     {
-                        label:
-                            'Orders',
+                        label: 'Orders placed',
 
                         data:
                             hourly
@@ -622,8 +750,55 @@ async function renderHourlyChart(orders) {
                 ]
             },
 
-            options:
-                baseOptions
+            options: {
+                ...baseOptions,
+
+                scales: {
+                    ...baseOptions.scales,
+
+                    x: {
+                        ...baseOptions.scales.x,
+                        title: {
+                            display: true,
+                            text: 'Hour of day (local time)'
+                        }
+                    },
+
+                    y: {
+                        ...baseOptions.scales.y,
+                        title: {
+                            display: true,
+                            text: 'Number of orders'
+                        },
+                        ticks: {
+                            ...baseOptions.scales.y.ticks,
+                            precision: 0,
+                            stepSize: 1
+                        }
+                    }
+                },
+
+                plugins: {
+                    ...baseOptions.plugins,
+
+                    legend: {
+                        ...baseOptions.plugins.legend,
+                        display: false
+                    },
+
+                    tooltip: {
+                        ...baseOptions.plugins.tooltip,
+                        callbacks: {
+                            label: context =>
+                                `${context.parsed.y} ${
+                                    context.parsed.y === 1
+                                        ? 'order'
+                                        : 'orders'
+                                }`
+                        }
+                    }
+                }
+            }
         }
     );
 }

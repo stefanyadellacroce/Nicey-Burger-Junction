@@ -143,6 +143,7 @@ export async function getOrder(
                 *,
                 items:order_items(
                     *,
+                    product:products(slug),
                     addons:order_item_addons(*)
                 ),
                 history:order_status_history(*),

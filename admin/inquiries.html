@@ -71,32 +71,32 @@
             </table>
           </div>
         </section>
+
+        <dialog id="inquiry-dialog" class="modal-nbj inquiries-dialog" aria-labelledby="inquiry-dialog-title">
+          <div class="modal-head">
+            <h2 id="inquiry-dialog-title">Inquiry</h2>
+            <button id="inquiry-close" class="icon-btn" type="button" aria-label="Close inquiry"><i class="bi bi-x-lg"></i></button>
+          </div>
+          <div class="modal-body">
+            <p id="inquiry-meta" class="inquiry-meta"></p>
+            <p id="inquiry-contact" class="inquiry-contact"></p>
+            <p id="inquiry-message" class="inquiry-message"></p>
+            <label for="inquiry-status" class="form-label fw-bold">Status</label>
+            <select id="inquiry-status" class="form-select">
+              <option value="NEW">New</option>
+              <option value="READ">Read</option>
+              <option value="RESOLVED">Resolved</option>
+              <option value="SPAM">Spam</option>
+            </select>
+          </div>
+          <div class="modal-foot">
+            <a id="inquiry-reply" class="btn btn-outline-primary" href="#">Reply by email</a>
+            <button id="inquiry-save" class="btn btn-primary" type="button">Save status</button>
+          </div>
+        </dialog>
       </main>
     </div>
   </div>
-
-  <dialog id="inquiry-dialog" class="modal-nbj inquiries-dialog" aria-labelledby="inquiry-dialog-title">
-    <div class="modal-head">
-      <h2 id="inquiry-dialog-title">Inquiry</h2>
-      <button id="inquiry-close" class="icon-btn" type="button" aria-label="Close inquiry"><i class="bi bi-x-lg"></i></button>
-    </div>
-    <div class="modal-body">
-      <p id="inquiry-meta" class="inquiry-meta"></p>
-      <p id="inquiry-contact" class="inquiry-contact"></p>
-      <p id="inquiry-message" class="inquiry-message"></p>
-      <label for="inquiry-status" class="form-label fw-bold">Status</label>
-      <select id="inquiry-status" class="form-select">
-        <option value="NEW">New</option>
-        <option value="READ">Read</option>
-        <option value="RESOLVED">Resolved</option>
-        <option value="SPAM">Spam</option>
-      </select>
-    </div>
-    <div class="modal-foot">
-      <a id="inquiry-reply" class="btn btn-outline-primary" href="#">Reply by email</a>
-      <button id="inquiry-save" class="btn btn-primary" type="button">Save status</button>
-    </div>
-  </dialog>
 
   <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
   <script type="module" src="/assets/js/portal.js"></script>

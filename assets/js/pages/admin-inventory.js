@@ -232,7 +232,7 @@ function createInventoryRow(
             'td',
             {
                 className:
-                    'cluster'
+                    'admin-inventory-actions'
             }
         );
 

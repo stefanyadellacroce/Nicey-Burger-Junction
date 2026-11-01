@@ -1,4 +1,4 @@
--- Read-only assertions after migrations 001-016 and seed. Run in a test
+-- Read-only assertions after migrations 001-017 and seed. Run in a test
 -- database before production, and again after deployment.
 do $$
 begin
@@ -58,5 +58,17 @@ begin
   if position('order_ctx.variant_id' in pg_get_functiondef('public.create_order(jsonb,text)'::regprocedure))=0
      or position('public.product_variants%rowtype' in pg_get_functiondef('public.create_order(jsonb,text)'::regprocedure))=0 then
     raise exception 'Order snapshot fix is missing';
+  end if;
+
+  if not exists (
+    select 1 from pg_trigger
+    where tgrelid='public.orders'::regclass
+      and tgname='orders_require_items'
+      and tgconstraint<>0
+      and tgdeferrable
+      and tginitdeferred
+      and tgenabled<>'D'
+  ) then
+    raise exception 'Empty orders are not blocked at transaction commit';
   end if;
 end $$;
