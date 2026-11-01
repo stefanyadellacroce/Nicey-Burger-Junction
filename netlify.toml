@@ -4,6 +4,9 @@
 
 [build.environment]
   PYTHON_VERSION = "3.12"
+  NBJ_SUPABASE_URL = "https://wcqohzdsrvqiqlopwbdr.supabase.co"
+  NBJ_SUPABASE_PUBLISHABLE_KEY = "sb_publishable_EMpWF3-QmzCTAOXOH5ZOtA_kSyoKM3N"
+  NBJ_SITE_URL = "https://leafy-valkyrie-c0f0a0.netlify.app"
 
 [[headers]]
   for = "/*"
