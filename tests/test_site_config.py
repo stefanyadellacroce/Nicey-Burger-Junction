@@ -3,6 +3,7 @@
 import base64
 import json
 import tempfile
+import tomllib
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -105,6 +106,29 @@ class ConfigTests(unittest.TestCase):
                 config_json["SITE_URL"],
                 "https://leafy-valkyrie-c0f0a0.netlify.app",
             )
+
+    def test_netlify_secret_scan_omits_only_public_browser_settings(self):
+        netlify_config = tomllib.loads(
+            (Path(__file__).resolve().parents[1] / "netlify.toml").read_text(
+                encoding="utf-8"
+            )
+        )
+        omitted_keys = set(
+            netlify_config["build"]["environment"]["SECRETS_SCAN_OMIT_KEYS"].split(",")
+        )
+        self.assertEqual(
+            omitted_keys,
+            {
+                "NBJ_SUPABASE_URL",
+                "NBJ_SUPABASE_PUBLISHABLE_KEY",
+                "NBJ_SITE_URL",
+                "NBJ_CURRENCY_LOCALE",
+            },
+        )
+        self.assertNotIn(
+            "SECRETS_SCAN_ENABLED",
+            netlify_config["build"]["environment"],
+        )
 
     def test_netlify_build_replaces_existing_dist_with_fresh_output(self):
         with tempfile.TemporaryDirectory() as directory:
