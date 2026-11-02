@@ -9,12 +9,12 @@
   >
 
   <title>
-    Machine Learning | Nicey Burger Junction
+    Stock &amp; Sales Outlook | Nicey Burger Junction
   </title>
 
   <meta
     name="description"
-    content="Review Nicey Burger Junction machine learning model runs and forecasts."
+    content="Review active sales and stock forecasts for Nicey Burger Junction."
   >
 
   <meta
@@ -116,6 +116,7 @@
 
               <p class="admin-page-description">
                 Use these estimates to help plan restocking and food preparation.
+                Forecasts appear after enough completed-order history is available.
               </p>
             </div>
 
@@ -151,8 +152,8 @@
 
             <p>
               These estimates can help with planning, but they are not guarantees.
-              This page does not create them. If no results appear, ask your system
-              administrator to set up and load the forecasts.
+              This page does not create them. A system administrator must export
+              completed orders, train and validate the model, then load its forecasts.
             </p>
           </div>
 
@@ -260,6 +261,14 @@
 
 
           <div class="admin-ml-chart">
+
+            <div
+              id="ml-chart-empty"
+              class="empty-state"
+              hidden
+            >
+              No sales estimates are available yet. Forecasts may not have been set up.
+            </div>
 
             <canvas id="ml-demand-chart"></canvas>
 

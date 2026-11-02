@@ -5,3 +5,7 @@ dist/
 __pycache__/
 *.pyc
 supabase/.temp/
+ml/data/*
+!ml/data/.gitkeep
+ml/artifacts/*
+!ml/artifacts/.gitkeep

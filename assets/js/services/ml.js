@@ -6,12 +6,11 @@ import {
 function isoDate(
     date
 ) {
-    return date
-        .toISOString()
-        .slice(
-            0,
-            10
-        );
+    return [
+        date.getFullYear(),
+        String(date.getMonth() + 1).padStart(2, '0'),
+        String(date.getDate()).padStart(2, '0')
+    ].join('-');
 }
 
 
@@ -100,11 +99,19 @@ export async function getDemandForecast(
             .select(
                 `
                 *,
+                model:ml_models!inner(
+                    model_name,
+                    status
+                ),
                 product:products(
                     name,
                     slug
                 )
                 `
+            )
+            .eq(
+                'model.status',
+                'ACTIVE'
             )
             .gte(
                 'forecast_date',
@@ -144,11 +151,19 @@ export async function getInventoryForecast() {
             .select(
                 `
                 *,
+                model:ml_models!inner(
+                    model_name,
+                    status
+                ),
                 ingredient:ingredients(
                     name,
                     unit
                 )
                 `
+            )
+            .eq(
+                'model.status',
+                'ACTIVE'
             )
             .gte(
                 'forecast_date',

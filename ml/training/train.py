@@ -53,9 +53,12 @@ def metrics(y,p):
 
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument('--input',required=True); ap.add_argument('--source',choices=['NICEY','UCI'],default='NICEY'); ap.add_argument('--horizon',type=int,default=14); a=ap.parse_args()
-    raw=load(a.input,a.source); df=features(complete_daily(raw))
+    raw=load(a.input,a.source)
+    if raw.empty: raise ValueError('Training data is empty; export completed order history first.')
+    df=features(complete_daily(raw))
+    if df.empty: raise ValueError('Not enough order history to build lag features; collect more daily sales data first.')
     dates=sorted(df.order_date.unique()); cutoff=dates[max(1,int(len(dates)*.8))-1]; train=df[df.order_date<=cutoff]; test=df[df.order_date>cutoff]
-    if len(test)<10: raise ValueError('Not enough chronological holdout rows; provide more history.')
+    if test.order_date.nunique()<10: raise ValueError('Not enough chronological history for validation; the holdout must contain at least 10 distinct sales dates. Collect more data before training.')
     feats=['product_id','dow','month','week','promotion_active','lag_1','lag_7','lag_14','ma_7','ma_28']; cat=['product_id']; num=[x for x in feats if x not in cat]
     pre=ColumnTransformer([('cat',OneHotEncoder(handle_unknown='ignore'),cat),('num',Pipeline([('imp',SimpleImputer(strategy='median'))]),num)])
     models={'linear':LinearRegression(),'random_forest':RandomForestRegressor(n_estimators=180,min_samples_leaf=2,random_state=42,n_jobs=-1),'gradient_boosting':GradientBoostingRegressor(random_state=42)}

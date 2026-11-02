@@ -4212,6 +4212,45 @@ button{
   border-radius:.85rem;
 }
 
+.admin-ml-model{
+  align-items:flex-start;
+}
+
+.admin-ml-model-date{
+  flex:none;
+}
+
+.admin-ml-stock-copy,
+.admin-ml-stock-status{
+  display:grid;
+
+  gap:.25rem;
+}
+
+.admin-ml-stock-copy small,
+.admin-ml-stock-status small{
+  color:
+    var(--nbj-muted,#75665f);
+
+  font-size:.72rem;
+}
+
+.admin-ml-stock-status{
+  text-align:right;
+}
+
+.admin-ml-stock-critical{
+  border-left:3px solid var(--nbj-danger,#b42318);
+}
+
+.admin-ml-stock-reorder_soon{
+  border-left:3px solid var(--nbj-warning,#996300);
+}
+
+.admin-ml-stock-watch{
+  border-left:3px solid var(--nbj-info,#0b6fa4);
+}
+
 
 /* =========================================================
    ML CHART
@@ -4237,6 +4276,20 @@ button{
 
 .admin-ml-demand-table{
   margin-top:1rem;
+}
+
+.admin-ml-chart > .empty-state{
+  min-height:250px;
+
+  display:grid;
+
+  place-items:center;
+
+  text-align:center;
+}
+
+.admin-ml-chart > .empty-state[hidden]{
+  display:none;
 }
 
 

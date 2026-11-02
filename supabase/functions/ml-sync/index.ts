@@ -13,7 +13,7 @@ Deno.serve(async(req)=>{
   if(payload.demand_forecasts?.length){await s.from('demand_forecasts').delete().eq('model_id',model.id);const{error}=await s.from('demand_forecasts').insert(payload.demand_forecasts.map((x:any)=>({...x,model_id:model.id})));if(error)throw error}
   if(payload.recommendations?.length){await s.from('product_recommendations').delete().eq('model_id',model.id);const{error}=await s.from('product_recommendations').insert(payload.recommendations.map((x:any)=>({...x,model_id:model.id})));if(error)throw error}
   if(payload.inventory_forecasts?.length){await s.from('inventory_forecasts').delete().eq('model_id',model.id);const{error}=await s.from('inventory_forecasts').insert(payload.inventory_forecasts.map((x:any)=>({...x,model_id:model.id})));if(error)throw error}
-  if(payload.activate===true){await s.from('ml_models').update({status:'ARCHIVED'}).eq('model_name',model.model_name).neq('id',model.id).eq('status','ACTIVE');await s.from('ml_models').update({status:'ACTIVE'}).eq('id',model.id)}
+  if(payload.activate===true){const{error:archiveError}=await s.from('ml_models').update({status:'ARCHIVED'}).eq('model_name',model.model_name).neq('id',model.id).eq('status','ACTIVE');if(archiveError)throw archiveError;const{error:activateError}=await s.from('ml_models').update({status:'ACTIVE'}).eq('id',model.id);if(activateError)throw activateError}
   return out({ok:true,model_id:model.id});
  }catch(e){console.error(e);return out({error:e instanceof Error?e.message:String(e)},400)}
 });

@@ -23,6 +23,16 @@ function formatNumber(
     value,
     fallback = '—'
 ) {
+    if (
+        value === null
+        ||
+        value === undefined
+        ||
+        value === ''
+    ) {
+        return fallback;
+    }
+
     const number =
         Number(
             value
@@ -32,7 +42,12 @@ function formatNumber(
     return Number.isFinite(
         number
     )
-        ? String(number)
+        ? number.toLocaleString(
+            undefined,
+            {
+                maximumFractionDigits: 2
+            }
+        )
         : fallback;
 }
 
@@ -62,7 +77,7 @@ function renderModels(
                             'empty-state',
 
                         text:
-                            'Forecasts have not been set up yet. Ask your system administrator to load them.'
+                            'No active sales forecast is loaded yet. An administrator can train and load one after enough completed-order history is available.'
                     }
                 )
             ]
@@ -80,16 +95,39 @@ function renderModels(
                     'article',
                     {
                         className:
-                            'summary-row'
+                            'summary-row admin-ml-model'
                     },
                     [
                         el(
-                            'span',
+                            'strong',
                             {
                                 text:
-                                    model.name
+                                    model.model_name
                                     ||
                                     'Forecast data is connected'
+                            }
+                        ),
+
+                        el(
+                            'small',
+                            {
+                                className:
+                                    'muted',
+
+                                text:
+                                    [
+                                        model.algorithm,
+                                        model.version
+                                            ? `Version ${model.version}`
+                                            : null,
+                                        model.dataset_name
+                                            ? `Dataset: ${model.dataset_name}`
+                                            : null
+                                    ]
+                                        .filter(Boolean)
+                                        .join(' · ')
+                                        ||
+                                        'Model details unavailable'
                             }
                         ),
 
@@ -147,70 +185,184 @@ function renderInventoryRisk(
     }
 
 
+    const riskOrder = {
+        CRITICAL: 0,
+        REORDER_SOON: 1,
+        WATCH: 2,
+        HEALTHY: 3
+    };
+    const riskLabels = {
+        WATCH: 'Keep an eye on stock',
+        REORDER_SOON: 'Restock soon',
+        CRITICAL: 'Restock now'
+    };
+    const highestRiskByIngredient =
+        new Map();
+
+    inventory.forEach(
+        item => {
+            const key =
+                item.ingredient_id
+                ||
+                item.ingredient?.name
+                ||
+                item.id;
+            const existing =
+                highestRiskByIngredient.get(key);
+            const itemRisk =
+                riskOrder[item.risk_level]
+                ??
+                Number.MAX_SAFE_INTEGER;
+            const existingRisk =
+                riskOrder[existing?.risk_level]
+                ??
+                Number.MAX_SAFE_INTEGER;
+
+            if (
+                !existing
+                ||
+                itemRisk < existingRisk
+                ||
+                (
+                    itemRisk === existingRisk
+                    &&
+                    String(item.forecast_date)
+                        .localeCompare(
+                            String(existing.forecast_date)
+                        ) < 0
+                )
+            ) {
+                highestRiskByIngredient.set(
+                    key,
+                    item
+                );
+            }
+        }
+    );
+
+    const actionable =
+        [...highestRiskByIngredient.values()]
+            .filter(
+                item =>
+                    item.risk_level !== 'HEALTHY'
+            )
+            .sort(
+                (itemA, itemB) =>
+                    (
+                        riskOrder[itemA.risk_level]
+                        ??
+                        Number.MAX_SAFE_INTEGER
+                    )
+                    -
+                    (
+                        riskOrder[itemB.risk_level]
+                        ??
+                        Number.MAX_SAFE_INTEGER
+                    )
+                    ||
+                    Number(itemB.suggested_reorder || 0)
+                    -
+                    Number(itemA.suggested_reorder || 0)
+            );
+
+    if (!actionable.length) {
+        replaceChildren(
+            container,
+            [
+                el(
+                    'div',
+                    {
+                        className:
+                            'empty-state',
+
+                        text:
+                            'No ingredients are currently flagged for restocking.'
+                    }
+                )
+            ]
+        );
+
+        return;
+    }
+
     replaceChildren(
         container,
-        inventory
+        actionable
             .slice(
                 0,
                 12
             )
             .map(
                 item => {
-                    const reorder =
-                        Number(
-                            item.suggested_reorder
-                            ||
-                            0
-                        );
-                    const riskLabels = {
-                        HEALTHY: 'Stock looks okay',
-                        WATCH: 'Keep an eye on stock',
-                        REORDER_SOON: 'Restock soon',
-                        CRITICAL: 'Restock now'
-                    };
+                    const unit =
+                        item.ingredient?.unit
+                        ||
+                        '';
                     const riskLabel =
                         riskLabels[item.risk_level]
                         ||
                         'Stock status unavailable';
 
-
                     return el(
                         'div',
                         {
                             className:
-                                'summary-row'
+                                `summary-row admin-ml-stock admin-ml-stock-${String(item.risk_level || '').toLowerCase()}`
                         },
                         [
                             el(
-                                'span',
+                                'div',
                                 {
-                                    text:
-                                        item.ingredient
-                                            ?.name
-                                        ||
-                                        'Ingredient'
-                                }
+                                    className:
+                                        'admin-ml-stock-copy'
+                                },
+                                [
+                                    el(
+                                        'strong',
+                                        {
+                                            text:
+                                                item.ingredient?.name
+                                                ||
+                                                'Ingredient'
+                                        }
+                                    ),
+
+                                    el(
+                                        'small',
+                                        {
+                                            className:
+                                                'muted',
+
+                                            text:
+                                                `Expected remaining: ${formatNumber(item.expected_remaining)} ${unit}`.trim()
+                                        }
+                                    )
+                                ]
                             ),
 
                             el(
-                                'strong',
+                                'div',
                                 {
-                                    text:
-                                        `${riskLabel} · Suggested restock: ${
-                                            Number.isFinite(
-                                                reorder
-                                            )
-                                                ? reorder.toFixed(
-                                                    2
-                                                )
-                                                : '0.00'
-                                        } ${
-                                            item.ingredient
-                                                ?.unit
-                                            ||
-                                            ''
-                                        }`
-                                }
+                                    className:
+                                        'admin-ml-stock-status'
+                                },
+                                [
+                                    el(
+                                        'strong',
+                                        {
+                                            text:
+                                                riskLabel
+                                        }
+                                    ),
+
+                                    el(
+                                        'small',
+                                        {
+                                            text:
+                                                `Restock ${formatNumber(item.suggested_reorder, '0')} ${unit}`.trim()
+                                        }
+                                    )
+                                ]
                             )
                         ]
                     );
@@ -281,6 +433,10 @@ async function renderDemandChart(
         document.getElementById(
             'ml-demand-chart'
         );
+    const emptyState =
+        document.getElementById(
+            'ml-chart-empty'
+        );
 
 
     if (!canvas) {
@@ -292,6 +448,18 @@ async function renderDemandChart(
         groupDemandByDate(
             demand
         );
+
+    if (emptyState) {
+        emptyState.hidden =
+            grouped.length > 0;
+    }
+
+    canvas.hidden =
+        grouped.length === 0;
+
+    if (!grouped.length) {
+        return;
+    }
 
 
     await renderChart(
@@ -454,7 +622,11 @@ function renderDemandTable(
                                                     row.product
                                                         ?.name
                                                     ||
-                                                    '—'
+                                                    (
+                                                        row.external_product_key
+                                                            ? `Product ${row.external_product_key}`
+                                                            : 'Unlinked product'
+                                                    )
                                             }
                                         ),
 
@@ -472,9 +644,9 @@ function renderDemandTable(
                                             'td',
                                             {
                                                 text:
-                                                    row.lower_bound
-                                                    ??
-                                                    '—'
+                                                    formatNumber(
+                                                        row.lower_bound
+                                                    )
                                             }
                                         ),
 
@@ -482,9 +654,9 @@ function renderDemandTable(
                                             'td',
                                             {
                                                 text:
-                                                    row.upper_bound
-                                                    ??
-                                                    '—'
+                                                    formatNumber(
+                                                        row.upper_bound
+                                                    )
                                             }
                                         )
                                     ]
@@ -538,13 +710,11 @@ export async function init() {
         inventory
     );
 
-
-    await renderDemandChart(
+    renderDemandTable(
         demand
     );
 
-
-    renderDemandTable(
+    await renderDemandChart(
         demand
     );
 }
